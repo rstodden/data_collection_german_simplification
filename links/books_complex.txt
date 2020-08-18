@@ -1,0 +1,14 @@
+Die Verwandlung	Franz Kafka	https://www.projekt-gutenberg.org/kafka/verwandl/verwandl.html
+Die Abenteuer des Huckleberry Finn	Mark Twain	https://www.projekt-gutenberg.org/twain/hucklebe/hucklebe.html
+Die Abenteuer des Tom Sawyer	Mark Twain	https://www.projekt-gutenberg.org/twain/tomsawye/tomsawye.html
+Moby Dick	Herman Melville	https://www.projekt-gutenberg.org/melville/mobydick/mobydick.html
+Der seltsame Fall von Dr Jekyll und Mr Hyde	Robert Louis Stevenson	https://www.projekt-gutenberg.org/stevenso/jekyhyde/jekyhyde.html
+In 80 Tagen um die Welt	Jules Verne	https://www.projekt-gutenberg.org/verne/80tage/80tage.html
+Romeo und Julia	William Shakespeare	https://www.projekt-gutenberg.org/shakespr/romeo/romeo.html
+Sherlock Holmes. Ein Skandal in Böhmen	Conan Doyle	https://www.projekt-gutenberg.org/doyle/skandal/skandal.html
+Sherlock Holmes. Das gesprenkelte Band	Conan Doyle	https://www.projekt-gutenberg.org/doyle/getupfte/getupfte.html
+Sherlock Holmes. Das Zeichen der Vier	Conan Doyle	https://www.projekt-gutenberg.org/doyle/zeichen/zeichen.html
+Robinson Crusoe	Daniel Defoe	https://www.projekt-gutenberg.org/defoe/crusoe/crusoe.html
+Tristan und Isolde	Gottfried von Straßburg	https://www.projekt-gutenberg.org/gvstrass/tristsim/tristsim.html
+Frankenstein	Marry Shelly	https://www.projekt-gutenberg.org/shelley/frankens/frankens.html
+20.000 Meilen unterm Meer	Jules Verne	https://www.projekt-gutenberg.org/verne/zwanzig1/zwanzig1.html

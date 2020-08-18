@@ -1,0 +1,9 @@
+beautifulsoup4>=4.8.2
+lxml
+SoMaJo>=2.0.4
+pexpect
+requests
+pandas
+stanza
+spacy
+spacy-stanza
