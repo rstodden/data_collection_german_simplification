@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os, re, csv, requests, codecs
 from pathlib import Path
 import bs4
@@ -331,35 +333,36 @@ def parse_overview_bible(overview_url, tag, lexikon=False, save_raw_content=Fals
 	return output
 
 
-def parse_overview_gospel(overview_url, tag, save_raw_content=False, output_dir="data/"):
+# def parse_overview_gospel(overview_url, tag, save_raw_content=False, output_dir="data/"):
+#
+# 	output, all_listings, all_titles, lexikon_links = list(), list(), list(), list()
+# 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
+# 	simple_level, complex_level = "A1", "C2"
+# 	license_name = "CC BY-NC-SA 4.0"
+# 	access_date = datetime.today().strftime('%Y-%m-%d')
+# 	with opener.open(overview_url) as url:
+# 		soup = bs4.BeautifulSoup(url.read(), "lxml")
+# 	next_page = soup.find("a", {"title": "Zur nächsten Seite"})
+# 	i = 0
+# 	while next_page:
+# 		print(next_page["href"])
+# 		container = soup.find("div", {"class": "view-content"})
+# 		listings_one_page = container.find_all("a")
+# 		for listing in listings_one_page:
+# 			simple_url = listing["href"]
+# 			simple_title = listing.text
+# 			if simple_url:
+# 				name, number = simple_title.split(",")[0].split(" ")
+# 				complex_url = "https://offene-bibel.de/wiki/"+name+"_"+number
+# 			if save_raw_content:
+# 				simple_location, complex_location, simple_title, complex_title = save_content(get_link(simple_url, "https://www.evangelium-in-leichter-sprache.de"), get_link(complex_url, "https://offene-bibel.de"), i, output_dir, tag)
+# 			output.append([tag, get_link(simple_url, "https://www.evangelium-in-leichter-sprache.de"), get_link(complex_url, "https://offene-bibel.de"), simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+# 			i += 1
+# 		with opener.open(get_link(next_page["href"], "https://www.evangelium-in-leichter-sprache.de/")) as url:
+# 			soup = bs4.BeautifulSoup(url.read(), "lxml")
+# 		next_page = soup.find("a", {"title": "Zur nächsten Seite"})
+# 	return output
 
-	output, all_listings, all_titles, lexikon_links = list(), list(), list(), list()
-	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
-	simple_level, complex_level = "A1", "C2"
-	license_name = "CC BY-NC-SA 4.0"
-	access_date = datetime.today().strftime('%Y-%m-%d')
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	next_page = soup.find("a", {"title": "Zur nächsten Seite"})
-	i = 0
-	while next_page:
-		print(next_page["href"])
-		container = soup.find("div", {"class": "view-content"})
-		listings_one_page = container.find_all("a")
-		for listing in listings_one_page:
-			simple_url = listing["href"]
-			simple_title = listing.text
-			if simple_url:
-				name, number = simple_title.split(",")[0].split(" ")
-				complex_url = "https://offene-bibel.de/wiki/"+name+"_"+number
-			if save_raw_content:
-				simple_location, complex_location, simple_title, complex_title = save_content(get_link(simple_url, "https://www.evangelium-in-leichter-sprache.de"), get_link(complex_url, "https://offene-bibel.de"), i, output_dir, tag)
-			output.append([tag, get_link(simple_url, "https://www.evangelium-in-leichter-sprache.de"), get_link(complex_url, "https://offene-bibel.de"), simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
-			i += 1
-		with opener.open(get_link(next_page["href"], "https://www.evangelium-in-leichter-sprache.de/")) as url:
-			soup = bs4.BeautifulSoup(url.read(), "lxml")
-		next_page = soup.find("a", {"title": "Zur nächsten Seite"})
-	return output
 
 def check_subpage(url, element, attribute, attribute_value):
 	with opener.open(url) as url:
@@ -468,7 +471,8 @@ def parse_overview_alumniportal(page_url, tag, save_raw_content=False, output_di
 	access_date = datetime.today().strftime('%Y-%m-%d')
 	with opener.open(page_url) as url:
 		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	head_listing = soup.find_all("a", href = re.compile("^deutsche-sprache/deutsch-auf-die-schnelle/.+"))
+	# head_listing = soup.find_all("a", href = re.compile("^deutsche-sprache/deutsch-auf-die-schnelle/.+"))
+	head_listing = soup.find_all("a", href=re.compile("^digitales-lernen/deutsche-sprache/deutsch-auf-die-schnelle/.+"))
 	i = 0
 	if head_listing:
 		for link in head_listing:
@@ -554,8 +558,8 @@ def main():
 					# "https://www.os-hho.de/",
 					# "https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
 
-					"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_in_Arbeit",
-					"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_noch_zu_pr%C3%BCfen",
+					# "https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_in_Arbeit",
+					# "https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_noch_zu_pr%C3%BCfen",
 					"https://offene-bibel.de/wiki/Kategorie:Gepr%C3%BCfte_Leichte_Sprache",
 
 					# "https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache",
@@ -565,7 +569,7 @@ def main():
 					#"manual_alignment"
 
 					# NEW
-					"https://www.evangelium-in-leichter-sprache.de/bibelstellen",
+					# "https://www.evangelium-in-leichter-sprache.de/bibelstellen",
 					# "https://www.bildung.bremen.de/informationen_in_leichter_sprache-17528",
 					# "https://www.gesundheit.bremen.de/service/informationen_in_leichter_sprache-20060",
 					# "https://www.wirtschaft.bremen.de/information_in_leichter_sprache-10108",

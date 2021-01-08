@@ -14,8 +14,8 @@ def do_stuff(dataframe, filter=None):
 	if filter:
 		column, value = filter
 		dataframe = dataframe.loc[dataframe[column] == value]
-	simple_locations = dataframe["simple_location"]
-	complex_locations = dataframe["complex_location"]
+	simple_locations = dataframe["simple_location_html"]
+	complex_locations = dataframe["complex_location_html"]
 	output_simple = iterate_files(simple_locations, "simple")
 	output_complex = iterate_files(complex_locations, "complex")
 
@@ -97,6 +97,7 @@ def extract_alumni_portal(soup, url, tag, search_text):
 		paragraphs = headline.parent.find_all("p", {"class": ""})
 		if paragraphs:
 			for i_par, par in enumerate(paragraphs):
+				print(output)
 				output += "# newpar id = "+ url+"_"+str(i_par)+"\n"
 				output += text2conll(par.text, url, i_par)
 	return output
@@ -169,6 +170,7 @@ def extract_bible(soup, url, tag, attribute, search_text):
 
 def text2conll(sent_string, url, i_par):
 	output = ""
+	print(sent_string)
 	# parse the sentence string with Spacy using the language model for German
 	doc = nlp(sent_string)
 
@@ -209,7 +211,7 @@ def main():
 	# stanza.download('de')
 	snlp = stanza.Pipeline('de', use_gpu=False)
 	nlp = StanzaLanguage(snlp)
-	filter = ("website", "bible_verified")
+	filter = ("website", "alumniportal-DE")
 	do_stuff(dataframe, filter)
 	# print(n_docs, n_sents, n_token)
 

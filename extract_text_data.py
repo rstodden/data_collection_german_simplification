@@ -36,7 +36,7 @@ def iterate_files(dataframe):
 		complex_soup = html2soup(dataframe.loc[index, "complex_location_html"])
 		print(dataframe.loc[index, "simple_url"])
 		if "offene-bibel" in dataframe.loc[index, "simple_url"]:
-			text_simple = extract_open_bible_text(simple_soup, "div", "id", "LeichteSprache", "simple", dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
+			text_simple = extract_open_bible_text(simple_soup, "main", "class", "leichtesprache", "simple", dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
 			text_complex = extract_open_bible_text(complex_soup, "div", "id", "Studienfassung", "complex", dataframe.loc[index, "complex_url"], dataframe.loc[index, "last_access"])
 
 		else:
@@ -63,7 +63,7 @@ def save_data(dataframe, index, text_complex, text_simple):
 
 def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date):
 	container = soup.find(tag, {attribute: search_text})
-	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\n"
+	text = ""
 	if container:
 		for sup in container.find_all("sup"):
 			sup.extract()
@@ -75,13 +75,21 @@ def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date)
 			for bracket in container.find_all("span", {"class": re.compile(".*klammer.*")}):
 				bracket.extract()
 		paragraphs = container.find_all("p")
-		for par in paragraphs:
-			text += par.text
-			if not par.text.endswith("\n"):
-				text += "\n"
-	for sign in [".", ",", "!", "?", ";"]:
+		number_paragraphs = len(paragraphs)
+		for i, par in enumerate(paragraphs):
+			if level == "simple" and i+1 == number_paragraphs:
+				pass
+			else:
+				text += par.text.strip()
+				# if not par.text.endswith("\n"):
+				# 	text += "\n"
+	for sign in [".", ",", "!", "?", ";", ":"]:
 		text = text.replace(" "+sign, sign)
+		text = text.replace(sign, sign+' ')
+		text = text.replace("\n", " ")
 		text = text.replace("  ", " ")
+		text = text.replace("\t", " ")
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\n" + text
 	return text
 
 
