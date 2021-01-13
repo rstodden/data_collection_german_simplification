@@ -70,11 +70,14 @@ def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date)
 		for br in container.find_all("br"):
 			br.extract()
 		if level == "complex":
+			# remove unwanted content
 			for navi in container.find_all("p", {"class": "navi"}):
 				navi.extract()
-			for bracket in container.find_all("span", {"class": re.compile(".*klammer.*")}):
+			for bracket in container.find_all("span", {"class": re.compile("runde-klammer.*")}):
 				bracket.extract()
-		paragraphs = container.find_all("p")
+			for bracket in container.find_all("span", {"class": "eckige-klammer"}):
+				bracket.extract()
+		paragraphs = container.find_all(["p", "dl"])
 		number_paragraphs = len(paragraphs)
 		for i, par in enumerate(paragraphs):
 			if level == "simple" and i+1 == number_paragraphs:
@@ -100,6 +103,7 @@ def main():
 	filter_data = None # ("website", "bible_verified")
 	output_dataframe = filter_and_extract_data(dataframe, filter_data)
 	output_dataframe.to_csv(input_dir+"url_overview_txt.tsv", header=True, index=False, sep="\t")
+
 
 if __name__ == "__main__":
 	main()
