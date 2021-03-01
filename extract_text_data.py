@@ -35,10 +35,14 @@ def iterate_files(dataframe):
 		simple_soup = html2soup(dataframe.loc[index, "simple_location_html"])
 		complex_soup = html2soup(dataframe.loc[index, "complex_location_html"])
 		print(dataframe.loc[index, "simple_url"])
-		if "offene-bibel" in dataframe.loc[index, "simple_url"]:
-			text_simple = extract_open_bible_text(simple_soup, "main", "class", "leichtesprache", "simple", dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
-			text_complex = extract_open_bible_text(complex_soup, "div", "id", "Studienfassung", "complex", dataframe.loc[index, "complex_url"], dataframe.loc[index, "last_access"])
-
+		# if "offene-bibel" in dataframe.loc[index, "simple_url"]:
+		# 	text_simple = extract_open_bible_text(simple_soup, "main", "class", "leichtesprache", "simple", dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
+		# 	text_complex = extract_open_bible_text(complex_soup, "div", "id", "Studienfassung", "complex", dataframe.loc[index, "complex_url"], dataframe.loc[index, "last_access"])
+		# el
+		if "news-apa" in dataframe.loc[index, "website"]:
+			text_simple, text_complex = extract_news_apa_text(simple_soup, "div", "class", "apa-power-search-single__content", "simple",
+												  dataframe.loc[index, "simple_url"],
+												  dataframe.loc[index, "last_access"])
 		else:
 			continue
 
@@ -62,6 +66,7 @@ def save_data(dataframe, index, text_complex, text_simple):
 
 
 def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date):
+	title = soup.find("h1", {"class": "firstHeading"})
 	container = soup.find(tag, {attribute: search_text})
 	text = ""
 	if container:
@@ -92,15 +97,43 @@ def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date)
 		text = text.replace("\n", " ")
 		text = text.replace("  ", " ")
 		text = text.replace("\t", " ")
-	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\n" + text
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
 	return text
+
+
+def extract_news_apa_text(soup, tag, attribute, search_text, level, url, date):
+	title = soup.find("h3", {"class": "apa-power-search-single__title"}).text.strip()
+	container = soup.find(tag, {attribute: search_text})
+	simple_text = ""
+	complex_text = ""
+	current_text = complex_text
+	if container:
+		for i, par in enumerate(container.find_all("p")):
+			if par.find("span"):
+				span = par.find("span")
+				if span.text == "Sprachstufe A2:":
+					complex_text = current_text
+					current_text = simple_text
+				elif span.text == "Sprachstufe B1:":
+					pass
+				else:
+					current_text += " " + span.text + ". "
+			else:
+				current_text += par.text + " "
+	current_text = current_text.replace("\n", " ")
+	current_text = current_text.replace("  ", " ")
+	complex_text = complex_text.replace("\n", " ")
+	complex_text = complex_text.replace("  ", " ")
+	simple_text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + current_text.strip()
+	complex_text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + complex_text.strip()
+	return simple_text, complex_text
 
 
 def main():
 	input_dir = "data/"
 	input_file = input_dir+"url_overview.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
-	filter_data = None # ("website", "bible_verified")
+	filter_data = ("website", "news-apa")  # bible_verified
 	output_dataframe = filter_and_extract_data(dataframe, filter_data)
 	output_dataframe.to_csv(input_dir+"url_overview_txt.tsv", header=True, index=False, sep="\t")
 

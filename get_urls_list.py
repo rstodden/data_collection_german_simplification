@@ -41,9 +41,9 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 	elif "offene-bibel.de" in page_url and "Gepr%C3%BCfte_Leichte_Sprache" in page_url:
 		tag = "bible_verified"
 		output.extend(parse_overview_bible(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
-	elif "https://www.evangelium-in-leichter-sprache.de/" in page_url:
-		tag = "bible_gospel"
-		output.extend(parse_overview_gospel(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+	# elif "https://www.evangelium-in-leichter-sprache.de/" in page_url:
+	# 	tag = "bible_gospel"
+	# 	output.extend(parse_overview_gospel(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
 	elif "einfach-teilhaben.de" in page_url:
 		tag = "einfach-teilhaben"
 		output.extend(parse_overview_einfach_teilhaben(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir)[0])
@@ -59,6 +59,9 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 	elif "manual_alignment" in page_url:
 		tag = "manual_alignment"
 		output.extend(add_manual_aligned_urls(save_raw_content=save_raw_content, output_dir=output_dir))
+	elif "science_apa_manual" in page_url:
+		tag = "news-apa"
+		output.extend(parse_overview_apa(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
 	else:
 		tag = "else"
 		list_simplified_urls, list_complex_urls = [], []
@@ -182,6 +185,7 @@ def get_complex_url_koeln(soup_simple_hmtl):
 		return complex_url["href"]
 	else:
 		return ""
+
 
 def get_complex_url_einfach_teilhaben(simple_url):
 	with opener.open(simple_url) as url:
@@ -332,6 +336,32 @@ def parse_overview_bible(overview_url, tag, lexikon=False, save_raw_content=Fals
 				i += 1
 	return output
 
+
+def parse_overview_apa(overview_url, tag, lexikon=False, save_raw_content=False, output_dir="data/"):
+	output = list()
+	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
+	simple_level, complex_level = "A2", "B1"
+	license_name = ""
+	access_date = datetime.today().strftime('%Y-%m-%d')
+
+	with open(overview_url) as f:
+		content = f.read()
+		soup = bs4.BeautifulSoup(content, 'html.parser')
+	search_result = soup.find("div", {"class": "global-power-search__results"})
+	all_items = search_result.find_all("a")
+	i = 0
+	for item in all_items:
+		simple_url_full = get_link(item["href"], "https://science.apa.at")
+		complex_url = simple_url_full
+		if save_raw_content:
+			simple_location, complex_location, simple_title, complex_title = save_content(simple_url_full,
+																							  complex_url, i,
+																							  output_dir, tag)
+			output.append(
+				[tag, simple_url_full, complex_url, simple_level, complex_level, simple_location, complex_location,
+				 "", "", "", simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+			i += 1
+	return output
 
 # def parse_overview_gospel(overview_url, tag, save_raw_content=False, output_dir="data/"):
 #
@@ -560,7 +590,7 @@ def main():
 
 					# "https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_in_Arbeit",
 					# "https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_noch_zu_pr%C3%BCfen",
-					"https://offene-bibel.de/wiki/Kategorie:Gepr%C3%BCfte_Leichte_Sprache",
+					# "https://offene-bibel.de/wiki/Kategorie:Gepr%C3%BCfte_Leichte_Sprache",
 
 					# "https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache",
 					# "https://taz.de/leicht/!p5097//",
@@ -580,6 +610,8 @@ def main():
 					# "https://www.bmwi.de/Navigation/DE/Service/Leichte-Sprache/leichte-sprache.html",
 					# "https://www.bmjv.de/DE/LeichteSprache/Leichte_Sprache_node.html",
 					# "https://www.bmas.de/DE/Leichte-Sprache/leichte-sprache.html"
+					# "https://science.apa.at/nachrichten-leicht-verstandlich/"
+					"data/science_apa_manual/Search.html"
 					]
 
 	#

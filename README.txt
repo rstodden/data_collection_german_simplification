@@ -56,3 +56,7 @@ Compared to Klaper.
 - more books https://www.leichte-sprache.org/geschichten/
 - check this referencelist http://www.leicht-gesagt.de/agentur-leichte-sprache-referenzen.html
 - https://www.bundestag.de/leichte_sprache/was_macht_der_bundestag/parlament    https://www.das-parlament.de/2020
+
+# Workflow
+- find all parallel documents with `get_urls_list.py`
+- save plain text of parallel documents with `extract_text_data.py`
