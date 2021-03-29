@@ -39,10 +39,22 @@ def iterate_files(dataframe):
 		# 	text_simple = extract_open_bible_text(simple_soup, "main", "class", "leichtesprache", "simple", dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
 		# 	text_complex = extract_open_bible_text(complex_soup, "div", "id", "Studienfassung", "complex", dataframe.loc[index, "complex_url"], dataframe.loc[index, "last_access"])
 		# el
-		if "news-apa" in dataframe.loc[index, "website"]:
-			text_simple, text_complex = extract_news_apa_text(simple_soup, "div", "class", "apa-power-search-single__content", "simple",
-												  dataframe.loc[index, "simple_url"],
-												  dataframe.loc[index, "last_access"])
+		# if "news-apa" in dataframe.loc[index, "website"]:
+		# 	text_simple, text_complex = extract_news_apa_text(simple_soup, "div", "class", "apa-power-search-single__content", "simple",
+		# 										  dataframe.loc[index, "simple_url"],
+		# 										  dataframe.loc[index, "last_access"])
+		if "alumniportal-DE-2020" in dataframe.loc[index, "website"]:
+			text_simple = extract_alumni_portal(simple_soup, "h2", "", "A2", "simple",
+												dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
+			text_complex = extract_alumni_portal(simple_soup, "h2", "", "B2", "simple",
+												 dataframe.loc[index, "simple_url"],
+												 dataframe.loc[index, "last_access"])
+		elif "alumniportal-DE-2021" in dataframe.loc[index, "website"]:
+			text_simple = extract_alumni_portal(simple_soup, "h2", "", "A2", "simple", dataframe.loc[index, "simple_url"],
+												dataframe.loc[index, "last_access"])
+			text_complex = extract_alumni_portal(complex_soup, "h2", "", "B2", "complex", dataframe.loc[index, "complex_url"],
+												 dataframe.loc[index, "last_access"])
+
 		else:
 			continue
 
@@ -129,13 +141,34 @@ def extract_news_apa_text(soup, tag, attribute, search_text, level, url, date):
 	return simple_text, complex_text
 
 
+def extract_alumni_portal(soup, tag, attribute, search_text, level, url, date):
+# def extract_alumni_portal(soup, url, tag, search_text):
+	text = ""
+	search_text_level = "sprachniveau "+search_text.lower()
+	title = soup.find("h1").text
+	headline = soup.find(tag, text=lambda x: x and search_text_level in x.lower())
+	if headline:
+		paragraphs = headline.parent.find_all("p", {"class": ""})
+		if paragraphs:
+			for i_par, par in enumerate(paragraphs):
+				if par.text.strip().startswith("Fragen B2") or par.text.strip().startswith("Frage B2") or \
+						par.text.strip().startswith("Fragen A2") or par.text.strip().startswith("Frage A2") or \
+						par.text.strip().startswith("Haben Sie die Texte gelesen und verstanden?") or \
+						par.text.strip().startswith("Text und Antworten in der Community") or par.text.strip().startswith("Haben Sie den Text gelesen und verstanden?"):
+					break
+				else:
+					text += par.text.strip()
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
+	return text
+
+
 def main():
 	input_dir = "data/"
 	input_file = input_dir+"url_overview.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
-	filter_data = ("website", "news-apa")  # bible_verified
+	filter_data = ("website", "alumniportal-DE-2021")  # bible_verified + # news-apa
 	output_dataframe = filter_and_extract_data(dataframe, filter_data)
-	output_dataframe.to_csv(input_dir+"url_overview_txt.tsv", header=True, index=False, sep="\t")
+	output_dataframe.to_csv(input_dir+"url_overview_alumni_txt.tsv", header=True, index=False, sep="\t")
 
 
 if __name__ == "__main__":

@@ -54,8 +54,9 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 		tag = "lebenshilfe_main_taunus"
 		output.extend(parse_overview_lebenshilfe_main_taunus(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
 	elif "alumniportal-deutschland.org" in page_url:
-		tag = "alumniportal-DE"
-		output.extend(parse_overview_alumniportal(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		tag = "alumniportal-DE-2021"
+		output.extend(parse_overview_alumniportal_2021(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		# output.extend(parse_overview_alumniportal_2020(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
 	elif "manual_alignment" in page_url:
 		tag = "manual_alignment"
 		output.extend(add_manual_aligned_urls(save_raw_content=save_raw_content, output_dir=output_dir))
@@ -493,7 +494,48 @@ def parse_overview_lebenshilfe_main_taunus(overview_page, tag, save_raw_content=
 	return output
 
 
-def parse_overview_alumniportal(page_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_alumniportal_2021(page_url, tag, save_raw_content=False, output_dir="data/"):
+	output = list()
+	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
+	simple_level, complex_level = "A2", "B2"
+	license_name = "CC BY 4.0"
+	access_date = datetime.today().strftime('%Y-%m-%d')
+	with opener.open(page_url) as url:
+		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	# head_listing = soup.find_all("a", href = re.compile("^deutsche-sprache/deutsch-auf-die-schnelle/.+"))
+	"https://www.alumniportal-deutschland.org/digitales-lernen/deutsche-sprache/lesetexte/lesetexte-sprachniveau-a1-a2/"
+	"https://www.alumniportal-deutschland.org/digitales-lernen/deutsche-sprache/lesetexte/b1-b2/online-deutsch-lernen-uebungen-integration-b/"
+	"digitales-lernen/deutsche-sprache/lesetexte/lesetexte-sprachniveau-a1-a2/"
+	simple_part = "lesetexte/lesetexte-sprachniveau-a1-a2/"
+	complex_part = "lesetexte/b1-b2/"
+	head_listing = soup.find_all("a", href=re.compile("^digitales-lernen/deutsche-sprache/lesetexte/lesetexte-sprachniveau-a1-a2/.+"))
+	head_listing_complex = soup.find_all("a", href=re.compile("^digitales-lernen/deutsche-sprache/lesetexte/b1-b2/.+"))
+	i = 0
+	head_listing = [get_link(link["href"], "https://www.alumniportal-deutschland.org/") for link in head_listing if "online-deutsch-lernen-uebungen-" in link["href"]]
+	head_listing_complex = [get_link(link["href"], "https://www.alumniportal-deutschland.org/") for link in head_listing_complex if "online-deutsch-lernen-uebungen-" in link["href"]]
+	if head_listing:
+		for link in head_listing:
+			simple_url = link
+			complex_candidate = simple_url.replace(simple_part, complex_part)
+			if complex_candidate.endswith("-a/"):
+				complex_candidate = complex_candidate[:-2]+"b/"
+			elif complex_candidate.endswith("-a1-a2/"):
+				complex_candidate = complex_candidate[:-6]+"b1-b2/"
+
+			if complex_candidate in head_listing_complex:
+				complex_url = complex_candidate
+			if complex_url and simple_url:
+				if save_raw_content:
+					simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url,
+																								  i, output_dir, tag)
+				output.append(
+					[tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "",
+					 "", simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+				i += 1
+	return output
+
+
+def parse_overview_alumniportal_2020(page_url, tag, save_raw_content=False, output_dir="data/"):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A2", "B2"
@@ -583,7 +625,7 @@ def main():
 		os.makedirs(output_dir)
 
 	overview_pages = [
-					# "https://www.alumniportal-deutschland.org/services/sitemap/",
+					"https://www.alumniportal-deutschland.org/services/sitemap/",
 					# "https://www.lebenshilfe-main-taunus.de/inhalt/",
 					# "https://www.os-hho.de/",
 					# "https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
@@ -611,7 +653,7 @@ def main():
 					# "https://www.bmjv.de/DE/LeichteSprache/Leichte_Sprache_node.html",
 					# "https://www.bmas.de/DE/Leichte-Sprache/leichte-sprache.html"
 					# "https://science.apa.at/nachrichten-leicht-verstandlich/"
-					"data/science_apa_manual/Search.html"
+					# "data/science_apa_manual/Search.html"
 					]
 
 	#

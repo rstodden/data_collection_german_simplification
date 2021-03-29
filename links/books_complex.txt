@@ -12,3 +12,5 @@ Robinson Crusoe	Daniel Defoe	https://www.projekt-gutenberg.org/defoe/crusoe/crus
 Tristan und Isolde	Gottfried von Straßburg	https://www.projekt-gutenberg.org/gvstrass/tristsim/tristsim.html
 Frankenstein	Marry Shelly	https://www.projekt-gutenberg.org/shelley/frankens/frankens.html
 20.000 Meilen unterm Meer	Jules Verne	https://www.projekt-gutenberg.org/verne/zwanzig1/zwanzig1.html
+Der kleine Prinz	 Antoine de Saint-Exupéry   http://data.exaudio.de/ebook/Exupery_Der_kleine_Prinz.pdf   CC BY-NC 4.0
+Momo	Michael Ende	
