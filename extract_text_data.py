@@ -55,6 +55,13 @@ def iterate_files(dataframe):
 			text_complex = extract_alumni_portal(complex_soup, "h2", "", "B2", "complex", dataframe.loc[index, "complex_url"],
 												 dataframe.loc[index, "last_access"])
 
+		elif "apotheken-umschau" in dataframe.loc[index, "website"]:
+			text_simple = extract_apotheken_umschau(simple_soup, "article", "article-detail", "A2", "simple",
+												dataframe.loc[index, "simple_url"],
+												dataframe.loc[index, "last_access"])
+			text_complex = extract_apotheken_umschau(complex_soup, "article", "article-detail", "C2", "complex",
+												 dataframe.loc[index, "complex_url"],
+												 dataframe.loc[index, "last_access"])
 		else:
 			continue
 
@@ -162,11 +169,30 @@ def extract_alumni_portal(soup, tag, attribute, search_text, level, url, date):
 	return text
 
 
+def extract_apotheken_umschau(soup, tag, attribute, search_text, level, url, date):
+	text = ""
+	title = soup.find("h1").text
+	content = soup.find(tag)
+	if content:
+		paragraphs = content.find_all("p", {"class": "text"})
+		headlines = content.find_all("h2")
+		if paragraphs:
+			for par in paragraphs:
+				if par.text.strip().startswith("Sie wollen noch mehr über "):
+					break
+				else:
+					text += par.text.strip() + " "
+		if headlines:
+			for headline in headlines:
+				text += headline.text.strip() + " "
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
+	return text
+
 def main():
 	input_dir = "data/"
-	input_file = input_dir+"url_overview.tsv"
+	input_file = input_dir+"url_overview_2021-04-07-17:47.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
-	filter_data = ("website", "alumniportal-DE-2021")  # bible_verified + # news-apa
+	filter_data = ("website", "apotheken-umschau")  # bible_verified + # news-apa # "alumniportal-DE-2021"
 	output_dataframe = filter_and_extract_data(dataframe, filter_data)
 	output_dataframe.to_csv(input_dir+"url_overview_alumni_txt.tsv", header=True, index=False, sep="\t")
 

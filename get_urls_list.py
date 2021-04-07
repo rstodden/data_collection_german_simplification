@@ -67,10 +67,10 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 		tag = "else"
 		list_simplified_urls, list_complex_urls = [], []
 	print(tag)
-	with open(output_dir+"url_overview.tsv", "a", newline="") as f:
+	with open(output_dir+"url_overview_"+datetime.today().strftime('%Y-%m-%d-%H:%M')+".tsv", "a", newline="") as f:
 		writer = csv.writer(f, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 		writer.writerows(output)
-		return 1
+	return 1
 
 
 def add_manual_aligned_urls(save_raw_content=False, output_dir="data/"):
@@ -145,13 +145,18 @@ def get_participation_urls(link, save_raw_content=False, output_dir="data/"):
 
 def get_complex_url_apotheke(soup):
 	url_complex = ""
-	link_more_info = soup.find("a", {
-		"name": ["Wo-bekommen-Sie-noch-mehr-Informationen", "Wo-bekommen-Sie-noch-mehr-Informationen-"]})
-	if link_more_info:
-		parent = link_more_info.parent.parent
-		a_complex = parent.find("a", {"class": "gp3linkclass_internal"}, href=True)
-		if a_complex:
-			url_complex = a_complex["href"]
+	paragraphs = soup.find_all("p", {"class": "text"})
+	content = soup.find("article", {"class": ["article-detail"]})
+	if content:
+		link_more_info = content.find("a", {"type": "button"})
+		if link_more_info:
+			url_complex = get_link(link_more_info["href"], "https://www.apotheken-umschau.de")
+	if not url_complex and paragraphs:
+		for par_link in paragraphs:
+			if par_link.text.strip().startswith("Sie wollen noch mehr über "):
+				a_complex = par_link.find("a", {"title": "hier"}, href=True)
+				if a_complex:
+					url_complex = get_link(a_complex["href"], "https://www.apotheken-umschau.de")
 	return url_complex
 
 
@@ -220,13 +225,15 @@ def parse_overview_apotheke(overview_url, tag, save_raw_content=False, output_di
 	i = 0
 	with opener.open(overview_url) as url:
 		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	all_posts = soup.find_all("div", {"class": "teaser teaser--horizontal teaser--bottom-spacing"})
-	for post in all_posts:
-		a_element = post.find("a", href=True)
-		if a_element["href"] and get_complex_url(a_element["href"]):
+	content = soup.find("div", {"class": "module-body inner bg-white textcolumns"})
+	all_links = content.find_all("a")
+	for link in all_links:
+		simple_link = get_link(link["href"], "https://www.apotheken-umschau.de")
+		complex_link = get_complex_url(simple_link)
+		if simple_link and complex_link:
 			if save_raw_content:
-				simple_location, complex_location, simple_title, complex_title = save_content(a_element["href"], get_complex_url(a_element["href"]), i, output_dir, tag)
-			output.append([tag, a_element["href"], get_complex_url(a_element["href"]), simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+				simple_location, complex_location, simple_title, complex_title = save_content(simple_link, complex_link, i, output_dir, tag)
+			output.append([tag, simple_link, complex_link, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 			i += 1
 	return output
 
@@ -625,7 +632,7 @@ def main():
 		os.makedirs(output_dir)
 
 	overview_pages = [
-					"https://www.alumniportal-deutschland.org/services/sitemap/",
+					# "https://www.alumniportal-deutschland.org/services/sitemap/",
 					# "https://www.lebenshilfe-main-taunus.de/inhalt/",
 					# "https://www.os-hho.de/",
 					# "https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
@@ -636,7 +643,7 @@ def main():
 
 					# "https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache",
 					# "https://taz.de/leicht/!p5097//",
-					# "https://www.apotheken-umschau.de/einfache-sprache",
+					"https://www.apotheken-umschau.de/einfache-sprache",
 					#"https://www.hamburg.de/hamburg-barrierefrei/leichte-sprache/",
 					#"manual_alignment"
 
