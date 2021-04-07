@@ -174,14 +174,22 @@ def extract_apotheken_umschau(soup, tag, attribute, search_text, level, url, dat
 	title = soup.find("h1").text
 	content = soup.find(tag)
 	if content:
-		paragraphs = content.find_all("p", {"class": "text"})
+		paragraphs = content.find_all(["p", "li"])
 		headlines = content.find_all("h2")
 		if paragraphs:
 			for par in paragraphs:
 				if par.text.strip().startswith("Sie wollen noch mehr über "):
 					break
-				else:
+				elif par.has_attr("class") and "text" in par["class"]:
 					text += par.text.strip() + " "
+				# elif par.has_attr("class") and par["class"] != "text":
+				# 	pass
+				# elif not par.has_attr("class"):
+				# 	pass
+				elif par.parent.name == "ul" and not par.has_attr("class") and par != par.parent.find_all("li")[-1]:
+					text += par.text.strip() + ", "
+				elif par.parent.name == "ul" and not par.has_attr("class"):
+					text += par.text.strip() + ". "
 		if headlines:
 			for headline in headlines:
 				text += headline.text.strip() + " "
