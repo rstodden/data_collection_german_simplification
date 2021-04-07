@@ -147,16 +147,16 @@ def get_complex_url_apotheke(soup):
 	url_complex = ""
 	paragraphs = soup.find_all("p", {"class": "text"})
 	content = soup.find("article", {"class": ["article-detail"]})
-	if content:
-		link_more_info = content.find("a", {"type": "button"})
-		if link_more_info:
-			url_complex = get_link(link_more_info["href"], "https://www.apotheken-umschau.de")
 	if not url_complex and paragraphs:
 		for par_link in paragraphs:
 			if par_link.text.strip().startswith("Sie wollen noch mehr über "):
 				a_complex = par_link.find("a", {"title": "hier"}, href=True)
 				if a_complex:
 					url_complex = get_link(a_complex["href"], "https://www.apotheken-umschau.de")
+	if not url_complex and content:
+		link_more_info = content.find("a", {"type": "button"})
+		if link_more_info:
+			url_complex = get_link(link_more_info["href"], "https://www.apotheken-umschau.de")
 	return url_complex
 
 

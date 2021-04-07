@@ -198,7 +198,7 @@ def extract_apotheken_umschau(soup, tag, attribute, search_text, level, url, dat
 
 def main():
 	input_dir = "data/"
-	input_file = input_dir+"url_overview_2021-04-07-17:47.tsv"
+	input_file = input_dir+"url_overview_2021-04-07-19:54.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
 	filter_data = ("website", "apotheken-umschau")  # bible_verified + # news-apa # "alumniportal-DE-2021"
 	output_dataframe = filter_and_extract_data(dataframe, filter_data)
