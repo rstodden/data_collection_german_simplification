@@ -6,6 +6,8 @@ from datetime import datetime
 import pandas as pd
 import stanza
 from spacy_stanza import StanzaLanguage
+import xml.etree.ElementTree as ET
+
 
 
 # docs, n_sents, n_token = 0, 0, 0
@@ -30,6 +32,7 @@ def html2soup(url):
 def iterate_files(dataframe):
 	output_simple, output_complex = "", ""
 	for index, row in dataframe.iterrows():
+		saved = False
 		if pd.isna(dataframe.loc[index, "complex_location_html"]) or pd.isna(dataframe.loc[index, "simple_location_html"]):
 			continue
 		simple_soup = html2soup(dataframe.loc[index, "simple_location_html"])
@@ -62,17 +65,31 @@ def iterate_files(dataframe):
 			text_complex = extract_apotheken_umschau(complex_soup, "article", "article-detail", "C2", "complex",
 												 dataframe.loc[index, "complex_url"],
 												 dataframe.loc[index, "last_access"])
+		elif "news-apa-xml" in dataframe.loc[index, "website"]:
+			parallel_docs = read_apa_xml("data/news-apa-xml/itrp-239068_topeasy.xml")
+			i = 0
+			for id, docs in parallel_docs.items():
+				url = "https://science.apa.at/nachrichten-leicht-verstandlich/"
+				text_simple, text_complex = extract_apa(docs, id, "HEAD", "", "", url, "2021-04-20")
+				if text_simple != "# &copy; Origin: https://science.apa.at/nachrichten-leicht-verstandlich/ [last accessed: 2021-04-20]	\n":
+					dataframe = save_data(dataframe, index, text_complex, text_simple, "data/news-apa-xml/txt/complex_"+str(i)+".txt", "data/news-apa-xml/txt/simple_"+str(i)+".txt")
+					saved = True
+					i += 1
+
 		else:
+			text_complex, text_simple = "", ""
 			continue
 
-		dataframe = save_data(dataframe, index, text_complex, text_simple)
+		if not saved:
+			dataframe = save_data(dataframe, index, text_complex, text_simple)
 
 	return dataframe
 
 
-def save_data(dataframe, index, text_complex, text_simple):
-	text_path_complex = dataframe.loc[index, "complex_location_html"].replace("html", "txt")
-	text_path_simple = dataframe.loc[index, "simple_location_html"].replace("html", "txt")
+def save_data(dataframe, index, text_complex, text_simple, text_path_complex=None, text_path_simple=None):
+	if not text_path_complex and not text_path_simple:
+		text_path_complex = dataframe.loc[index, "complex_location_html"].replace("html", "txt")
+		text_path_simple = dataframe.loc[index, "simple_location_html"].replace("html", "txt")
 	if not os.path.exists("/".join(text_path_simple.split("/")[:-1])):
 		os.makedirs("/".join(text_path_simple.split("/")[:-1]))
 	dataframe.loc[index, "simple_location_txt"] = text_path_simple
@@ -148,6 +165,58 @@ def extract_news_apa_text(soup, tag, attribute, search_text, level, url, date):
 	return simple_text, complex_text
 
 
+def add_apa_text(feld, text):
+	for p in feld:
+		if p.text:
+			output = p.text.strip()
+			output = output.replace("\n", " ")
+			output = output.replace("  ", " ")
+			if output.startswith("+++") and output.endswith("+++"):
+				break
+			if not output.endswith("."):
+				text += output + ". "
+			else:
+				text += output + " "
+	return text
+
+
+def extract_apa(soup, tag, attribute, search_text, level, url, date):
+	text_simple, text_complex = "", ""
+	title_simple, title_complex = "", ""
+	for doc in soup:
+		complex, simple = False, False
+		for feld in doc.find(attribute):
+			if feld.attrib["NAME"] == "INHALT":
+				if complex:
+					text_complex = add_apa_text(feld, text_complex)
+				elif simple:
+					text_simple = add_apa_text(feld, text_simple)
+			elif feld.attrib["NAME"] == "TITEL":
+				if "Sprachstufe B1" in feld[0].text:
+					title_complex = feld[0].text.strip() + " vom "+tag + " ("+ doc.get("NAME")+")"
+					complex = True
+				elif "Sprachstufe A2" in feld[0].text:
+					title_simple = feld[0].text.strip() + " vom "+tag + " ("+ doc.get("NAME")+")"
+					simple = True
+	text_simple = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title_simple + "\n" + text_simple
+	text_complex= '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title_complex + "\n" + text_complex
+
+	return text_simple, text_complex
+
+
+def read_apa_xml(filename):
+	root = ET.parse(filename).getroot()
+	all_recdates = dict()
+	for doc in root:
+		recdate_doc = doc.get("RECDATE")
+		if recdate_doc in all_recdates.keys():
+			all_recdates[recdate_doc].append(doc)
+		else:
+			all_recdates[recdate_doc] = [doc]
+	parallel_docs = {key: value for key, value in all_recdates.items() if len(value) > 1}
+	return parallel_docs
+
+
 def extract_alumni_portal(soup, tag, attribute, search_text, level, url, date):
 # def extract_alumni_portal(soup, url, tag, search_text):
 	text = ""
@@ -198,9 +267,9 @@ def extract_apotheken_umschau(soup, tag, attribute, search_text, level, url, dat
 
 def main():
 	input_dir = "data/"
-	input_file = input_dir+"url_overview_2021-04-07-19:54.tsv"
+	input_file = input_dir+"url_overview_2021-04-28-14:40.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
-	filter_data = ("website", "apotheken-umschau")  # bible_verified + # news-apa # "alumniportal-DE-2021"
+	filter_data = ("website", "news-apa-xml")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
 	output_dataframe = filter_and_extract_data(dataframe, filter_data)
 	output_dataframe.to_csv(input_dir+"url_overview_alumni_txt.tsv", header=True, index=False, sep="\t")
 

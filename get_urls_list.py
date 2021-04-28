@@ -60,6 +60,9 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 	elif "manual_alignment" in page_url:
 		tag = "manual_alignment"
 		output.extend(add_manual_aligned_urls(save_raw_content=save_raw_content, output_dir=output_dir))
+	elif "news-apa-xml" in page_url:
+		tag = "news-apa-xml"
+		output.extend(parse_overview_apa_xml(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
 	elif "science_apa_manual" in page_url:
 		tag = "news-apa"
 		output.extend(parse_overview_apa(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
@@ -371,6 +374,20 @@ def parse_overview_apa(overview_url, tag, lexikon=False, save_raw_content=False,
 			i += 1
 	return output
 
+def parse_overview_apa_xml(location, tag, lexikon=False, save_raw_content=False, output_dir="data/"):
+	output = list()
+	simple_level, complex_level = "A2", "B1"
+	license_name = "contract"
+	url = "https://science.apa.at/nachrichten-leicht-verstandlich/"
+	access_date = "2021-04-20" # datetime.today().strftime('%Y-%m-%d')
+	if save_raw_content:
+		title = "data/news-apa-xml/itrp-239068_topeasy.xml", "Nachrichten leicht verständlich"
+		output.append(
+			[tag, url, url, simple_level, complex_level, location, location,
+			 "", "", "", "APA - Austria Presse Agentur eG", "APA - Austria Presse Agentur eG", title, title, license_name, access_date])
+	return output
+
+
 # def parse_overview_gospel(overview_url, tag, save_raw_content=False, output_dir="data/"):
 #
 # 	output, all_listings, all_titles, lexikon_links = list(), list(), list(), list()
@@ -643,7 +660,7 @@ def main():
 
 					# "https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache",
 					# "https://taz.de/leicht/!p5097//",
-					"https://www.apotheken-umschau.de/einfache-sprache",
+					# "https://www.apotheken-umschau.de/einfache-sprache",
 					#"https://www.hamburg.de/hamburg-barrierefrei/leichte-sprache/",
 					#"manual_alignment"
 
@@ -659,7 +676,7 @@ def main():
 					# "https://www.bmwi.de/Navigation/DE/Service/Leichte-Sprache/leichte-sprache.html",
 					# "https://www.bmjv.de/DE/LeichteSprache/Leichte_Sprache_node.html",
 					# "https://www.bmas.de/DE/Leichte-Sprache/leichte-sprache.html"
-					# "https://science.apa.at/nachrichten-leicht-verstandlich/"
+					"data/news-apa-xml/itrp-239068_topeasy.xml"
 					# "data/science_apa_manual/Search.html"
 					]
 
