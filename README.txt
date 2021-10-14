@@ -5,7 +5,6 @@
 2) python get_urls_list.py
 Reminder:
 Do not use the code of Battisti, because not allowed to distribute. Reimplement with same structure for files according to their paper.
-
 Corpus Size:
 - TAZ: 48 simpl documents, 37 parallel documents
 - Apotheken Umschau: 43 parallel documents
@@ -56,7 +55,12 @@ Compared to Klaper.
 - more books https://www.leichte-sprache.org/geschichten/
 - check this referencelist http://www.leicht-gesagt.de/agentur-leichte-sprache-referenzen.html
 - https://www.bundestag.de/leichte_sprache/was_macht_der_bundestag/parlament    https://www.das-parlament.de/2020
+- https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/	https://www.bpb.de/nachschlagen/lexika/politiklexikon/17020/a
+- https://www.bpb.de/politik/grundfragen/politik-einfach-fuer-alle/248956/die-webseiten-einfach-politik
 
 # Workflow
 - find all parallel documents with `get_urls_list.py`
 - save plain text of parallel documents with `extract_text_data.py`
+3) python -m spacy download de_dep_news_trf
+4) python sentence_split.py
+

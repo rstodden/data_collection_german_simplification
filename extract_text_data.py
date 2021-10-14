@@ -4,10 +4,10 @@ import bs4
 import urllib.request
 from datetime import datetime
 import pandas as pd
-import stanza
-from spacy_stanza import StanzaLanguage
+# import stanza
+# from spacy_stanza import StanzaLanguage
 import xml.etree.ElementTree as ET
-
+import re
 
 
 # docs, n_sents, n_token = 0, 0, 0
@@ -38,15 +38,15 @@ def iterate_files(dataframe):
 		simple_soup = html2soup(dataframe.loc[index, "simple_location_html"])
 		complex_soup = html2soup(dataframe.loc[index, "complex_location_html"])
 		print(dataframe.loc[index, "simple_url"])
-		# if "offene-bibel" in dataframe.loc[index, "simple_url"]:
-		# 	text_simple = extract_open_bible_text(simple_soup, "main", "class", "leichtesprache", "simple", dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
-		# 	text_complex = extract_open_bible_text(complex_soup, "div", "id", "Studienfassung", "complex", dataframe.loc[index, "complex_url"], dataframe.loc[index, "last_access"])
+		if "offene-bibel" in dataframe.loc[index, "simple_url"]:
+		 	text_simple = extract_open_bible_text(simple_soup, "main", "class", "leichtesprache", "simple", dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
+		 	text_complex = extract_open_bible_text(complex_soup, "div", "id", "Lesefassung", "complex", dataframe.loc[index, "complex_url"], dataframe.loc[index, "last_access"]) # Studienfassung
 		# el
 		# if "news-apa" in dataframe.loc[index, "website"]:
 		# 	text_simple, text_complex = extract_news_apa_text(simple_soup, "div", "class", "apa-power-search-single__content", "simple",
 		# 										  dataframe.loc[index, "simple_url"],
 		# 										  dataframe.loc[index, "last_access"])
-		if "alumniportal-DE-2020" in dataframe.loc[index, "website"]:
+		elif "alumniportal-DE-2020" in dataframe.loc[index, "website"]:
 			text_simple = extract_alumni_portal(simple_soup, "h2", "", "A2", "simple",
 												dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
 			text_complex = extract_alumni_portal(simple_soup, "h2", "", "B2", "simple",
@@ -76,6 +76,39 @@ def iterate_files(dataframe):
 					saved = True
 					i += 1
 
+		elif "bzfe" in dataframe.loc[index, "website"]:
+			text_simple = extract_bzfe(simple_soup, "div", "id", "content_article", "simple",
+												dataframe.loc[index, "simple_url"],
+												dataframe.loc[index, "last_access"])
+			text_complex = extract_bzfe(complex_soup, "div", "itemprop", "articleBody", "complex",
+												 dataframe.loc[index, "complex_url"],
+												 dataframe.loc[index, "last_access"])
+		elif "einfach_politik" in dataframe.loc[index, "website"] or "junge_politik" in dataframe.loc[index, "website"]:
+			text_simple = extract_bpb(simple_soup, "section", "", "", "simple",
+												dataframe.loc[index, "simple_url"],
+												dataframe.loc[index, "last_access"])
+			text_complex = extract_bpb(complex_soup, "section", "", "", "complex",
+												 dataframe.loc[index, "complex_url"],
+												 dataframe.loc[index, "last_access"])
+		elif "einfach-teilhaben" in dataframe.loc[index, "website"]:
+			text_simple = extract_einfach_teilhaben(simple_soup, "div", "class", "row detailseite", "simple",
+												dataframe.loc[index, "simple_url"],
+												dataframe.loc[index, "last_access"])
+			text_complex = extract_einfach_teilhaben(complex_soup, "div", "class", "row detailseite", "complex",
+												 dataframe.loc[index, "complex_url"],
+												 dataframe.loc[index, "last_access"])
+		elif "stadt_hamburg" in dataframe.loc[index, "website"]:
+			text_simple = extract_hamburg(simple_soup, "div", "itemprop", "articleBody", "simple",
+												dataframe.loc[index, "simple_url"],
+												dataframe.loc[index, "last_access"])
+			if "polizei.hamburg" in dataframe.loc[index, "complex_url"]:
+				text_complex = extract_hamburg(complex_soup, "span", "id", "articleText", "complex",
+												 dataframe.loc[index, "complex_url"],
+												 dataframe.loc[index, "last_access"])
+			else:
+				text_complex = extract_hamburg(complex_soup, "div", "itemprop", "articleBody", "complex",
+												 dataframe.loc[index, "complex_url"],
+												 dataframe.loc[index, "last_access"])
 		else:
 			text_complex, text_simple = "", ""
 			continue
@@ -102,7 +135,7 @@ def save_data(dataframe, index, text_complex, text_simple, text_path_complex=Non
 
 
 def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date):
-	title = soup.find("h1", {"class": "firstHeading"})
+	title = soup.find("h1", {"id": "firstHeading"}).text
 	container = soup.find(tag, {attribute: search_text})
 	text = ""
 	if container:
@@ -133,7 +166,12 @@ def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date)
 		text = text.replace("\n", " ")
 		text = text.replace("  ", " ")
 		text = text.replace("\t", " ")
-	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
+	if not text and search_text != "Studienfassung":
+		text = extract_open_bible_text(soup, tag, attribute, "Studienfassung", level, url, date)
+	elif not text:
+		text = text
+	else:
+		text = '# &copy; Origin: ' + str(url) + " [last accessed: " + str(date) + "]\t" + str(title) + "\n" + str(text)
 	return text
 
 
@@ -265,13 +303,141 @@ def extract_apotheken_umschau(soup, tag, attribute, search_text, level, url, dat
 	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
 	return text
 
+def extract_bzfe(soup, tag, attribute, search_text, level, url, date):
+	title = soup.find("span", {"itemprop": "headline"}).text.strip().split("\n")[0]
+	container = soup.find(tag, {attribute: search_text})
+	text = ""
+	if container:
+		for table in container.find_all("table"):
+			table.extract()
+		for i, par in enumerate(container.find_all(["p"])):
+			text += par.text.strip()+" "
+			
+			
+	for sign in [".", ",", "!", "?", ";", ":"]:
+		text = text.replace(" "+sign, sign)
+		text = text.replace(sign, sign+' ')
+		text = text.replace("\t", " ")
+	text = text.replace("\n", " ")
+	text = text.replace("  ", " ")
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text.strip()
+	return text
+	
+def extract_bpb(soup, tag, attribute, search_text, level, url, date):
+	title = soup.find("h1").text.strip()
+	container = soup.find(tag)
+	text = ""
+	source = ""
+	if container:
+		for unwanted in container.find_all(["h1", "h2", "h3", "br"]):
+			unwanted.extract()
+		for image in container.find_all("div", {"class": lambda value: value and value.startswith('article_image')}):
+			image.extract()
+		for list_item in container.find_all("li"):
+			if list_item.text and not list_item.text.strip().endswith((",",".")):
+				list_item.string = list_item.text.strip()+", "
+		for item in container.find_all("b"):
+			if item.text == "Siehe auch:":
+				next_url = True
+				while next_url == True:
+					nextNode = item.find_next_sibling("a")
+					if nextNode:
+						nextNode.extract()
+					else:
+						next_url = False
+			item.extract()
+		for item in container.find_all("i"):
+			if item.text.strip().startswith("Quelle: "):
+				source = item.text.strip()[8:]
+			item.extract()
+		#for element in container.findAll(text=True):
+		#	text += element.text.strip() + " "
+
+		text += container.text.strip() +" "
+			
+			
+	"""for sign in [".", ",", "!", "?", ";", ":"]:
+		text = text.replace(" "+sign, sign)
+		text = text.replace(sign, sign+' ')
+		text = text.replace("\t", " ")"""
+	text = re.sub("\[.*\]", "", text)
+	text = text.replace("\n", " ")
+	text = text.replace("  ", " ")
+	if source:
+		text = '# &copy; Origin: ' + url +"("+source+")" + " [last accessed: " + date + "]\t" + title + "\n" + text.strip()
+	else:
+		text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text.strip()
+	return text
+	
+def extract_einfach_teilhaben(soup, tag, attribute, search_text, level, url, date):
+	title = soup.find("h1", {"class": "seitenumschaltung__headline"}).text.strip()
+	container = soup.find(tag, {attribute: search_text})
+	text = ""
+	if container:
+		for list_item in container.find_all("li"):
+			if list_item.text and not list_item.text.strip().endswith((".", ",", "!", "?", ";", ":")):
+				list_item.string = list_item.text.strip()+", "
+		for table in container.find_all("table"):
+			table.extract()
+		for item in container.find_all("div", {"class": "sectionRelated"}):
+			item.extract()
+		for item in container.find_all("div", {"class": "embedded_navigation fullContent"}):
+			item.extract()
+		for item in container.find_all("div", {"class": "togglemodul bereichsthemen gsb-toggle"}):
+			item.extract()
+		for i, par in enumerate(container.find_all(["p", "ul"])):
+			text += par.text.strip()+" "
+			
+			
+	for sign in [".", ",", "!", "?", ";", ":"]:
+		text = text.replace(" "+sign, sign)
+		text = text.replace(sign, sign+' ')
+		text = text.replace("\t", " ")
+	text = text.replace("\n", " ")
+	text = text.replace("  ", " ")
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text.strip()
+	return text
+
+def extract_hamburg(soup, tag, attribute, search_text, level, url, date):
+	title = soup.find("span", {"id": "title"}).text.strip()
+	container = soup.find(tag, {attribute: search_text})
+	text = ""
+	if container:
+		for item in container.find_all("a"):
+			if item.text.startswith("http"):
+				item.extract()
+		for list_item in container.find_all("li"):
+			if list_item.text and not list_item.text.strip().endswith((".", ",", "!", "?", ";", ":")):
+				list_item.string = list_item.text.strip()+", "
+		for list_item in container.find_all("p"):
+			if list_item.text and not list_item.text.strip().endswith((".", ",", "!", "?", ";", ":")):
+				list_item.string = list_item.text.strip()+". "
+		for table in container.find_all("table"):
+			table.extract()
+		for item in container.find_all("div", {"class": "masonry-helper"}):
+			item.extract()
+		for item in container.find_all("div", {"class": "teaser teaser-thumb teaser-thumb-article"}):
+			item.extract()
+		for i, par in enumerate(container.find_all(["p", "ul"])):
+			text += par.text.strip()+" "
+			
+	for sign in [".", ",", "!", "?", ";", ":"]:
+		text = text.replace(" "+sign, sign)
+		text = text.replace(sign, sign+' ')
+		text = text.replace("\t", " ")
+	text = text.replace("\n", " ")
+	text = text.replace("  ", " ")
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text.strip()
+	return text
+
+
 def main():
 	input_dir = "data/"
-	input_file = input_dir+"url_overview_2021-04-28-14:40.tsv"
+	input_file = input_dir+"url_overview_stadt_hamburg.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
-	filter_data = ("website", "news-apa-xml")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
-	output_dataframe = filter_and_extract_data(dataframe, filter_data)
-	output_dataframe.to_csv(input_dir+"url_overview_alumni_txt.tsv", header=True, index=False, sep="\t")
+	#filter_data = ("website", "bible_verified")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
+	output_dataframe = filter_and_extract_data(dataframe)  # , filter_data)
+	output_dataframe.to_csv(input_dir+"url_overview_stadt_hamburg_text.tsv", header=True, index=False, sep="\t")
 
 
 if __name__ == "__main__":

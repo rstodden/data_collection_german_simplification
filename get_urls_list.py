@@ -20,6 +20,7 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 		output = [["website", "simple_url", "complex_url", "simple_level", "complex_level", "simple_location_html",
 				   "complex_location_html", "simple_location_txt", "complex_location_txt", "alignment_location", "simple_author", "complex_author", "simple_title", "complex_title", "license", "last_access"]]
 
+	#try:
 	if "apotheken-umschau" in page_url:
 		tag = "apotheken-umschau"
 		output.extend(parse_overview_apotheke(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
@@ -66,9 +67,29 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 	elif "science_apa_manual" in page_url:
 		tag = "news-apa"
 		output.extend(parse_overview_apa(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+	elif "bzfe" in page_url and "einkaufen" in page_url:
+		tag = "bzfe_einkaufen"
+		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+	elif "bzfe" in page_url and "kochen" in page_url:
+		tag = "bzfe_kochen"
+		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+	elif "bzfe" in page_url and "essen" in page_url:
+		tag = "bzfe_essen"
+		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+	elif "bzfe" in page_url and "familie" in page_url:
+		tag = "bzfe_familie"
+		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+	elif "bpb.de" in page_url and "einfach" in page_url:
+		tag = "einfach_politik"
+		output.extend(parse_overview_bpb(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+	elif "bpb.de" in page_url and "jung" in page_url:
+		tag = "junge_politik"
+		output.extend(parse_overview_bpb(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
 	else:
 		tag = "else"
 		list_simplified_urls, list_complex_urls = [], []
+	#except:
+	#	print("error")
 	print(tag)
 	with open(output_dir+"url_overview_"+datetime.today().strftime('%Y-%m-%d-%H:%M')+".tsv", "a", newline="") as f:
 		writer = csv.writer(f, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -228,11 +249,14 @@ def parse_overview_apotheke(overview_url, tag, save_raw_content=False, output_di
 	i = 0
 	with opener.open(overview_url) as url:
 		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	content = soup.find("div", {"class": "module-body inner bg-white textcolumns"})
+	content = soup.find("div", {"class": "module-body inner bg-white bg-au-lighter textcolumns"})
 	all_links = content.find_all("a")
 	for link in all_links:
 		simple_link = get_link(link["href"], "https://www.apotheken-umschau.de")
-		complex_link = get_complex_url(simple_link)
+		try:
+			complex_link = get_complex_url(simple_link)
+		except OSError:
+			print("reset by peer")
 		if simple_link and complex_link:
 			if save_raw_content:
 				simple_location, complex_location, simple_title, complex_title = save_content(simple_link, complex_link, i, output_dir, tag)
@@ -579,6 +603,89 @@ def parse_overview_alumniportal_2020(page_url, tag, save_raw_content=False, outp
 			i += 1
 	return output
 
+def parse_overview_bpb_complex(overview_url):
+	complex_dict = dict()
+	complex_elements = list()
+	with opener.open(overview_url) as url:
+		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	overview = soup.find("div", {"id": "content_left"})
+	all_letters = list({get_link(list_element.find("a")["href"], "https://www.bpb.de") for list_element in overview.find_all("li")})
+	for letter_url in all_letters:
+		with opener.open(letter_url) as url:
+			soup = bs4.BeautifulSoup(url.read(), "lxml")
+		letter_overview = soup.find("div", {"id": "content_left"})
+		all_items = [list_element.find("a") for list_element in letter_overview.find_all("li")]
+		for item in all_items:
+			complex_dict[item.text.strip()] = get_link(item["href"], "https://www.bpb.de")
+			complex_elements.append(item)
+	return complex_dict, complex_elements
+	
+	
+
+def parse_overview_bpb(overview_url, tag, save_raw_content=False, output_dir="data/"):
+	output = list()
+	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
+	simple_level, complex_level = "A2/B1", "C2"
+	license_name = "CC BY-NC-ND 3.0 DE"
+	access_date = datetime.today().strftime('%Y-%m-%d')
+	i = 0
+	if tag == "einfach_politik":
+		with opener.open(overview_url) as url:
+			soup = bs4.BeautifulSoup(url.read(), "lxml")
+		overview = soup.find("div", {"id": "content_left"})
+		all_urls = [list_element.find("a") for list_element in overview.find_all("li")]
+		# "Jane Baer-Krause, Anette Bäßler, Christiane Baumann, Oliver Boyn, Peter Brandt, Danielle Cohn, Stefan Eling, Tanja Hebenstreit, Claudia Hennerkes, Katharina Hoba, Lamya Kaddor, Kristine Kretschmer, Claudia Nölling-Schweers, Catherine Raoult, Katharina Reinhold, Katrin Rosenthal, Verena Sauvage, Renate Schindler, Gerd Schneider, Anja Stöcker, Christiane Toyka-Seid und Thomas Werner"
+	else:
+		all_urls = complex_dict = parse_overview_bpb_complex(overview_url)[1]
+	complex_dict = parse_overview_bpb_complex("https://www.bpb.de/nachschlagen/lexika/politiklexikon/")[0]
+	for simple_link in all_urls:
+		simple_url = get_link(simple_link["href"], "https://www.bpb.de")
+		if save_raw_content:
+			if simple_link.text.strip() in complex_dict.keys():
+				complex_link = complex_dict[simple_link.text.strip()]
+			else:
+				complex_link = ""
+				complex_location = ""
+				complex_title = ""
+			if simple_link and complex_link:
+				simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_link, i, output_dir, tag)
+			else:
+				simple_location, complex_location, simple_title, complex_title = "", "", "", ""
+		output.append([tag, simple_url, complex_link, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+		i += 1
+	return output
+
+def parse_overview_bzfe(overview_url, tag, save_raw_content=False, output_dir="data/"):
+	output = list()
+	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
+	simple_level, complex_level = "A2/B1", "C2"
+	license_name = "CC BY-NC-ND 4.0"
+	access_date = datetime.today().strftime('%Y-%m-%d')
+	i = 0
+	with opener.open(overview_url) as url:
+		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	overview = soup.find("div", {"class": "module-teaserlist"})
+	all_urls = list({get_link(url["href"], "https://www.bzfe.de") for url in overview.find_all("a", title=True)})
+	for simple_link in all_urls:
+		#parent = post.parent.parent
+		#grandparent = post.parent.parent.parent.parent.parent.parent
+		# link_complex = get_complex_url_bzfe(grandparent)
+		#if parent["href"] and link_complex:
+		if save_raw_content:
+			simple_complex_dict = {"https://www.bzfe.de/einfache-sprache/zubereitung/": "https://www.bzfe.de/lebensmittel/zubereitung/lebensmittel-garen/", "https://www.bzfe.de/einfache-sprache/wenn-kinder-kein-gemuese-essen/": "https://www.bzfe.de/ernaehrung/ernaehrungswissen/in-bestimmten-lebensphasen/wenn-kinder-kein-gemuese-moegen/", "https://www.bzfe.de/einfache-sprache/verpackungsmuell-vermeiden/": "https://www.bzfe.de/nachhaltiger-konsum/orientierung-beim-einkauf/verpackungsmuell-vermeiden/", "https://www.bzfe.de/einfache-sprache/vegan-essen/": "https://www.bzfe.de/lebensmittel/trendlebensmittel/vegane-lebensmittel/", "https://www.bzfe.de/einfache-sprache/schnelle-kueche/": "https://www.bzfe.de/nachhaltiger-konsum/lagern-kochen-essen-teilen/fertigprodukte-selber-machen/", "https://www.bzfe.de/einfache-sprache/portionsgroessen/": "https://www.bzfe.de/ernaehrung/die-ernaehrungspyramide/die-ernaehrungspyramide-eine-fuer-alle/ernaehrungspyramide-wie-gross-ist-eine-portion/", "https://www.bzfe.de/einfache-sprache/meal-prepping/": "https://www.bzfe.de/nachhaltiger-konsum/lagern-kochen-essen-teilen/meal-prepping/", "https://www.bzfe.de/einfache-sprache/lagerung/": "https://www.bzfe.de/nachhaltiger-konsum/lagern-kochen-essen-teilen/lebensmittel-richtig-lagern/", "https://www.bzfe.de/einfache-sprache/klimatipps/": "https://www.bzfe.de/nachhaltiger-konsum/orientierung-beim-einkauf/ernaehrung-und-klimaschutz/", "https://www.bzfe.de/einfache-sprache/haltbarkeit/": "https://www.bzfe.de/service/news/aktuelle-meldungen/news-archiv/meldungen-2018/maerz/haltbarkeit-von-lebensmitteln/", "https://www.bzfe.de/einfache-sprache/fertigprodukte/": "https://www.bzfe.de/lebensmittel/einkauf-und-kennzeichnung/convenience/convenience-produkte-im-alltag/", "https://www.bzfe.de/einfache-sprache/essen-und-stress/": "https://www.bzfe.de/ernaehrung/ernaehrungswissen/gesundheit/wie-emotionen-unser-essen-beeinflussen/", "https://www.bzfe.de/einfache-sprache/essen-in-schule-und-kita/": "https://www.bzfe.de/bildung/lernort-schule-und-kita/das-pausenbrot-unter-der-lupe/", "https://www.bzfe.de/einfache-sprache/essen-im-alter/": "https://www.bzfe.de/ernaehrung/ernaehrungswissen/in-bestimmten-lebensphasen/ue60-das-beste-alter/", "https://www.bzfe.de/einfache-sprache/energy-drinks/": "https://www.bzfe.de/lebensmittel/trendlebensmittel/energydrinks/", "https://www.bzfe.de/einfache-sprache/die-ernaehrungspyramide-1/": "https://www.bzfe.de/ernaehrung/die-ernaehrungspyramide/die-ernaehrungspyramide-eine-fuer-alle/", "https://www.bzfe.de/einfache-sprache/der-saisonkalender/": "https://www.bzfe.de/nachhaltiger-konsum/orientierung-beim-einkauf/der-saisonkalender/saisonzeiten-bei-obst-und-gemuese/", "https://www.bzfe.de/einfache-sprache/allergenkennzeichnung/": "https://www.bzfe.de/lebensmittel/einkauf-und-kennzeichnung/kennzeichnung/allergenkennzeichnung/"}
+			if simple_link in simple_complex_dict.keys():
+				complex_link = simple_complex_dict[simple_link]
+			else:
+				complex_link = ""
+				complex_location = ""
+				complex_title = ""
+			if simple_link and complex_link:
+				simple_location, complex_location, simple_title, complex_title = save_content(simple_link, complex_link, i, output_dir, tag)
+			else:
+				simple_location, complex_location, simple_title, complex_title = "", "", "", ""
+		output.append([tag, simple_link, complex_link, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+		i += 1
+	return output
 
 def umlauts_coverter_for_url(link):
 	if "ä" in link:
@@ -597,6 +704,8 @@ def save_html(level, output_dir, sub_dir, type, i, link):
 
 		with opener.open(umlauts_coverter_for_url(link)) as url:
 			soup = bs4.BeautifulSoup(url.read(), "lxml")
+			if not soup.head:
+				return "", ""
 			comment = bs4.Comment('&copy; Origin: ' + link + " [last accessed: " + datetime.today().strftime('%Y-%m-%d') + "]")
 			soup.head.insert(-1, comment)
 			title = soup.find("title")
@@ -604,7 +713,7 @@ def save_html(level, output_dir, sub_dir, type, i, link):
 				title = title.string
 		with open(output_dir + sub_dir + type + "/" + level + str(i) + '.html', "w") as file:
 			file.write(str(soup))
-	except ValueError:
+	except (ValueError, ConnectionResetError):
 		print(link, "not accessible")
 		return "", ""
 	return output_dir + sub_dir + type + "/" + level + str(i) + '.html', title
@@ -649,35 +758,42 @@ def main():
 		os.makedirs(output_dir)
 
 	overview_pages = [
-					# "https://www.alumniportal-deutschland.org/services/sitemap/",
-					# "https://www.lebenshilfe-main-taunus.de/inhalt/",
-					# "https://www.os-hho.de/",
-					# "https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
+					#"https://www.alumniportal-deutschland.org/services/sitemap/",
+					#"https://www.lebenshilfe-main-taunus.de/inhalt/",
+					#"https://www.os-hho.de/",
+					#"https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
 
-					# "https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_in_Arbeit",
-					# "https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_noch_zu_pr%C3%BCfen",
-					# "https://offene-bibel.de/wiki/Kategorie:Gepr%C3%BCfte_Leichte_Sprache",
+					#"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_in_Arbeit",
+					#"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_noch_zu_pr%C3%BCfen",
+					#"https://offene-bibel.de/wiki/Kategorie:Gepr%C3%BCfte_Leichte_Sprache",
 
 					# "https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache",
-					# "https://taz.de/leicht/!p5097//",
-					# "https://www.apotheken-umschau.de/einfache-sprache",
-					#"https://www.hamburg.de/hamburg-barrierefrei/leichte-sprache/",
+					#"https://taz.de/leicht/!p5097//",
+					#"https://www.apotheken-umschau.de/einfache-sprache/",
+					"https://www.hamburg.de/hamburg-barrierefrei/leichte-sprache/",
+					#"https://www.bzfe.de/einfache-sprache/einkaufen/",
+					#"https://www.bzfe.de/einfache-sprache/kochen-aufbewahren/",
+					#"https://www.bzfe.de/einfache-sprache/gut-essen/", 
+					#"https://www.bzfe.de/einfache-sprache/familie/",
+					#"https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/",
+					#"https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/", 
 					#"manual_alignment"
 
 					# NEW
-					# "https://www.evangelium-in-leichter-sprache.de/bibelstellen",
-					# "https://www.bildung.bremen.de/informationen_in_leichter_sprache-17528",
-					# "https://www.gesundheit.bremen.de/service/informationen_in_leichter_sprache-20060",
-					# "https://www.wirtschaft.bremen.de/information_in_leichter_sprache-10108",
-					# "https://www.gesundheit.bremen.de/service/informationen_in_leichter_sprache-20060",
-					# "https://www.wissenschaft-haefen.bremen.de/information_in_leichter_sprache-10108",
-					# "https://www.lis.bremen.de/ueber_das_lis/informationen_in_leichter_sprache-84242",
-					# "http://www.on-line-on.eu/",
-					# "https://www.bmwi.de/Navigation/DE/Service/Leichte-Sprache/leichte-sprache.html",
-					# "https://www.bmjv.de/DE/LeichteSprache/Leichte_Sprache_node.html",
-					# "https://www.bmas.de/DE/Leichte-Sprache/leichte-sprache.html"
-					"data/news-apa-xml/itrp-239068_topeasy.xml"
-					# "data/science_apa_manual/Search.html"
+					#"https://www.evangelium-in-leichter-sprache.de/bibelstellen",
+					#"https://www.bildung.bremen.de/informationen_in_leichter_sprache-17528",
+					#"https://www.gesundheit.bremen.de/service/informationen_in_leichter_sprache-20060",
+					#"https://www.wirtschaft.bremen.de/information_in_leichter_sprache-10108",
+					#"https://www.gesundheit.bremen.de/service/informationen_in_leichter_sprache-20060",
+					#"https://www.wissenschaft-haefen.bremen.de/information_in_leichter_sprache-10108",
+					#"https://www.lis.bremen.de/ueber_das_lis/informationen_in_leichter_sprache-84242",
+					#"http://www.on-line-on.eu/",
+					#"https://www.bmwi.de/Navigation/DE/Service/Leichte-Sprache/leichte-sprache.html",
+					#"https://www.bmjv.de/DE/LeichteSprache/Leichte_Sprache_node.html",
+					#"https://www.bmas.de/DE/Leichte-Sprache/leichte-sprache.html"
+					#"data/news-apa-xml/itrp-239068_topeasy.xml"
+					#"data/science_apa_manual/Search.html"
+					#"https://www.bzfe.de/einfache-sprache/
 					]
 
 	#
