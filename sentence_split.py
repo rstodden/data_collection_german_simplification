@@ -26,6 +26,7 @@ source_dict = {"apotheken-umschau": {"simple": "B1", "complex": "C2", "domain": 
 		"bzfe_familie": {"simple": "A2/B1", "complex": "C2", "domain": "health/food", "license": 1, "language": "DE"},
 		"bzfe_essen": {"simple": "A2/B1", "complex": "C2", "domain": "health/food", "license": 1, "language": "DE"},
 		"alumniportal-DE-2020": {"simple": "A2", "complex": "B2", "domain": "language learner", "license": 1, "language": "DE"},
+		"alumniportal-DE-2020": {"simple": "A2", "complex": "B2", "domain": "language learner", "license": 1, "language": "DE"},
 		"junge_politik": {"simple": "children_6", "complex": "C2", "domain": "politics", "license": 0.75, "language": "DE"},
 		"einfach_politik": {"simple": "A2/B1", "complex": "C2", "domain": "politics", "license": 0.75, "language": "DE"},
 		"einfach-teilhaben": {"simple": "A1", "complex": "C2", "domain": "web", "license": 0.75, "language": "DE"},

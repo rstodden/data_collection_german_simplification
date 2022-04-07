@@ -401,6 +401,7 @@ def extract_einfach_teilhaben(soup, tag, attribute, search_text, level, url, dat
 def extract_hamburg(soup, tag, attribute, search_text, level, url, date):
 	title = soup.find("span", {"id": "title"}).text.strip()
 	container = soup.find(tag, {attribute: search_text})
+	# print("hamburg", container)
 	text = ""
 	if container:
 		for item in container.find_all("a"):
@@ -433,11 +434,11 @@ def extract_hamburg(soup, tag, attribute, search_text, level, url, date):
 
 def main():
 	input_dir = "data/"
-	input_file = input_dir+"url_overview_stadt_hamburg.tsv"
+	input_file = input_dir+"url_overview.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
-	#filter_data = ("website", "bible_verified")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
-	output_dataframe = filter_and_extract_data(dataframe)  # , filter_data)
-	output_dataframe.to_csv(input_dir+"url_overview_stadt_hamburg_text.tsv", header=True, index=False, sep="\t")
+	filter_data = ("website", "stadt_hamburg")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
+	output_dataframe = filter_and_extract_data(dataframe, filter_data)
+	output_dataframe.to_csv(input_dir+"url_overview_text_problematic.tsv", header=True, index=False, sep="\t")
 
 
 if __name__ == "__main__":

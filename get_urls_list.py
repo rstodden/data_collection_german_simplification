@@ -21,6 +21,7 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 				   "complex_location_html", "simple_location_txt", "complex_location_txt", "alignment_location", "simple_author", "complex_author", "simple_title", "complex_title", "license", "last_access"]]
 
 	#try:
+	print("start:", page_url)
 	if "apotheken-umschau" in page_url:
 		tag = "apotheken-umschau"
 		output.extend(parse_overview_apotheke(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
@@ -90,8 +91,11 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 		list_simplified_urls, list_complex_urls = [], []
 	#except:
 	#	print("error")
-	print(tag)
-	with open(output_dir+"url_overview_"+datetime.today().strftime('%Y-%m-%d-%H:%M')+".tsv", "a", newline="") as f:
+	print("finished", tag, len(output))
+	if not os.path.exists(output_dir):
+		os.makedirs(output_dir)
+	path_name = output_dir+"url_overview.tsv"
+	with open(path_name, "a", newline="") as f:
 		writer = csv.writer(f, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 		writer.writerows(output)
 	return 1
@@ -249,19 +253,20 @@ def parse_overview_apotheke(overview_url, tag, save_raw_content=False, output_di
 	i = 0
 	with opener.open(overview_url) as url:
 		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	content = soup.find("div", {"class": "module-body inner bg-white bg-au-lighter textcolumns"})
-	all_links = content.find_all("a")
-	for link in all_links:
-		simple_link = get_link(link["href"], "https://www.apotheken-umschau.de")
-		try:
-			complex_link = get_complex_url(simple_link)
-		except OSError:
-			print("reset by peer")
-		if simple_link and complex_link:
-			if save_raw_content:
-				simple_location, complex_location, simple_title, complex_title = save_content(simple_link, complex_link, i, output_dir, tag)
-			output.append([tag, simple_link, complex_link, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
-			i += 1
+	content = soup.find("div", {"class": "linkliste"})
+	if content:
+		all_links = content.find_all("a")
+		for link in all_links:
+			simple_link = get_link(link["href"], "https://www.apotheken-umschau.de")
+			try:
+				complex_link = get_complex_url(simple_link)
+			except OSError:
+				print("reset by peer")
+			if simple_link and complex_link:
+				if save_raw_content:
+					simple_location, complex_location, simple_title, complex_title = save_content(simple_link, complex_link, i, output_dir, tag)
+				output.append([tag, simple_link, complex_link, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+				i += 1
 	return output
 
 
@@ -275,16 +280,25 @@ def parse_overview_hamburg(overview_url, tag, save_raw_content=False, output_dir
 	i = 0
 	with opener.open(overview_url) as url:
 		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	all_posts = soup.find_all("span", {"class": "teaser-headline"})
-	for post in all_posts:
-		parent = post.parent.parent
-		grandparent = post.parent.parent.parent.parent.parent.parent
-		link_complex = get_complex_url_hamburg(grandparent)
-		if parent["href"] and link_complex:
-			if save_raw_content:
-				simple_location, complex_location, simple_title, complex_title = save_content(parent["href"], link_complex, i, output_dir, tag)
-			output.append([tag, parent["href"], link_complex, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
-			i += 1
+	all_topics = soup.find_all("a", {"class": "topic-overview__link"})
+	for topic in all_topics:
+		topic_link = topic["href"]
+		with opener.open(topic_link) as url:
+			soup_topic = bs4.BeautifulSoup(url.read(), "lxml")
+		all_link_groups = soup_topic.find_all("div", {"class": "image-teaser-accessibility__bar"})
+		for group in all_link_groups:
+			all_links_of_group = group.find_all("a", {"class": "accessibility-item__content-link"})
+			simple_url, complex_url = "", ""
+			for link in all_links_of_group:
+				if "Leichte Sprache" in link.text:
+					simple_url = get_link(link["href"], "https://www.hamburg.de")
+				elif "Original-Text" in link.text:
+					complex_url = get_link(link["href"], "https://www.hamburg.de")
+			if simple_url and complex_url:
+				if save_raw_content:
+				 	simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag)
+				output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+				i += 1
 	return output
 
 
@@ -462,7 +476,7 @@ def parse_overview_einfach_teilhaben(overview_page, tag, save_raw_content=False,
 	if len(all_lists) > 0:
 		for listing in all_lists:
 			link = get_link("".join(listing.find("a")["href"].partition(".html")[:-1]), "https://www.einfach-teilhaben.de/")
-			print(i,link)
+			# print(i,link)
 			subpages, i = parse_overview_einfach_teilhaben(link, tag, save_raw_content=save_raw_content, output_dir=output_dir, i=i)
 			if type(subpages) == list:
 				output.extend(subpages)
@@ -556,20 +570,19 @@ def parse_overview_alumniportal_2021(page_url, tag, save_raw_content=False, outp
 	"digitales-lernen/deutsche-sprache/lesetexte/lesetexte-sprachniveau-a1-a2/"
 	simple_part = "lesetexte/lesetexte-sprachniveau-a1-a2/"
 	complex_part = "lesetexte/b1-b2/"
-	head_listing = soup.find_all("a", href=re.compile("^digitales-lernen/deutsche-sprache/lesetexte/lesetexte-sprachniveau-a1-a2/.+"))
-	head_listing_complex = soup.find_all("a", href=re.compile("^digitales-lernen/deutsche-sprache/lesetexte/b1-b2/.+"))
+	head_listing = soup.find_all("a", href=re.compile("^/digitales-lernen/deutsche-sprache/lesetexte/lesetexte-sprachniveau-a1-a2/.+"))
+	head_listing_complex = soup.find_all("a", href=re.compile("^/digitales-lernen/deutsche-sprache/lesetexte/b1-b2/.+"))
 	i = 0
-	head_listing = [get_link(link["href"], "https://www.alumniportal-deutschland.org/") for link in head_listing if "online-deutsch-lernen-uebungen-" in link["href"]]
-	head_listing_complex = [get_link(link["href"], "https://www.alumniportal-deutschland.org/") for link in head_listing_complex if "online-deutsch-lernen-uebungen-" in link["href"]]
+	head_listing = [get_link(link["href"], "https://www.alumniportal-deutschland.org") for link in head_listing if "online-deutsch-lernen-uebungen-" in link["href"]]
+	head_listing_complex = [get_link(link["href"], "https://www.alumniportal-deutschland.org") for link in head_listing_complex if "online-deutsch-lernen-uebungen-" in link["href"]]
 	if head_listing:
 		for link in head_listing:
 			simple_url = link
 			complex_candidate = simple_url.replace(simple_part, complex_part)
-			if complex_candidate.endswith("-a/"):
-				complex_candidate = complex_candidate[:-2]+"b/"
-			elif complex_candidate.endswith("-a1-a2/"):
-				complex_candidate = complex_candidate[:-6]+"b1-b2/"
-
+			if complex_candidate.endswith("-a"):
+				complex_candidate = complex_candidate[:-1]+"b"
+			elif complex_candidate.endswith("-a1-a2"):
+				complex_candidate = complex_candidate[:-5]+"b1-b2"
 			if complex_candidate in head_listing_complex:
 				complex_url = complex_candidate
 			if complex_url and simple_url:
@@ -605,22 +618,21 @@ def parse_overview_alumniportal_2020(page_url, tag, save_raw_content=False, outp
 
 def parse_overview_bpb_complex(overview_url):
 	complex_dict = dict()
-	complex_elements = list()
 	with opener.open(overview_url) as url:
 		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	overview = soup.find("div", {"id": "content_left"})
-	all_letters = list({get_link(list_element.find("a")["href"], "https://www.bpb.de") for list_element in overview.find_all("li")})
-	for letter_url in all_letters:
-		with opener.open(letter_url) as url:
-			soup = bs4.BeautifulSoup(url.read(), "lxml")
-		letter_overview = soup.find("div", {"id": "content_left"})
-		all_items = [list_element.find("a") for list_element in letter_overview.find_all("li")]
-		for item in all_items:
-			complex_dict[item.text.strip()] = get_link(item["href"], "https://www.bpb.de")
-			complex_elements.append(item)
-	return complex_dict, complex_elements
+	group_per_letter = soup.find_all("li", {"class": "topic-container__item"})
+	for letter_group in group_per_letter:
+		all_links = letter_group.find_all("a", {"class": "topic-list__link"})
+		for link in all_links:
+			complex_dict[link.text.strip()] = get_link(link["href"], "https://www.bpb.de")
+
+	return complex_dict
 	
-	
+def get_all_bpb_links(overview_url):
+	with opener.open(overview_url) as url:
+		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	all_urls = soup.find_all("a", {"class": "topic-list__link"})
+	return all_urls
 
 def parse_overview_bpb(overview_url, tag, save_raw_content=False, output_dir="data/"):
 	output = list()
@@ -629,20 +641,14 @@ def parse_overview_bpb(overview_url, tag, save_raw_content=False, output_dir="da
 	license_name = "CC BY-NC-ND 3.0 DE"
 	access_date = datetime.today().strftime('%Y-%m-%d')
 	i = 0
-	if tag == "einfach_politik":
-		with opener.open(overview_url) as url:
-			soup = bs4.BeautifulSoup(url.read(), "lxml")
-		overview = soup.find("div", {"id": "content_left"})
-		all_urls = [list_element.find("a") for list_element in overview.find_all("li")]
-		# "Jane Baer-Krause, Anette Bäßler, Christiane Baumann, Oliver Boyn, Peter Brandt, Danielle Cohn, Stefan Eling, Tanja Hebenstreit, Claudia Hennerkes, Katharina Hoba, Lamya Kaddor, Kristine Kretschmer, Claudia Nölling-Schweers, Catherine Raoult, Katharina Reinhold, Katrin Rosenthal, Verena Sauvage, Renate Schindler, Gerd Schneider, Anja Stöcker, Christiane Toyka-Seid und Thomas Werner"
-	else:
-		all_urls = complex_dict = parse_overview_bpb_complex(overview_url)[1]
-	complex_dict = parse_overview_bpb_complex("https://www.bpb.de/nachschlagen/lexika/politiklexikon/")[0]
+	all_urls = get_all_bpb_links(overview_url)
+	# "Jane Baer-Krause, Anette Bäßler, Christiane Baumann, Oliver Boyn, Peter Brandt, Danielle Cohn, Stefan Eling, Tanja Hebenstreit, Claudia Hennerkes, Katharina Hoba, Lamya Kaddor, Kristine Kretschmer, Claudia Nölling-Schweers, Catherine Raoult, Katharina Reinhold, Katrin Rosenthal, Verena Sauvage, Renate Schindler, Gerd Schneider, Anja Stöcker, Christiane Toyka-Seid und Thomas Werner"
+	complex_dict = parse_overview_bpb_complex("https://www.bpb.de/kurz-knapp/lexika/politiklexikon/")
 	for simple_link in all_urls:
 		simple_url = get_link(simple_link["href"], "https://www.bpb.de")
 		if save_raw_content:
 			if simple_link.text.strip() in complex_dict.keys():
-				complex_link = complex_dict[simple_link.text.strip()]
+				complex_link = get_link(complex_dict[simple_link.text.strip()], "https://www.bpb.de")
 			else:
 				complex_link = ""
 				complex_location = ""
@@ -713,7 +719,7 @@ def save_html(level, output_dir, sub_dir, type, i, link):
 				title = title.string
 		with open(output_dir + sub_dir + type + "/" + level + str(i) + '.html', "w") as file:
 			file.write(str(soup))
-	except (ValueError, ConnectionResetError):
+	except (ValueError, ConnectionResetError, OSError):
 		print(link, "not accessible")
 		return "", ""
 	return output_dir + sub_dir + type + "/" + level + str(i) + '.html', title
@@ -747,6 +753,7 @@ def save_content(simple_link, complex_link, i, output_dir, sub_dir):
 		complex_location, complex_title = save_html("complex_", output_dir, sub_dir, "html", i, complex_link)
 	elif complex_link.endswith("pdf"):
 		complex_location = save_pdf("complex_", output_dir, sub_dir, "pdf", i, complex_link)
+	print(simple_location, complex_location, simple_title, complex_title)
 	return simple_location, complex_location, simple_title, complex_title
 
 
@@ -757,26 +764,27 @@ def main():
 	if not os.path.exists(output_dir):
 		os.makedirs(output_dir)
 
+
 	overview_pages = [
-					#"https://www.alumniportal-deutschland.org/services/sitemap/",
-					#"https://www.lebenshilfe-main-taunus.de/inhalt/",
-					#"https://www.os-hho.de/",
-					#"https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
+					"https://www.alumniportal-deutschland.org/services/sitemap/",
+					# "https://www.lebenshilfe-main-taunus.de/inhalt/",
+					## "https://www.os-hho.de/",
+					"https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
 
-					#"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_in_Arbeit",
-					#"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_noch_zu_pr%C3%BCfen",
-					#"https://offene-bibel.de/wiki/Kategorie:Gepr%C3%BCfte_Leichte_Sprache",
+					"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_in_Arbeit",
+					"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_noch_zu_pr%C3%BCfen",
+					"https://offene-bibel.de/wiki/Kategorie:Gepr%C3%BCfte_Leichte_Sprache",
 
-					# "https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache",
-					#"https://taz.de/leicht/!p5097//",
-					#"https://www.apotheken-umschau.de/einfache-sprache/",
+					"https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache",
+					"https://taz.de/leicht/!p5097//",
+					"https://www.apotheken-umschau.de/einfache-sprache/",
 					"https://www.hamburg.de/hamburg-barrierefrei/leichte-sprache/",
-					#"https://www.bzfe.de/einfache-sprache/einkaufen/",
-					#"https://www.bzfe.de/einfache-sprache/kochen-aufbewahren/",
-					#"https://www.bzfe.de/einfache-sprache/gut-essen/", 
-					#"https://www.bzfe.de/einfache-sprache/familie/",
-					#"https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/",
-					#"https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/", 
+					"https://www.bzfe.de/einfache-sprache/einkaufen/",
+					"https://www.bzfe.de/einfache-sprache/kochen-aufbewahren/",
+					"https://www.bzfe.de/einfache-sprache/gut-essen/", 
+					"https://www.bzfe.de/einfache-sprache/familie/",
+					"https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/",
+					"https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/", 
 					#"manual_alignment"
 
 					# NEW
@@ -793,7 +801,7 @@ def main():
 					#"https://www.bmas.de/DE/Leichte-Sprache/leichte-sprache.html"
 					#"data/news-apa-xml/itrp-239068_topeasy.xml"
 					#"data/science_apa_manual/Search.html"
-					#"https://www.bzfe.de/einfache-sprache/
+					# "https://www.bzfe.de/einfache-sprache/"
 					]
 
 	#
