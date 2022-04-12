@@ -19,19 +19,20 @@ source_dict = {"apotheken-umschau": {"simple": "B1", "complex": "C2", "domain": 
 		"DE-APA_LHA": {"A2-OR": {"simple": "A2", "complex": "C2", "domain": "news", "license": 1, "language": "DE"},
 				"B1-OR": {"simple": "B1", "complex": "C2", "domain": "news", "license": 1, "language": "DE"},
 				},
-		"passanten-verlag": {"simple": "A2/B1", "complex": "C2", "domain": "fiction", "license": 0.75, "language": "DE"},
-		"spaß-am-lesen-verlag": {"simple": "A2/B1", "complex": "C2", "domain": "fiction", "license": 1, "language": "DE"},
+		"passanten_verlag": {"simple": "A2/B1", "complex": "C2", "domain": "fiction", "license": 0.75, "language": "DE"},
+		"spaßamlesen_verlag": {"simple": "A2/B1", "complex": "C2", "domain": "fiction", "license": 1, "language": "DE"},
 		"bzfe_kochen": {"simple": "A2/B1", "complex": "C2", "domain": "health/food", "license": 1, "language": "DE"},
 		"bzfe_einkaufen": {"simple": "A2/B1", "complex": "C2", "domain": "health/food", "license": 1, "language": "DE"},
 		"bzfe_familie": {"simple": "A2/B1", "complex": "C2", "domain": "health/food", "license": 1, "language": "DE"},
 		"bzfe_essen": {"simple": "A2/B1", "complex": "C2", "domain": "health/food", "license": 1, "language": "DE"},
-		"alumniportal-DE-2020": {"simple": "A2", "complex": "B2", "domain": "language learner", "license": 1, "language": "DE"},
+		"alumniportal-DE-2021": {"simple": "A2", "complex": "B2", "domain": "language learner", "license": 1, "language": "DE"},
 		"alumniportal-DE-2020": {"simple": "A2", "complex": "B2", "domain": "language learner", "license": 1, "language": "DE"},
 		"junge_politik": {"simple": "children_6", "complex": "C2", "domain": "politics", "license": 0.75, "language": "DE"},
 		"einfach_politik": {"simple": "A2/B1", "complex": "C2", "domain": "politics", "license": 0.75, "language": "DE"},
 		"einfach-teilhaben": {"simple": "A1", "complex": "C2", "domain": "web", "license": 0.75, "language": "DE"},
 		"stadt_koeln": {"simple": "A1", "complex": "C2", "domain": "web", "license": 0.75, "language": "DE"},
 		"stadt_hamburg": {"simple": "A1", "complex": "C2", "domain": "web", "license": 0.75, "language": "DE"},
+		"lebenshilfe_main_taunus" : {"simple": "A1", "complex": "C2", "domain": "accessibility", "license": 0.75, "language": "DE"},
 		}
 
 def add_data(output_data, file_list, dir_path, name, level):
@@ -88,6 +89,8 @@ for dir_path in os.listdir("data/"):
 		output_data = select_files_and_add_data(full_dir_path, "spaß-am-lesen-verlag", output_data)
 	else:
 		full_dir_path = "data/"+dir_path+"/txt/"
+		output_data = select_files_and_add_data(full_dir_path, dir_path, output_data)
+		full_dir_path = "data/"+dir_path+"/only_simple_txt/"
 		output_data = select_files_and_add_data(full_dir_path, dir_path, output_data)
 
 	output_data.to_csv("data/DE_textlevel_webdata.csv", index=False)

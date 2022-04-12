@@ -13,7 +13,7 @@ class AppURLopener(urllib.request.FancyURLopener):
 
 opener = AppURLopener()
 
-def parse_overview_pages(page_url, output_dir, save_raw_content=False):
+def parse_overview_pages(page_url, output_dir, save_raw_content=False, save_only_parallel=True):
 	if Path(output_dir+"url_overview.tsv").is_file():
 		output = []
 	else:
@@ -24,68 +24,68 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 	print("start:", page_url)
 	if "apotheken-umschau" in page_url:
 		tag = "apotheken-umschau"
-		output.extend(parse_overview_apotheke(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_apotheke(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "hamburg.de" in page_url:
 		tag = "stadt_hamburg"
-		output.extend(parse_overview_hamburg(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_hamburg(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "taz.de" in page_url:
 		tag = "taz"
-		output.extend(parse_overview_taz(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_taz(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "stadt-koeln.de" in page_url:
 		tag = "stadt_koeln"
-		output.extend(parse_overview_koeln(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_koeln(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "offene-bibel.de" in page_url and "in_Arbeit" in page_url:
 		tag = "bible_working_progress"
-		output.extend(parse_overview_bible(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bible(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "offene-bibel.de" in page_url and "noch_zu_pr%C3%BCfen" in page_url:
 		tag = "bible_awaiting_proof"
-		output.extend(parse_overview_bible(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bible(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "offene-bibel.de" in page_url and "Gepr%C3%BCfte_Leichte_Sprache" in page_url:
 		tag = "bible_verified"
-		output.extend(parse_overview_bible(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bible(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	# elif "https://www.evangelium-in-leichter-sprache.de/" in page_url:
 	# 	tag = "bible_gospel"
 	# 	output.extend(parse_overview_gospel(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
 	elif "einfach-teilhaben.de" in page_url:
 		tag = "einfach-teilhaben"
-		output.extend(parse_overview_einfach_teilhaben(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir)[0])
+		output.extend(parse_overview_einfach_teilhaben(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel)[0])
 	elif "os-hho.de" in page_url:
 		tag = "os-hho"
-		output.extend(parse_overview_os_hho(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_os_hho(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "lebenshilfe-main-taunus" in page_url:
 		tag = "lebenshilfe_main_taunus"
-		output.extend(parse_overview_lebenshilfe_main_taunus(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_lebenshilfe_main_taunus(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "alumniportal-deutschland.org" in page_url:
 		tag = "alumniportal-DE-2021"
-		output.extend(parse_overview_alumniportal_2021(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_alumniportal_2021(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 		# output.extend(parse_overview_alumniportal_2020(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
 	elif "manual_alignment" in page_url:
 		tag = "manual_alignment"
-		output.extend(add_manual_aligned_urls(save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(add_manual_aligned_urls(save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "news-apa-xml" in page_url:
 		tag = "news-apa-xml"
-		output.extend(parse_overview_apa_xml(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_apa_xml(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "science_apa_manual" in page_url:
 		tag = "news-apa"
-		output.extend(parse_overview_apa(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_apa(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "bzfe" in page_url and "einkaufen" in page_url:
 		tag = "bzfe_einkaufen"
-		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "bzfe" in page_url and "kochen" in page_url:
 		tag = "bzfe_kochen"
-		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "bzfe" in page_url and "essen" in page_url:
 		tag = "bzfe_essen"
-		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "bzfe" in page_url and "familie" in page_url:
 		tag = "bzfe_familie"
-		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bzfe(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "bpb.de" in page_url and "einfach" in page_url:
 		tag = "einfach_politik"
-		output.extend(parse_overview_bpb(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bpb(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "bpb.de" in page_url and "jung" in page_url:
 		tag = "junge_politik"
-		output.extend(parse_overview_bpb(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir))
+		output.extend(parse_overview_bpb(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	else:
 		tag = "else"
 		list_simplified_urls, list_complex_urls = [], []
@@ -101,16 +101,26 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False):
 	return 1
 
 
-def add_manual_aligned_urls(save_raw_content=False, output_dir="data/"):
+def open_urls_safely(input_url):
+	try:
+		with opener.open(input_url) as url:
+			soup_html = bs4.BeautifulSoup(url.read(), "lxml")
+			return soup_html
+	except ValueError:
+		return None
+		
+	
+def add_manual_aligned_urls(save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
-	output.extend(get_easy_to_read_books("links/books", "easy_to_read_books", "citation required", save_raw_content=save_raw_content, output_dir=output_dir))
-	output.extend(get_easy_to_read_books("links/fairytales", "fairytales", "not mentioned", save_raw_content=save_raw_content, output_dir=output_dir))
-	output.extend(get_participation_urls("links/participation", save_raw_content=save_raw_content, output_dir=output_dir))
-	output.extend(get_party_program("links/party_program", "party_program", "todo", save_raw_content=save_raw_content, output_dir=output_dir))
+	output.extend(get_easy_to_read_books("links/books", "spaßamlesen_verlag", "citation required", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
+	output.extend(get_easy_to_read_books("links/literature", "passanten_verlag", "citation required", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
+	# output.extend(get_easy_to_read_books("links/fairytales", "fairytales", "not mentioned", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
+	# output.extend(get_participation_urls("links/participation", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
+	# output.extend(get_party_program("links/party_program", "party_program", "todo", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	return output
 
 
-def get_easy_to_read_books(link, tag, license_name, save_raw_content=False, output_dir="data/"):
+def get_easy_to_read_books(link, tag, license_name, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	print(tag)
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title = "", "", "", "", "", "", "", "", "", ""
@@ -120,18 +130,19 @@ def get_easy_to_read_books(link, tag, license_name, save_raw_content=False, outp
 	with open(link + "_simple.txt") as f:
 		simple_content = f.readlines()
 	complex_level = "C2"
-	i = 0
-	for simple_line, complex_line in zip(simple_content, complex_content):
-		simple_url, simple_level = simple_line.strip().split("\t")
-		title, complex_author, complex_url = complex_line.strip().split("\t")
+	for i, simple_line in enumerate(simple_content):
+		if i < len(complex_content):
+			complex_title, complex_author, complex_level, complex_url = complex_content[i].strip().split("\t")
+		else:
+			complex_title, complex_author, complex_level, complex_url = "", "", "", ""
+		simple_title, simple_author, simple_level, simple_url = simple_line.strip().split("\t")
 		if save_raw_content:
-			simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag)
+			simple_location, complex_location, title_complex, title_complex = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
 		output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
-		i += 1
 	return output
 
 
-def get_party_program(link, tag, license_name, save_raw_content=False, output_dir="data/"):
+def get_party_program(link, tag, license_name, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	print(tag)
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title = "", "", "", "", "", "", "", "", "", ""
@@ -146,13 +157,13 @@ def get_party_program(link, tag, license_name, save_raw_content=False, output_di
 		simple_url, simple_level = simple_line.strip().split("\t")
 		complex_url = complex_line.strip().split("\t")[0]
 		if save_raw_content:
-			simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag)
+			simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
 		output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 		i += 1
 	return output
 
 
-def get_participation_urls(link, save_raw_content=False, output_dir="data/"):
+def get_participation_urls(link, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	tag = "participation"
 	print(tag)
 	output = list()
@@ -165,7 +176,7 @@ def get_participation_urls(link, save_raw_content=False, output_dir="data/"):
 		simple_content = f.readlines()
 	for simple_url, complex_url in zip(simple_content, complex_content):
 		if save_raw_content:
-			simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag)
+			simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
 		output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, "todo", access_date])
 		i += 1
 	return output
@@ -222,8 +233,9 @@ def get_complex_url_koeln(soup_simple_hmtl):
 
 
 def get_complex_url_einfach_teilhaben(simple_url):
-	with opener.open(simple_url) as url:
-		soup_complex = bs4.BeautifulSoup(url.read(), "lxml")
+	soup_complex = open_urls_safely(simple_url)
+	if not soup_complex:
+		return ""
 	complex_url = soup_complex.find("a", {"class": "seitenumschaltung__tab__alltagssprache"})
 	if complex_url:
 		link = get_link("".join(complex_url["href"].partition(".html")[:-1]), "https://www.einfach-teilhaben.de/")
@@ -234,8 +246,9 @@ def get_complex_url_einfach_teilhaben(simple_url):
 
 def get_complex_url(simple_url):
 	url_complex = ""
-	with opener.open(simple_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(simple_url)
+	if not soup:
+		return ""
 	if "apotheken-umschau" in simple_url:
 		url_complex = get_complex_url_apotheke(soup)
 	elif "hamburg" in simple_url:
@@ -244,47 +257,50 @@ def get_complex_url(simple_url):
 	return url_complex
 
 
-def parse_overview_apotheke(overview_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_apotheke(overview_url, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A2/B1", "C2"
 	license_name = "copyright required"
 	access_date = datetime.today().strftime('%Y-%m-%d')
 	i = 0
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_url)
+	if not soup:
+		return output
 	content = soup.find("div", {"class": "linkliste"})
 	if content:
 		all_links = content.find_all("a")
 		for link in all_links:
-			simple_link = get_link(link["href"], "https://www.apotheken-umschau.de")
+			simple_url = get_link(link["href"], "https://www.apotheken-umschau.de")
 			try:
-				complex_link = get_complex_url(simple_link)
+				complex_url = get_complex_url(simple_url)
 			except OSError:
 				print("reset by peer")
-			if simple_link and complex_link:
+			if simple_url: #  and complex_url:
 				if save_raw_content:
-					simple_location, complex_location, simple_title, complex_title = save_content(simple_link, complex_link, i, output_dir, tag)
-				output.append([tag, simple_link, complex_link, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+					simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
+				output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 				i += 1
 	return output
 
 
 
-def parse_overview_hamburg(overview_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_hamburg(overview_url, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A1", "C2"
 	license_name = "copyright reserved. dpa prohibited"
 	access_date = datetime.today().strftime('%Y-%m-%d')
 	i = 0
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_url)
+	if not soup:
+		return output
 	all_topics = soup.find_all("a", {"class": "topic-overview__link"})
 	for topic in all_topics:
-		topic_link = topic["href"]
-		with opener.open(topic_link) as url:
-			soup_topic = bs4.BeautifulSoup(url.read(), "lxml")
+		topic_link = topic["href"]	
+		soup_topic = open_urls_safely(topic_link)
+		if not soup_topic:
+			return output
 		all_link_groups = soup_topic.find_all("div", {"class": "image-teaser-accessibility__bar"})
 		for group in all_link_groups:
 			all_links_of_group = group.find_all("a", {"class": "accessibility-item__content-link"})
@@ -294,73 +310,76 @@ def parse_overview_hamburg(overview_url, tag, save_raw_content=False, output_dir
 					simple_url = get_link(link["href"], "https://www.hamburg.de")
 				elif "Original-Text" in link.text:
 					complex_url = get_link(link["href"], "https://www.hamburg.de")
-			if simple_url and complex_url:
+			if simple_url:  # and complex_url:
 				if save_raw_content:
-				 	simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag)
+				 	simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
 				output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 				i += 1
 	return output
 
 
-def parse_overview_taz(overview_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_taz(overview_url, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	# in contrast to the urls, the simplified texts are build from one or more pages which makes the alignment more difficult
 	output, post_list_simple_all = list(), list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A1", "C2"
 	license_name = "copyright reserved, ask lizenzen@taz.de"
 	access_date = datetime.today().strftime('%Y-%m-%d')
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_url)
+	if not soup:
+		return output
 	all_urls = soup.find_all("a", href= re.compile("^/Leichte-Sprache"))
 	post_list_simple_all.extend(["https://taz.de/" + url["href"] for url in all_urls])
 	i = 0
 	for simple_url in post_list_simple_all:
-		with opener.open(simple_url) as url:
-			soup_simple_html = bs4.BeautifulSoup(url.read(), "lxml")
-		complex_url = get_complex_url_taz(soup_simple_html)
-		if complex_url:
-			if save_raw_content:
-				simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag)
-			output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
-			i += 1
+		soup_simple_html = open_urls_safely(simple_url)
+		if soup_simple_html:
+			complex_url = get_complex_url_taz(soup_simple_html)
+		# if complex_url:
+		if save_raw_content:
+			simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
+		output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+		i += 1
 	# todo: multiple complex texts
 	return output
 
 
-def parse_overview_koeln(overview_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_koeln(overview_url, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A1", "C2"
 	license_name = "written permit required"
 	access_date = datetime.today().strftime('%Y-%m-%d')
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_url)
+	if not soup:
+		return output
 	all_lists = soup.find_all("ul", {"class": "textteaserliste"})
 	i = 0
 	for ul in all_lists:
 		links_simple = ul.find_all("a")
 		for simple_url in links_simple:
 			simple_url_full = get_link(simple_url["href"], "https://www.stadt-koeln.de")
-			with opener.open(simple_url_full) as url:
-				soup_simple_html = bs4.BeautifulSoup(url.read(), "lxml")
-			complex_url = get_complex_url_koeln(soup_simple_html)
-			if complex_url:
-				complex_url = get_link(complex_url, "https://www.stadt-koeln.de")
-				if save_raw_content:
-					simple_location, complex_location, simple_title, complex_title = save_content(simple_url_full, complex_url, i, output_dir, tag)
-				output.append([tag, simple_url_full, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
-				i += 1
+			soup_simple_html = open_urls_safely(simple_url_full)
+			if soup_simple_html:
+				complex_url = get_complex_url_koeln(soup_simple_html)
+				if complex_url:
+					complex_url = get_link(complex_url, "https://www.stadt-koeln.de")
+			if save_raw_content:
+				simple_location, complex_location, simple_title, complex_title = save_content(simple_url_full, complex_url, i, output_dir, tag, save_only_parallel)
+			output.append([tag, simple_url_full, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+			i += 1
 	return output
 
 
-def parse_overview_bible(overview_url, tag, lexikon=False, save_raw_content=False, output_dir="data/"):
+def parse_overview_bible(overview_url, tag, lexikon=False, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output, all_listings, lexikon_links = list(), list(), list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A1", "C2"
 	license_name = "CC BY-SA 3.0"
 	access_date = datetime.today().strftime('%Y-%m-%d')
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_url)
+	if not soup:
+		return output
 	all_lists = soup.find_all("ul", {"class": ""})
 	for ul in all_lists:
 		all_listings.extend(ul.find_all("li", {"class": ""}))
@@ -380,13 +399,13 @@ def parse_overview_bible(overview_url, tag, lexikon=False, save_raw_content=Fals
 				if "," in complex_url:
 					complex_url = complex_url.split(",")[0]
 				if save_raw_content:
-					simple_location, complex_location, simple_title, complex_title = save_content(get_link(simple_url["href"], "https://offene-bibel.de"), get_link(complex_url, "https://offene-bibel.de"), i, output_dir, tag)
+					simple_location, complex_location, simple_title, complex_title = save_content(get_link(simple_url["href"], "https://offene-bibel.de"), get_link(complex_url, "https://offene-bibel.de"), i, output_dir, tag, save_only_parallel)
 				output.append([tag, get_link(simple_url["href"], "https://offene-bibel.de"), get_link(complex_url, "https://offene-bibel.de"), simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 				i += 1
 	return output
 
 
-def parse_overview_apa(overview_url, tag, lexikon=False, save_raw_content=False, output_dir="data/"):
+def parse_overview_apa(overview_url, tag, lexikon=False, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A2", "B1"
@@ -403,9 +422,7 @@ def parse_overview_apa(overview_url, tag, lexikon=False, save_raw_content=False,
 		simple_url_full = get_link(item["href"], "https://science.apa.at")
 		complex_url = simple_url_full
 		if save_raw_content:
-			simple_location, complex_location, simple_title, complex_title = save_content(simple_url_full,
-																							  complex_url, i,
-																							  output_dir, tag)
+			simple_location, complex_location, simple_title, complex_title = save_content(simple_url_full, complex_url, i, output_dir, tag, save_only_parallel)
 			output.append(
 				[tag, simple_url_full, complex_url, simple_level, complex_level, simple_location, complex_location,
 				 "", "", "", simple_author, complex_author, simple_title, complex_title, license_name, access_date])
@@ -458,13 +475,15 @@ def parse_overview_apa_xml(location, tag, lexikon=False, save_raw_content=False,
 
 
 def check_subpage(url, element, attribute, attribute_value):
-	with opener.open(url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	all_lists = soup.find_all(element, {attribute: attribute_value})
-	return all_lists
+	soup = open_urls_safely(url)
+	if not soup:
+		return []
+	else:
+		all_lists = soup.find_all(element, {attribute: attribute_value})
+		return all_lists
 
 
-def parse_overview_einfach_teilhaben(overview_page, tag, save_raw_content=False, output_dir="data/", i=0):
+def parse_overview_einfach_teilhaben(overview_page, tag, save_raw_content=False, output_dir="data/", i=0, save_only_parallel=True):
 	# @todo: consider that subpages can also have content and sublinks, e.g. https://www.einfach-teilhaben.de/DE/LS/Themen/LiebeSexualitaet/Familienplanung/Familienplanung_node.html
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
@@ -482,11 +501,11 @@ def parse_overview_einfach_teilhaben(overview_page, tag, save_raw_content=False,
 				output.extend(subpages)
 			else:
 				complex_url = get_complex_url_einfach_teilhaben(subpages)
-				if complex_url:
-					if save_raw_content:
-						simple_location, complex_location, simple_title, complex_title = save_content(subpages, complex_url, i, output_dir, tag)
-					output.append([tag, subpages, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
-					i += 1
+				# if complex_url:
+				if save_raw_content:
+					simple_location, complex_location, simple_title, complex_title = save_content(subpages, complex_url, i, output_dir, tag, save_only_parallel)
+				output.append([tag, subpages, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+				i += 1
 		return output, i
 	else:
 		return overview_page, i
@@ -501,15 +520,16 @@ def get_link(link, url):
 		return url+link
 
 
-def parse_overview_os_hho(overview_page, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_os_hho(overview_page, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A2/B1", "C2"
 	license_name = "copyright reserved"
 	post_list_simple, post_list_complex = list(), list()
 	access_date = datetime.today().strftime('%Y-%m-%d')
-	with opener.open(overview_page) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_page)
+	if not soup:
+		return output
 	all_urls = set()
 	i = 0
 	for url_tag in soup.find_all("a"):
@@ -523,17 +543,18 @@ def parse_overview_os_hho(overview_page, tag, save_raw_content=False, output_dir
 				if get_link(simple_url["href"], "https://www.os-hho.de") not in post_list_simple:
 					post_list_simple.append(get_link(simple_url["href"], "https://www.os-hho.de"))
 					if save_raw_content:
-						simple_location, complex_location, simple_title, complex_title = save_content(get_link(simple_url["href"], "https://www.os-hho.de"), get_link(url, "https://www.os-hho.de"), i, output_dir, tag)
+						simple_location, complex_location, simple_title, complex_title = save_content(get_link(simple_url["href"], "https://www.os-hho.de"), get_link(url, "https://www.os-hho.de"), i, output_dir, tag, save_only_parallel)
 					output.append([tag, get_link(simple_url["href"], "https://www.os-hho.de"), get_link(url, "https://www.os-hho.de"), simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 					i += 1
 	return output
 
 
-def parse_overview_lebenshilfe_main_taunus(overview_page, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_lebenshilfe_main_taunus(overview_page, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
-	with opener.open(overview_page) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_page)
+	if not soup:
+		return output
 	div_ul = soup.find("div", {"id": "inhalt_sitemap"})
 	all_urls = list({get_link(url.find("a")["href"], "https://www.lebenshilfe-main-taunus.de") for url in div_ul.find_all("li")})
 	simple_level, complex_level = "A1", "C2"
@@ -550,20 +571,21 @@ def parse_overview_lebenshilfe_main_taunus(overview_page, tag, save_raw_content=
 		if simple_element.name == "a" and simple_element["href"] != "/ls/" and not re.search(r"/ls/-\d{3}\.html", simple_element["href"]):
 			simple_url = get_link(simple_element["href"], "https://www.lebenshilfe-main-taunus.de")
 			if save_raw_content:
-				simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag)
+				simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
 			output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 			i += 1
 	return output
 
 
-def parse_overview_alumniportal_2021(page_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_alumniportal_2021(page_url, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A2", "B2"
 	license_name = "CC BY 4.0"
 	access_date = datetime.today().strftime('%Y-%m-%d')
-	with opener.open(page_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(page_url)
+	if not soup:
+		return output
 	# head_listing = soup.find_all("a", href = re.compile("^deutsche-sprache/deutsch-auf-die-schnelle/.+"))
 	"https://www.alumniportal-deutschland.org/digitales-lernen/deutsche-sprache/lesetexte/lesetexte-sprachniveau-a1-a2/"
 	"https://www.alumniportal-deutschland.org/digitales-lernen/deutsche-sprache/lesetexte/b1-b2/online-deutsch-lernen-uebungen-integration-b/"
@@ -585,25 +607,26 @@ def parse_overview_alumniportal_2021(page_url, tag, save_raw_content=False, outp
 				complex_candidate = complex_candidate[:-5]+"b1-b2"
 			if complex_candidate in head_listing_complex:
 				complex_url = complex_candidate
-			if complex_url and simple_url:
-				if save_raw_content:
-					simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url,
-																								  i, output_dir, tag)
-				output.append(
-					[tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "",
-					 "", simple_author, complex_author, simple_title, complex_title, license_name, access_date])
-				i += 1
+			# if complex_url and simple_url:
+			if save_raw_content:
+				simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url,
+																							  i, output_dir, tag, save_only_parallel)
+			output.append(
+				[tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "",
+				 "", simple_author, complex_author, simple_title, complex_title, license_name, access_date])
+			i += 1
 	return output
 
 
-def parse_overview_alumniportal_2020(page_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_alumniportal_2020(page_url, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A2", "B2"
 	license_name = "CC BY 4.0"
 	access_date = datetime.today().strftime('%Y-%m-%d')
-	with opener.open(page_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(page_url)
+	if not soup:
+		return output
 	# head_listing = soup.find_all("a", href = re.compile("^deutsche-sprache/deutsch-auf-die-schnelle/.+"))
 	head_listing = soup.find_all("a", href=re.compile("^digitales-lernen/deutsche-sprache/deutsch-auf-die-schnelle/.+"))
 	i = 0
@@ -611,15 +634,16 @@ def parse_overview_alumniportal_2020(page_url, tag, save_raw_content=False, outp
 		for link in head_listing:
 			simple_url, complex_url = get_link(link["href"], "https://www.alumniportal-deutschland.org/"), get_link(link["href"], "https://www.alumniportal-deutschland.org/")
 			if save_raw_content:
-				simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag)
+				simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
 			output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 			i += 1
 	return output
 
 def parse_overview_bpb_complex(overview_url):
 	complex_dict = dict()
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_url)
+	if not soup:
+		return complex_dict
 	group_per_letter = soup.find_all("li", {"class": "topic-container__item"})
 	for letter_group in group_per_letter:
 		all_links = letter_group.find_all("a", {"class": "topic-list__link"})
@@ -629,12 +653,14 @@ def parse_overview_bpb_complex(overview_url):
 	return complex_dict
 	
 def get_all_bpb_links(overview_url):
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
-	all_urls = soup.find_all("a", {"class": "topic-list__link"})
-	return all_urls
+	soup = open_urls_safely(overview_url)
+	if not soup:
+		return []
+	else:
+		all_urls = soup.find_all("a", {"class": "topic-list__link"})
+		return all_urls
 
-def parse_overview_bpb(overview_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_bpb(overview_url, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A2/B1", "C2"
@@ -653,23 +679,24 @@ def parse_overview_bpb(overview_url, tag, save_raw_content=False, output_dir="da
 				complex_link = ""
 				complex_location = ""
 				complex_title = ""
-			if simple_link and complex_link:
-				simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_link, i, output_dir, tag)
-			else:
-				simple_location, complex_location, simple_title, complex_title = "", "", "", ""
+			# if simple_link and complex_link:
+			simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_link, i, output_dir, tag, save_only_parallel)
+			# else:
+			# 	simple_location, complex_location, simple_title, complex_title = "", "", "", ""
 		output.append([tag, simple_url, complex_link, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 		i += 1
 	return output
 
-def parse_overview_bzfe(overview_url, tag, save_raw_content=False, output_dir="data/"):
+def parse_overview_bzfe(overview_url, tag, save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, simple_author, complex_author, simple_title, complex_title, license_name = "", "", "", "", "", "", "", "", "", "", ""
 	simple_level, complex_level = "A2/B1", "C2"
 	license_name = "CC BY-NC-ND 4.0"
 	access_date = datetime.today().strftime('%Y-%m-%d')
 	i = 0
-	with opener.open(overview_url) as url:
-		soup = bs4.BeautifulSoup(url.read(), "lxml")
+	soup = open_urls_safely(overview_url)
+	if not soup:
+		return output
 	overview = soup.find("div", {"class": "module-teaserlist"})
 	all_urls = list({get_link(url["href"], "https://www.bzfe.de") for url in overview.find_all("a", title=True)})
 	for simple_link in all_urls:
@@ -685,13 +712,40 @@ def parse_overview_bzfe(overview_url, tag, save_raw_content=False, output_dir="d
 				complex_link = ""
 				complex_location = ""
 				complex_title = ""
-			if simple_link and complex_link:
-				simple_location, complex_location, simple_title, complex_title = save_content(simple_link, complex_link, i, output_dir, tag)
-			else:
-				simple_location, complex_location, simple_title, complex_title = "", "", "", ""
+			if simple_link:  # and complex_link:
+				simple_location, complex_location, simple_title, complex_title = save_content(simple_link, complex_link, i, output_dir, tag, save_only_parallel)
+			# else:
+			# 	simple_location, complex_location, simple_title, complex_title = "", "", "", ""
 		output.append([tag, simple_link, complex_link, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 		i += 1
 	return output
+
+def save_non_parallel_books(book_list_simple, output, output_dir, tag, save_only_parallel):
+	save_only_parallel = False
+	output = list()
+	i = 0
+	access_date = datetime.today().strftime('%Y-%m-%d')
+	for simple_item in book_list_simple:
+		simple_title, simple_author, simple_level, simple_url = simple_item
+		simple_location, complex_location, simple_title, complex_title = save_content(simple_url, "", i, output_dir, tag, save_only_parallel)
+		output.append([tag, simple_url, "", simple_level, "", simple_location, "", "", "", "",  simple_author, "", simple_title, "", "to_add", access_date])
+		i += 1
+	return output
+	
+
+def save_parallel_books(book_list_simple, book_list_complex, output, output_dir, tag, save_only_parallel):
+	save_only_parallel = False
+	output = list()
+	i = 0
+	access_date = datetime.today().strftime('%Y-%m-%d')
+	for simple_item, complex_item in zip(book_list_simple, book_list_complex):
+		complex_title, complex_author, complex_level, complex_url = complex_item
+		simple_title, simple_author, simple_level, simple_url = simple_item
+		simple_location, complex_location, title_complex, title_complex = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
+		output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, "to_add", access_date])
+		i += 1
+	return output
+
 
 def umlauts_coverter_for_url(link):
 	if "ä" in link:
@@ -704,62 +758,75 @@ def umlauts_coverter_for_url(link):
 		return link
 
 
-def save_html(level, output_dir, sub_dir, type, i, link):
+def save_html(level, output_dir, sub_dir, save_type, i, link):
 	title = ""
 	try:
-
-		with opener.open(umlauts_coverter_for_url(link)) as url:
-			soup = bs4.BeautifulSoup(url.read(), "lxml")
-			if not soup.head:
-				return "", ""
-			comment = bs4.Comment('&copy; Origin: ' + link + " [last accessed: " + datetime.today().strftime('%Y-%m-%d') + "]")
-			soup.head.insert(-1, comment)
-			title = soup.find("title")
-			if title:
-				title = title.string
-		with open(output_dir + sub_dir + type + "/" + level + str(i) + '.html', "w") as file:
+		soup = open_urls_safely(umlauts_coverter_for_url(link))
+		if not soup or not soup.head:
+			return "", ""
+		comment = bs4.Comment('&copy; Origin: ' + link + " [last accessed: " + datetime.today().strftime('%Y-%m-%d') + "]")
+		soup.head.insert(-1, comment)
+		title = soup.find("title")
+		if title:
+			title = title.string
+		with open(output_dir + sub_dir + save_type + "/" + level + str(i) + '.html', "w") as file:
 			file.write(str(soup))
 	except (ValueError, ConnectionResetError, OSError):
 		print(link, "not accessible")
 		return "", ""
-	return output_dir + sub_dir + type + "/" + level + str(i) + '.html', title
+	return output_dir + sub_dir + save_type + "/" + level + str(i) + '.html', title
 
 
-def save_pdf(level, output_dir, sub_dir, type, i, link):
+def save_pdf(level, output_dir, sub_dir, save_type, i, link):
 	r = requests.get(link, stream=True)
 
-	with open(output_dir + sub_dir + type + "/" + level + str(i) + '.pdf', "wb") as pdf:
+	with open(output_dir + sub_dir + save_type + "/" + level + str(i) + '.pdf', "wb") as pdf:
 		for chunk in r.iter_content(chunk_size=1024):
 			if chunk:
 				pdf.write(chunk)
-	return output_dir + sub_dir + type + "/" + level + str(i) + '.pdf'
+	return output_dir + sub_dir + save_type + "/" + level + str(i) + '.pdf'
 
 
-def save_content(simple_link, complex_link, i, output_dir, sub_dir):
+def save_content(simple_link, complex_link, i, output_dir, sub_dir, save_only_parallel=True):
 	sub_dir = sub_dir+"/"
 	if not os.path.exists(output_dir+sub_dir):
 		os.makedirs(output_dir+sub_dir)
 	if not simple_link.endswith("pdf") and not os.path.exists(output_dir+sub_dir+"html/"):
 		os.makedirs(output_dir+sub_dir+"html/")
+	if not complex_link.endswith("pdf") and not os.path.exists(output_dir+sub_dir+"html/"):
+		os.makedirs(output_dir+sub_dir+"html/")
+	if not simple_link.endswith("pdf") and not save_only_parallel and not os.path.exists(output_dir+sub_dir+"only_simple_html/"):
+		os.makedirs(output_dir+sub_dir+"only_simple_html/")
 	elif simple_link.endswith("pdf") and not os.path.exists(output_dir+sub_dir+"pdf/"):
 		os.makedirs(output_dir+sub_dir+"pdf/")
+	elif complex_link.endswith("pdf") and not os.path.exists(output_dir+sub_dir+"pdf/"):
+		os.makedirs(output_dir+sub_dir+"pdf/")
+	elif simple_link.endswith("pdf") and not save_only_parallel and not os.path.exists(output_dir+sub_dir+"only_simple_pdf/"):
+		os.makedirs(output_dir+sub_dir+"only_simple_pdf/")
 
 	simple_location, complex_location, simple_title, complex_title = "", "", "", ""
-	if not simple_link.endswith("pdf"):
-		simple_location, simple_title = save_html("simple_", output_dir, sub_dir, "html", i, simple_link)
-	elif simple_link.endswith("pdf"):
-		simple_location = save_pdf("simple_", output_dir, sub_dir, "pdf", i, simple_link)
-	if not complex_link.endswith("pdf"):
-		complex_location, complex_title = save_html("complex_", output_dir, sub_dir, "html", i, complex_link)
-	elif complex_link.endswith("pdf"):
-		complex_location = save_pdf("complex_", output_dir, sub_dir, "pdf", i, complex_link)
-	print(simple_location, complex_location, simple_title, complex_title)
+	if simple_link and complex_link:
+		if not simple_link.endswith("pdf"):
+			simple_location, simple_title = save_html("simple_", output_dir, sub_dir, "html", i, simple_link)
+		elif simple_link.endswith("pdf"):
+			simple_location = save_pdf("simple_", output_dir, sub_dir, "pdf", i, simple_link)
+		if not complex_link.endswith("pdf"):
+			complex_location, complex_title = save_html("complex_", output_dir, sub_dir, "html", i, complex_link)
+		elif complex_link.endswith("pdf"):
+			complex_location = save_pdf("complex_", output_dir, sub_dir, "pdf", i, complex_link)
+
+	elif simple_link and not save_only_parallel:
+		if not simple_link.endswith("pdf"):
+			simple_location, simple_title = save_html("simple_", output_dir, sub_dir, "only_simple_html", i, simple_link)
+		elif simple_link.endswith("pdf"):
+			simple_location = save_pdf("simple_", output_dir, sub_dir, "only_simple_pdf", i, simple_link)
 	return simple_location, complex_location, simple_title, complex_title
 
 
 def main():
 	output_dir = "data/"
 	save_raw_content = True
+	save_only_parallel = False
 
 	if not os.path.exists(output_dir):
 		os.makedirs(output_dir)
@@ -767,7 +834,7 @@ def main():
 
 	overview_pages = [
 					"https://www.alumniportal-deutschland.org/services/sitemap/",
-					# "https://www.lebenshilfe-main-taunus.de/inhalt/",
+					"https://www.lebenshilfe-main-taunus.de/inhalt/",
 					## "https://www.os-hho.de/",
 					"https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
 
@@ -785,7 +852,7 @@ def main():
 					"https://www.bzfe.de/einfache-sprache/familie/",
 					"https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/",
 					"https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/", 
-					#"manual_alignment"
+					"manual_alignment"
 
 					# NEW
 					#"https://www.evangelium-in-leichter-sprache.de/bibelstellen",
@@ -809,7 +876,7 @@ def main():
 	# https://www.lebenshilfe-duesseldorf.de/index.php?id=78
 
 	for overview in overview_pages:
-		parse_overview_pages(overview, output_dir, save_raw_content=save_raw_content)
+		parse_overview_pages(overview, output_dir, save_raw_content=save_raw_content, save_only_parallel=save_only_parallel)
 	return 1
 
 

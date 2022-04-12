@@ -8,6 +8,7 @@ import pandas as pd
 # from spacy_stanza import StanzaLanguage
 import xml.etree.ElementTree as ET
 import re
+import fitz
 
 
 # docs, n_sents, n_token = 0, 0, 0
@@ -30,13 +31,17 @@ def html2soup(url):
 
 
 def iterate_files(dataframe):
-	output_simple, output_complex = "", ""
+	simple_soup, complex_soup = None, None
+	text_complex, text_simple = "", ""
 	for index, row in dataframe.iterrows():
+		simple_soup, complex_soup = None, None
 		saved = False
-		if pd.isna(dataframe.loc[index, "complex_location_html"]) or pd.isna(dataframe.loc[index, "simple_location_html"]):
+		if pd.isna(dataframe.loc[index, "simple_location_html"]):  # pd.isna(dataframe.loc[index, "complex_location_html"]) or
 			continue
-		simple_soup = html2soup(dataframe.loc[index, "simple_location_html"])
-		complex_soup = html2soup(dataframe.loc[index, "complex_location_html"])
+		elif dataframe.loc[index, "simple_location_html"].endswith(".html"):
+			simple_soup = html2soup(dataframe.loc[index, "simple_location_html"])
+		if not pd.isna(dataframe.loc[index, "complex_location_html"]) and dataframe.loc[index, "complex_location_html"].endswith(".html"):
+			complex_soup = html2soup(dataframe.loc[index, "complex_location_html"])
 		print(dataframe.loc[index, "simple_url"])
 		if "offene-bibel" in dataframe.loc[index, "simple_url"]:
 		 	text_simple = extract_open_bible_text(simple_soup, "main", "class", "leichtesprache", "simple", dataframe.loc[index, "simple_url"], dataframe.loc[index, "last_access"])
@@ -101,7 +106,7 @@ def iterate_files(dataframe):
 			text_simple = extract_hamburg(simple_soup, "div", "itemprop", "articleBody", "simple",
 												dataframe.loc[index, "simple_url"],
 												dataframe.loc[index, "last_access"])
-			if "polizei.hamburg" in dataframe.loc[index, "complex_url"]:
+			if not pd.isna(dataframe.loc[index, "complex_url"]) and "polizei.hamburg" in dataframe.loc[index, "complex_url"]:
 				text_complex = extract_hamburg(complex_soup, "span", "id", "articleText", "complex",
 												 dataframe.loc[index, "complex_url"],
 												 dataframe.loc[index, "last_access"])
@@ -109,6 +114,41 @@ def iterate_files(dataframe):
 				text_complex = extract_hamburg(complex_soup, "div", "itemprop", "articleBody", "complex",
 												 dataframe.loc[index, "complex_url"],
 												 dataframe.loc[index, "last_access"])
+		elif "stadt_koeln" in dataframe.loc[index, "website"]:
+			text_simple = extract_koeln(simple_soup, "main", "id", "inhalt", "simple",
+												dataframe.loc[index, "simple_url"],
+												dataframe.loc[index, "last_access"])
+			text_complex = extract_koeln(complex_soup, "main", "id", "inhalt", "complex",
+												dataframe.loc[index, "complex_url"],
+												dataframe.loc[index, "last_access"])
+		elif "lebenshilfe_main_taunus" in dataframe.loc[index, "website"]:
+			text_simple = extract_lebenshilfe_main_taunus(simple_soup, "div", "class", "inhalt", "simple",
+												dataframe.loc[index, "simple_url"],
+												dataframe.loc[index, "last_access"])
+			text_complex = extract_lebenshilfe_main_taunus(complex_soup, "div", "class", "inhalt", "complex",
+												dataframe.loc[index, "complex_url"],
+												dataframe.loc[index, "last_access"])
+		elif "easy_to_read_books" in dataframe.loc[index, "website"] or "passanten_verlag" in dataframe.loc[index, "website"] or "spaßamlesen_verlag" in dataframe.loc[index, "website"]:
+			if not pd.isna(dataframe.loc[index, "simple_location_html"]):
+				if dataframe.loc[index, "simple_location_html"].endswith(".pdf"):
+					text_simple = extract_pdf(dataframe.loc[index, "simple_location_html"], "simple",
+													dataframe.loc[index, "simple_url"],
+													dataframe.loc[index, "last_access"])
+				elif dataframe.loc[index, "simple_location_html"].endswith(".html"):
+					text_simple = extract_html_book(dataframe.loc[index, "simple_location_html"], "simple",
+													dataframe.loc[index, "simple_url"],
+													dataframe.loc[index, "last_access"])
+			if not pd.isna(dataframe.loc[index, "complex_location_html"]):
+				if dataframe.loc[index, "complex_location_html"].endswith(".pdf"):
+					text_complex = extract_pdf(dataframe.loc[index, "complex_location_html"], "complex",
+													dataframe.loc[index, "complex_url"],
+													dataframe.loc[index, "last_access"])
+				elif dataframe.loc[index, "complex_location_html"].endswith(".html"):
+					if "gutenberg" in dataframe.loc[index, "complex_location_html"]:
+						text_complex = extract_gutenberg(complex_soup, "body", "", "", "complex",
+													dataframe.loc[index, "simple_url"],
+													dataframe.loc[index, "last_access"])	
+			print(text_simple, text_complex)				
 		else:
 			text_complex, text_simple = "", ""
 			continue
@@ -120,22 +160,35 @@ def iterate_files(dataframe):
 
 
 def save_data(dataframe, index, text_complex, text_simple, text_path_complex=None, text_path_simple=None):
-	if not text_path_complex and not text_path_simple:
-		text_path_complex = dataframe.loc[index, "complex_location_html"].replace("html", "txt")
+	if not text_path_simple and not pd.isna(dataframe.loc[index, "simple_location_html"]) and dataframe.loc[index, "simple_location_html"].endswith("html"):
 		text_path_simple = dataframe.loc[index, "simple_location_html"].replace("html", "txt")
+	elif not text_path_simple and not pd.isna(dataframe.loc[index, "simple_location_html"]) and dataframe.loc[index, "simple_location_html"].endswith("pdf"):
+		text_path_simple = dataframe.loc[index, "simple_location_html"].replace("pdf", "txt")
+	if not text_path_complex and  not pd.isna(dataframe.loc[index, "complex_location_html"]) and dataframe.loc[index, "complex_location_html"].endswith(".html"): 	
+		text_path_complex = dataframe.loc[index, "complex_location_html"].replace("html", "txt")
+	elif not text_path_complex and  not pd.isna(dataframe.loc[index, "complex_location_html"]) and dataframe.loc[index, "complex_location_html"].endswith(".pdf"): 	
+		text_path_complex = dataframe.loc[index, "complex_location_html"].replace("pdf", "txt")
 	if not os.path.exists("/".join(text_path_simple.split("/")[:-1])):
 		os.makedirs("/".join(text_path_simple.split("/")[:-1]))
-	dataframe.loc[index, "simple_location_txt"] = text_path_simple
-	dataframe.loc[index, "complex_location_txt"] = text_path_complex
-	with open(text_path_complex, "w", encoding="utf-8") as f:
-		f.write(text_complex)
-	with open(text_path_simple, "w", encoding="utf-8") as f:
-		f.write(text_simple)
+	if text_simple and text_path_simple:
+		dataframe.loc[index, "simple_location_txt"] = text_path_simple
+		with open(text_path_simple, "w", encoding="utf-8") as f:
+			f.write(text_simple)
+	if text_complex and text_path_complex:
+		dataframe.loc[index, "complex_location_txt"] = text_path_complex
+		with open(text_path_complex, "w", encoding="utf-8") as f:
+			f.write(text_complex)
 	return dataframe
 
 
 def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date):
-	title = soup.find("h1", {"id": "firstHeading"}).text
+	if not soup:
+		return None
+	title_item = soup.find("h1", {"id": "firstHeading"})
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
 	container = soup.find(tag, {attribute: search_text})
 	text = ""
 	if container:
@@ -176,7 +229,13 @@ def extract_open_bible_text(soup, tag, attribute, search_text, level, url, date)
 
 
 def extract_news_apa_text(soup, tag, attribute, search_text, level, url, date):
-	title = soup.find("h3", {"class": "apa-power-search-single__title"}).text.strip()
+	if not soup:
+		return None
+	title_item = soup.find("h3", {"class": "apa-power-search-single__title"})
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
 	container = soup.find(tag, {attribute: search_text})
 	simple_text = ""
 	complex_text = ""
@@ -218,7 +277,75 @@ def add_apa_text(feld, text):
 	return text
 
 
+def extract_pdf(save_path, level, url, date, toc=True):
+    text = ""
+    end = False
+    prev_line = ""
+    with fitz.open(save_path) as doc:
+        for page in doc:
+            page_text = page.get_text("text")
+            lines = page_text.split("\n")
+            for n, line in enumerate(lines):
+                text_line = "".join(line)
+                # print("!!!"+text_line+"!!!")
+                if text_line.endswith("-"):
+                    text_line = text_line[:-1]
+                if re.match("^\D+ \| \d+", text_line) or (re.match("[\w\s\d]+", text_line) and re.match("\d+", prev_line) and re.match("\d+", "".join(lines[n+1]))):
+                    if not toc:
+                        text = ""
+                    toc = False
+                elif re.match("^ISBN [\d-]+", text_line) or re.match("^ISBN E-Book [\d-]+", text_line) or re.match("^E-Book [\d-]+", text_line):
+                    toc = False
+                elif re.match("\d+\. kapitel", text_line.lower()) or re.match("kapitel [VIX]+\s*", text_line.lower()):
+                    pass
+                elif re.match("^\d+\s*$", text_line):
+                    # page number
+                    pass
+                elif re.match("^�\d+", text_line) or re.match("^�\s?", text_line) or re.match("\s+", text_line):
+                    pass
+                elif re.match("PASSANTENVERLAG", text_line.replace(" ", "")):
+                    pass
+                elif not re.match("[A-z0-9]+", text_line):
+                    pass
+                elif re.match("Bücher aus dem Passanten Verlag", text_line) or re.match("Ende der Leseprobe", text_line):
+                    end = True
+                    break
+                elif not toc:
+                    text += text_line + " "
+                prev_line = text_line
+            if end:
+                break
+    if toc:
+        text = extract_pdf(save_path, level, url, date, toc=False)
+
+    for sign in [".", ",", "!", "?", ";", ":"]:
+        text = text.replace(" "+sign, sign)
+        text = text.replace(sign, sign+' ')
+        text = text.replace("\t", " ")
+        text = text.replace("\n", " ")
+        text = text.replace("   ", " ")
+        text = text.replace("  ", " ")
+    if len(text) <= 500:
+        return ""
+    return text.strip()
+def extract_gutenberg(soup, tag, attribute, search_text, level, url, date):
+	if not soup:
+		return None
+	title_item = soup.find("h5")
+	if title_item:
+		title = title_item.text
+	else:
+		title = ""
+	content = soup.find(tag)
+	for p in content.find_all("p"):
+		text += p.text
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
+	return text
+	
+
 def extract_apa(soup, tag, attribute, search_text, level, url, date):
+	if not soup:
+		return None
 	text_simple, text_complex = "", ""
 	title_simple, title_complex = "", ""
 	for doc in soup:
@@ -257,9 +384,15 @@ def read_apa_xml(filename):
 
 def extract_alumni_portal(soup, tag, attribute, search_text, level, url, date):
 # def extract_alumni_portal(soup, url, tag, search_text):
+	if not soup:
+		return None
 	text = ""
 	search_text_level = "sprachniveau "+search_text.lower()
-	title = soup.find("h1").text
+	title_item = soup.find("h1")
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
 	headline = soup.find(tag, text=lambda x: x and search_text_level in x.lower())
 	if headline:
 		paragraphs = headline.parent.find_all("p", {"class": ""})
@@ -277,8 +410,14 @@ def extract_alumni_portal(soup, tag, attribute, search_text, level, url, date):
 
 
 def extract_apotheken_umschau(soup, tag, attribute, search_text, level, url, date):
+	if not soup:
+		return None
 	text = ""
-	title = soup.find("h1").text
+	title_item = soup.find("h1")
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
 	content = soup.find(tag)
 	if content:
 		paragraphs = content.find_all(["p", "li"])
@@ -304,7 +443,13 @@ def extract_apotheken_umschau(soup, tag, attribute, search_text, level, url, dat
 	return text
 
 def extract_bzfe(soup, tag, attribute, search_text, level, url, date):
-	title = soup.find("span", {"itemprop": "headline"}).text.strip().split("\n")[0]
+	if not soup:
+		return None
+	title_item = soup.find("span", {"itemprop": "headline"})
+	if title_item:
+		title = title_item.text.strip().split("\n")[0]
+	else:
+		title = "Unknown."
 	container = soup.find(tag, {attribute: search_text})
 	text = ""
 	if container:
@@ -324,7 +469,13 @@ def extract_bzfe(soup, tag, attribute, search_text, level, url, date):
 	return text
 	
 def extract_bpb(soup, tag, attribute, search_text, level, url, date):
-	title = soup.find("h1").text.strip()
+	if not soup:
+		return None
+	title_item = soup.find("h1")
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
 	container = soup.find(tag)
 	text = ""
 	source = ""
@@ -370,7 +521,13 @@ def extract_bpb(soup, tag, attribute, search_text, level, url, date):
 	return text
 	
 def extract_einfach_teilhaben(soup, tag, attribute, search_text, level, url, date):
-	title = soup.find("h1", {"class": "seitenumschaltung__headline"}).text.strip()
+	if not soup:
+		return None
+	title_item = soup.find("h1", {"class": "seitenumschaltung__headline"})
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
 	container = soup.find(tag, {attribute: search_text})
 	text = ""
 	if container:
@@ -399,6 +556,8 @@ def extract_einfach_teilhaben(soup, tag, attribute, search_text, level, url, dat
 	return text
 
 def extract_hamburg(soup, tag, attribute, search_text, level, url, date):
+	if not soup:
+		return None
 	title = soup.find("span", {"id": "title"}).text.strip()
 	container = soup.find(tag, {attribute: search_text})
 	# print("hamburg", container)
@@ -431,13 +590,64 @@ def extract_hamburg(soup, tag, attribute, search_text, level, url, date):
 	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text.strip()
 	return text
 
+def extract_koeln(soup, tag, attribute, search_text, level, url, date):
+	if not soup:
+		return None
+	title_item = soup.find("h1", {"class": "articlehead"})
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
+	text = ""
+	container = soup.find(tag, {attribute: search_text})
+	if container:
+		for item in container.find_all(["h2", "p", "li"]):
+			if item.text.strip() in ["Ähnliche Themen in Alltags-Sprache", "Weitere Infos", "War dieser Artikel hilfreich für Sie?"]:
+				break
+			elif item.text.strip() and not item.text.strip()[-1] in [".", ",", "!", "?", ";", ":"]:
+				text += item.text.strip()+". "
+			else:
+				text += item.text.strip()+" "
+				
+	for sign in [".", ",", "!", "?", ";", ":"]:
+		text = text.replace(" "+sign, sign)
+		text = text.replace(sign, sign+' ')
+		text = text.replace("\t", " ")
+	text = text.replace("\n", " ")
+	text = text.replace("  ", " ")
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text.strip()
+	return text
+	
+def extract_lebenshilfe_main_taunus(soup, tag, attribute, search_text, level, url, date):
+	if not soup:
+		return None
+	title_item = soup.find("h1")
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
+	text = ""
+	container = soup.find(tag, {attribute: search_text})
+	if container:
+		for item in container.find_all(["p", "ul"], recursive=False):
+			text += item.text.strip()+" "
+	for sign in [".", ",", "!", "?", ";", ":"]:
+		text = text.replace(" "+sign, sign)
+		text = text.replace(sign, sign+' ')
+		text = text.replace("\t", " ")
+	text = text.replace("\n", " ")
+	text = text.replace("  ", " ")
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text.strip()
+	return  text
+
 
 def main():
 	input_dir = "data/"
 	input_file = input_dir+"url_overview.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
-	filter_data = ("website", "stadt_hamburg")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
-	output_dataframe = filter_and_extract_data(dataframe, filter_data)
+	# filter_data = ("website", "passanten_verlag")
+	# filter_data = ("website", "lebenshilfe_main_taunus")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
+	output_dataframe = filter_and_extract_data(dataframe)  #  , filter_data)
 	output_dataframe.to_csv(input_dir+"url_overview_text_problematic.tsv", header=True, index=False, sep="\t")
 
 
