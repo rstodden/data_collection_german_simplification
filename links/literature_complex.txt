@@ -1,0 +1,7 @@
+Der Sandmann	E.T.A. Hoffmann	C2	https://www.projekt-gutenberg.org/etahoff/sandmann/sandmann.html
+Der Schimmelreiter	Theodor Storm	C2	https://www.projekt-gutenberg.org/storm/schimmel/schimmel.html
+Moby Dick	Herman Melville	C2	https://www.projekt-gutenberg.org/melville/mobydick/mobydick.html
+Undine	Friedrich de la Motte Fouqué	C2	https://www.projekt-gutenberg.org/fouque/undine/undine.html
+Hiob	Joseph Roth	C2	https://www.projekt-gutenberg.org/roth/hiob/hiob.html
+Weiße Nächte	Fjodor Michailowitsch Dostojewski	C2	https://www.projekt-gutenberg.org/dostojew/novellen/novellen.html
+Der glückliche Prinz	Oscar Wilde	C2	https://www.projekt-gutenberg.org/wilde/maerchen/prinz.html

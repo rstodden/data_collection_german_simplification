@@ -1,0 +1,13 @@
+Die Verwandlung	Franz Kafka	C2	https://www.projekt-gutenberg.org/kafka/verwandl/verwandl.html
+Die Abenteuer des Huckleberry Finn	Mark Twain	C2	https://www.projekt-gutenberg.org/twain/hucklebe/chap001.html
+Die Abenteuer des Tom Sawyer	Mark Twain	C2	https://www.projekt-gutenberg.org/twain/tomsawye/tomsawye.html
+Moby Dick	Herman Melville	C2	https://www.projekt-gutenberg.org/twain/tomsawye/chap001.html
+Der seltsame Fall von Dr Jekyll und Mr Hyde	Robert Louis Stevenson	C2	https://www.projekt-gutenberg.org/stevenso/jekyhyde/chap001.html
+In 80 Tagen um die Welt	Jules Verne	C2	https://www.projekt-gutenberg.org/verne/80tage/chap01.html
+Sherlock Holmes. Ein Skandal in Böhmen	Conan Doyle	C2	https://www.projekt-gutenberg.org/doyle/skandal/skandal.html
+Sherlock Holmes. Das gesprenkelte Band	Conan Doyle	C2	https://www.projekt-gutenberg.org/doyle/getupfte/chap001.html
+Sherlock Holmes. Das Zeichen der Vier	Conan Doyle	C2	https://www.projekt-gutenberg.org/doyle/zeichen/zeichen.html
+Robinson Crusoe	Daniel Defoe	C2	https://www.projekt-gutenberg.org/defoe/crusoe/crusoe02.html
+Frankenstein	Marry Shelly	C2	https://www.projekt-gutenberg.org/shelley/frankens/frankens.html
+20.000 Meilen unterm Meer	Jules Verne	C2	https://www.projekt-gutenberg.org/verne/zwanzig1/chap001.html
+Der kleine Prinz	 Antoine de Saint-Exupéry	C2	http://data.exaudio.de/ebook/Exupery_Der_kleine_Prinz.pdf
