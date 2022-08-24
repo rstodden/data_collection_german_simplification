@@ -96,5 +96,3 @@ for dir_path in os.listdir("data/"):
 	output_data.to_csv("data/DE_textlevel_webdata.csv", index=False)
 output_data = output_data.drop_duplicates()		
 output_data.to_csv("data/DE_textlevel_webdata_clean.csv", index=False)
-			
-

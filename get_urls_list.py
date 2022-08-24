@@ -35,7 +35,7 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False, save_only
 		tag = "stadt_koeln"
 		output.extend(parse_overview_koeln(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "offene-bibel.de" in page_url and "in_Arbeit" in page_url:
-		tag = "bible_working_progress"
+		tag = "bible_workin_progress"
 		output.extend(parse_overview_bible(page_url, tag, save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	elif "offene-bibel.de" in page_url and "noch_zu_pr%C3%BCfen" in page_url:
 		tag = "bible_awaiting_proof"
@@ -95,6 +95,7 @@ def parse_overview_pages(page_url, output_dir, save_raw_content=False, save_only
 	if not os.path.exists(output_dir):
 		os.makedirs(output_dir)
 	path_name = output_dir+"url_overview.tsv"
+	# path_name = output_dir+"url_overview_"+datetime.today().strftime('%Y-%m-%d-%H:%M')+".tsv"
 	with open(path_name, "a", newline="") as f:
 		writer = csv.writer(f, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 		writer.writerows(output)
@@ -312,7 +313,7 @@ def parse_overview_hamburg(overview_url, tag, save_raw_content=False, output_dir
 					complex_url = get_link(link["href"], "https://www.hamburg.de")
 			if simple_url:  # and complex_url:
 				if save_raw_content:
-				 	simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
+					simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
 				output.append([tag, simple_url, complex_url, simple_level, complex_level, simple_location, complex_location, "", "", "",  simple_author, complex_author, simple_title, complex_title, license_name, access_date])
 				i += 1
 	return output
