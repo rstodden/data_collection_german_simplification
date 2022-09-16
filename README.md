@@ -29,7 +29,9 @@ The output format of this code is identical to the input format of TS-ANNO.
 | https://www.passanten-verlag.de/                                                  | A2/B1        | C2            | fiction          | x |&#10003;  |
 | https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache | A1           | C2            | web              | x |&#10003;  |
 | https://www.evangelium-in-leichter-sprache.de/bibelstellen                        | A1           | C2            | bible            | x |&#10007; |
-
+| https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Maerchen-in-Leichter-Sprache,maerchenleichtesprache100.html| A1 | C2 | fiction | x | &#10007; |
+| https://www.nachrichtenleicht.de/ | A1 |  | news | x | &#10007; |
+| https://hurraki.de/wiki/Hauptseite| A1 | | wiki | x |&#10007; |
 
 ## Installation
 1) Please install Python 3.
