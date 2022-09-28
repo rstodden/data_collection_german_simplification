@@ -109,8 +109,8 @@ def open_urls_safely(input_url):
 			return soup_html
 	except ValueError:
 		return None
-		
-	
+
+
 def add_manual_aligned_urls(save_raw_content=False, output_dir="data/", save_only_parallel=True):
 	output = list()
 	output.extend(get_easy_to_read_books("links/books", "spaßamlesen_verlag", "citation required", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
@@ -298,7 +298,7 @@ def parse_overview_hamburg(overview_url, tag, save_raw_content=False, output_dir
 		return output
 	all_topics = soup.find_all("a", {"class": "topic-overview__link"})
 	for topic in all_topics:
-		topic_link = topic["href"]	
+		topic_link = topic["href"]
 		soup_topic = open_urls_safely(topic_link)
 		if not soup_topic:
 			return output
@@ -308,9 +308,15 @@ def parse_overview_hamburg(overview_url, tag, save_raw_content=False, output_dir
 			simple_url, complex_url = "", ""
 			for link in all_links_of_group:
 				if "Leichte Sprache" in link.text:
-					simple_url = get_link(link["href"], "https://www.hamburg.de")
+					if link["href"].startswith("https://www.polizei.hamburg"):
+						simple_url = link["href"]
+					else:
+						simple_url = get_link(link["href"], "https://www.hamburg.de")
 				elif "Original-Text" in link.text:
-					complex_url = get_link(link["href"], "https://www.hamburg.de")
+					if link["href"].startswith("https://www.polizei.hamburg"):
+						complex_url = link["href"]
+					else:
+						complex_url = get_link(link["href"], "https://www.hamburg.de")
 			if simple_url:  # and complex_url:
 				if save_raw_content:
 					simple_location, complex_location, simple_title, complex_title = save_content(simple_url, complex_url, i, output_dir, tag, save_only_parallel)
@@ -652,7 +658,7 @@ def parse_overview_bpb_complex(overview_url):
 			complex_dict[link.text.strip()] = get_link(link["href"], "https://www.bpb.de")
 
 	return complex_dict
-	
+
 def get_all_bpb_links(overview_url):
 	soup = open_urls_safely(overview_url)
 	if not soup:
@@ -732,7 +738,7 @@ def save_non_parallel_books(book_list_simple, output, output_dir, tag, save_only
 		output.append([tag, simple_url, "", simple_level, "", simple_location, "", "", "", "",  simple_author, "", simple_title, "", "to_add", access_date])
 		i += 1
 	return output
-	
+
 
 def save_parallel_books(book_list_simple, book_list_complex, output, output_dir, tag, save_only_parallel):
 	save_only_parallel = False
@@ -849,10 +855,10 @@ def main():
 					"https://www.hamburg.de/hamburg-barrierefrei/leichte-sprache/",
 					"https://www.bzfe.de/einfache-sprache/einkaufen/",
 					"https://www.bzfe.de/einfache-sprache/kochen-aufbewahren/",
-					"https://www.bzfe.de/einfache-sprache/gut-essen/", 
+					"https://www.bzfe.de/einfache-sprache/gut-essen/",
 					"https://www.bzfe.de/einfache-sprache/familie/",
 					"https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/",
-					"https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/", 
+					"https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/",
 					"manual_alignment"
 
 					# NEW

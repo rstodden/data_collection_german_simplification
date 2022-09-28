@@ -691,13 +691,13 @@ def extract_lebenshilfe_main_taunus(soup, tag, attribute, search_text, level, ur
 
 def main():
 	input_dir = "data/"
-	input_file = input_dir+"url_overview_2022-08-23-16:34.tsv"
+	input_file = input_dir+"url_overview.tsv"
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
 	# todo remove books from list
 	# filter_data = ("website", "passanten_verlag")
 	# filter_data = ("website", "lebenshilfe_main_taunus")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
 	output_dataframe = filter_and_extract_data(dataframe)  #  , filter_data)
-	output_dataframe.to_csv(input_dir+"url_overview_text_books.tsv", header=True, index=False, sep="\t")
+	output_dataframe.to_csv(input_dir+"url_overview_text.tsv", header=True, index=False, sep="\t")
 
 
 if __name__ == "__main__":
