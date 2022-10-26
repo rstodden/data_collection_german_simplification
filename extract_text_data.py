@@ -150,7 +150,7 @@ def iterate_files(dataframe):
 				elif dataframe.loc[index, "complex_location_html"].endswith(".html"):
 					if "gutenberg" in dataframe.loc[index, "complex_location_html"]:
 						text_complex, text_complex_par = extract_gutenberg(complex_soup, "body", "", "", "complex",
-													dataframe.loc[index, "simple_url"],
+													dataframe.loc[index, "complex_url"],
 													dataframe.loc[index, "last_access"])
 			# print(text_simple, text_complex)
 		else:
@@ -374,13 +374,13 @@ def extract_gutenberg(soup, tag, attribute, search_text, level, url, date):
 		return None, None
 	title_item = soup.find("h5")
 	if title_item:
-		title = title_item.text
+		title = title_item.text.strip()
 	else:
 		title = ""
 	content = soup.find(tag)
 	for p in content.find_all("p"):
-		text += p.text
-		text_par += p.text  + "SEPL|||SEPR "
+		text += clean_data(p.text.strip())
+		text_par += clean_data(p.text.strip() + "SEPL|||SEPR ")
 	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
 	text_par = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text_par
 	return text, text_par

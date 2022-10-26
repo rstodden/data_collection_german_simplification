@@ -5,3 +5,12 @@ Undine	Friedrich de la Motte Fouqué	C2	https://www.projekt-gutenberg.org/fouque
 Hiob	Joseph Roth	C2	https://www.projekt-gutenberg.org/roth/hiob/hiob.html
 Weiße Nächte	Fjodor Michailowitsch Dostojewski	C2	https://www.projekt-gutenberg.org/dostojew/novellen/novellen.html
 Der glückliche Prinz	Oscar Wilde	C2	https://www.projekt-gutenberg.org/wilde/maerchen/prinz.html
+
+Wolfsblut	Jack London	C2	https://www.projekt-gutenberg.org/london/wolfsblu/chap001.html
+Mit Kobolden tanzen	Unknown.	C2	https://www.projekt-gutenberg.org/alberti/japamaer/chap002.html
+
+
+
+
+
+Der Tannenbaum	Hans Christian Andersen	C2	https://www.projekt-gutenberg.org/andersen/maerchen/chap138.html
