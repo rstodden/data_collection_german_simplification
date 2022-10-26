@@ -1,116 +1,139 @@
-Die Verwandlung	Franz Kafka	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Kafka_Die_Verwandlung_Leseprobe.pdf
-Die Abenteuer des Huckleberry Finn	Mark Twain	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Jugend/Huckleberry_Finn_Leseprobe.pdf
-Die Abenteuer des Tom Sawyer	Mark Twain	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Tom_Sawyer_Leseprobe.pdf
-Moby Dick	Herman Melville	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Moby_Dick_-_Leseprobe.pdf
-Der seltsame Fall von Dr Jekyll und Mr Hyde	Robert Louis Stevenson	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Jekyll_und_Hyde_Leseprobe.pdf
-In 80 Tagen um die Welt	Jules Verne	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/In_80_Tagen_um_die_Welt_Leseprobe.pdf
-Sherlock Holmes. Ein Skandal in Böhmen	Conan Doyle	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Ein_Skandal_in_Boehmen_Leseprobe.pdf
-Sherlock Holmes. Das gesprenkelte Band	Conan Doyle	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Holmes_gesprenkeltes_Band_Leseprobe.pdf
-Sherlock Holmes. Das Zeichen der Vier	Conan Doyle	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Holmes_Zeichen_der_vier_Leseprobe.pdf
-Robinson Crusoe	Daniel Defoe	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Robinson_Crusoe_Leseprobe.pdf
-Frankenstein	Marry Shelly	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Frankenstein_Leseprobe.pdf
-20.000 Meilen unterm Meer	Jules Verne	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/20_000_Meilen_unter_dem_Meer_Leseprobe.pdf
-Der kleine Prinz	 Antoine de Saint-Exupéry	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Der_kleine_Prinz_-_Leseprobe.pdf
-Momo	Michael Ende	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Momo_Leseprobe.pdf
-Eine glückliche Ehe	Heinz G. Konsalik	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery//Leseproben/Bestseller/Leseprobe-Eine_glueckliche_Ehe.pdf
-Tschick	Wolfgang Herrndorf	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Tschick_Leseprobe.pdf
-Ziemlich beste Freunde	Philippe Pozzo di Borgo	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Ziemlich_beste_Freunde_Leseprobe.pdf
-Wunder	Raquel J. Palacio	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Wunder_Leseprobe.pdf
-Mordsfreunde	Nele Neuhaus	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Leseprobe_Mordsfreunde.pdf
-Erzählungen von Hermann Hesse	Hermann Hesse	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Hermann_Hesse_-_Leseprobe.pdf
-Ballfieber 	Nick Hornby	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Ballfieber_Leseprobe.pdf
-Das bisschen Hüfte, meine Güte	Renate Bergmann	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Das_bisschen_Huefte_Leseprobe.pdf
-Das Labyrinth der Wörter	Marie-Sabine Roger	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Das_Labyrinth_der_Woerter_Leseprobe.pdf
-Anne Frank, ihr Leben	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Anne_Frank_Leseprobe.pdf
-Das Wunder von Bern	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Wunder_von_Bern_Leseprobe.pdf
-Der alte König in seinem Exil	Arno Geiger	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Der_alte_Koenig_in_seinem_Exil_Leseprobe.pdf
-Die Flüsse von London	Ben Aaronovitch	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Die_Fluesse_von_London_Leseprobe.pdf
-Deutschstunde	Siegfried Lenz	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Deutschstunde_Leseprobe.pdf
-Für Eile fehlt mir die Zeit	Horst Evers	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Fuer_Eile_fehlt_mir_die_Zeit_Leseprobe.pdf
-About a Boy	Nick Hornby	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/About_a_boy_Leseprobe.pdf
-Bevor ich sterbe	Jenny Downham	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Bevor_ich_sterbe_Leseprobe.pdf
-Die fetten Jahre sind vorbei	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Die_fetten_Jahre_Leseprobe.pdf
-Am Ende des Tages	Robert Hültner	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Am_Ende_des_Tages_Leseprobe.pdf
-Eine unbeliebte Frau	Nele Neuhaus	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Eine_unbeliebte_Frau_Leseprobe.pdf
-Die Welle	Morton Rhue	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Die_Welle_Leseprobe.pdf
-Im Juli	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Im_Juli_Leseprobe.pdf
-Ohrfeige	Abbas Khider	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Ohrfeige_Leseprobe.pdf
-Ich seh den Baum noch fallen	Renate Bergmann	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Ich_seh_den_Baum_noch_fallen_Leseprobe.pdf
-Sophie Scholl: die letzten Tage	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Sophie_Scholl_Leseprobe.pdf
-Good Bye, Lenin!	Eva Dix	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Good_Bye_Lenin_Leseprobe.pdf
-Weil ich Layken liebe	Colleen Hoover	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Weil_ich_Layken_liebe_Leseprobe.pdf
-Vollidiot	Tommy Jaud	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Vollidiot_Leseprobe.pdf
-Ausgeliebt	Dora Heldt	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Ausgeliebt_Leseprobe.pdf
-Meinen Hass bekommt ihr nicht	Antoine Leiris	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Meinen_Hass_bekommt_ihr_nicht_Leseprobe.pdf
-Erebos	Ursula Poznanski	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Erebos_Leseprobe.pdf
-Girl on the train	Paula Hawkins	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Girl_on_a_train_Leseprobe.pdf
-Erzählungen	Heinrich Böll	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Erzaehlungen_von_Heinrich_Boell_Leseprobe.pdf
-Ein ganzes Leben	Robert Seethaler	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Ein_ganzes_Leben_Leseprobe.pdf
-Drei Schritte zu dir	Rachael Lippincott, Mikki Daughtry, Tobias Iaconis	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Drei_Schritte_zu_dir_Leseprobe.pdf
-AchtNacht	Sebastian Fitzek	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/AchtNacht_Leseprobe.pdf
-Heimatlos	Hector Malot	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Heimatlos-Leseprobe.pdf
-Till Eigenspiegel	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Till_Eulenspiegel_-_Leseprobe.pdf
-Im Meet schwimmen Krokodile	Fabio Geda	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery//Leseproben/Bestseller/Im_Meer_schwimmen_Krokodile__Leseprobe.pdf
-Trigger	Wulf Dorn	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Trigger_Leseprobe.pdf
-Geschichten aus dem Dschungelbuch	Frans van Dujin	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Geschichten_aus_dem_Dschungelbuch_Leseprobe.pd
-Aus dem Nichts	Fathih Akin	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Aus_dem_Nichts_Leseprobe.pdf
-Meine Freundin Kitty	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Jugend/Leseprobe_Meine_Freundin_Kitty.pdf
-Hannes	Rita Falk	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Hannes_Leseprobe.pdf
-Die Wand	Marlen Haushofer	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Die_Wand_Leseprobe.pdf
-Schweigeminute	Siegfried Lenz	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Schweigeminute_Leseprobe.pdf
-Entwurzelte Schatten	Uschi und Klaus Pfaffeneder	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Entwurzelte_Schatten_Leseprobe.pdf
-Willkommen bei den Friedlaenders!	Adrienne Friedlaender	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Willkommen_bei_den_Friedlaenders_Leseprobe.pdf
-Der Hundertjährige, der aus dem Fenster stieg und verschwand	Jonas Jonasson	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Der_Hundertjaehrige_Leseprobe.pdf
-Meisterdieb	Arsène Lupin	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Arsene_Lupin_Leseprobe.pdf
-Miese kleine Morde	Jussi Adler-Olsen	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Miese_kleine_Morde_Leseprobe.pdf
-7 Kilo in 3 Tagen	Christian "Pokerbeats" Huber	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/7_Kilo_in_drei_Tagen_Leseprobe.pdf
-Sommer.Jetzt!	Dora Heldt	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Sommer.Jetzt_Leseprobe.pdf
-Bob, der Streuner	James Bowen	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Bob_der_Streuner_Leseprobe.pdf
-Die Hochzeit auf dem Lande	Utta Danella	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Hochzeit_auf_dem_Lande_Leseprobe.pdf
-Stadt der Diebe	David Benioff	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Stadt_der_Diebe_Leseprobe.pdf
-Die Magie des Spiels	Mesut Özil	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Die_Magie_des_Spiels_Leseprobe.pdf
-Ellbogen	Fatma Aydemir	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Ellbogen__Leseprobe.pdf
-Die Wolke	Gudrun Pausewang	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Leseprobe_Die_Wolke.pdf
-Der Schutzkeller	Tomas Ross	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Der_Schutzkeller_Leseprobe.pdf
-Rache	René Appel	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Rache_Leseprobe.pdf
-Vor dem Regen kommt der Tod	Lieneke Dijkzeul	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Vor_dem_Regen_Leseprobe.pdf
-Winterkartoffelknödel	Rita Falk	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Winterkartoffelknoedel_Leseprobe.pdf
-Der Altmann ist tot	 Frau Freitag und Fräulein Krise	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Der_Altmann_ist_tot_Leseprobe.pdf
-Die Flüsse von London	Ben Aaronovitsch	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Die_Fluesse_von_London_Leseprobe.pdf
-Dampfnudelblues	Rita Falk	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Krimis/Dampfnudelblues__Leseprobe_2.pdf
-Am Ende des Tages	Robert Hültner	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Am_Ende_des_Tages_Leseprobe.pdf
-Eine unbeliebte Frau	Nele Neuhaus	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Eine_unbeliebte_Frau_Leseprobe.pdf
-Topmodel	Marianne Höhle	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery//Leseproben/Erzaehlungen/Topmodel_Leseprobe.pdf
-Römische Zwillinge	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Jugend/Roemische_Zwillinge_Leseprobe.pdf
-Zoff im Viertel	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Jugend/Zoff_im_Viertel_Leseprobe.pdf
-Be my Baby	Marita Erfurth	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Be_my_baby_Leseprobe.pdf
-Annas Spuren	Sigrid Falkenstein	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Annas_Spuren_Leseprobe.pdf
-Papierkind	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Papierkind_Leseprobe.pdf
-Drei kleine Worte	Petra Röder	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Drei_kleine_Worte_-_Leseprobe.pdf
-Auf einen Schlag allein	Marion Hoefnagel	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Jugend/Leseprobe_Auf_einen_Schlag_allein.pdf
-Viel stärker als ich denke	Susanne Ganser	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Viel_staerker_als_ich_denke_Leseprobe.pdf
-Alles voller Hoffnung	Renate Dorrestein	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Alles_voller_Hoffnung_Leseprobe.pdf
-Die Fremden am Deich	Susanne Ganser	A2	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Die_Fremden_am_Deich_Leseprobe.pdf
-Angerichtet	Hermann Koch	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Angerichtet_Leseprobe.pdf
-Ein Engel im Park	Susanne Ganser	A2	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Ein_Engel_im_Park_Leseprobe.pdf
-Der Familienblues	Yvonne Kroonenberg	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Der_Familien-Blues_Leseprobe.pdf
-Der Anmacher	Susanne Ganser	A2	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Leseprobe_Der_Anmacher.pdf
-Krach im Sonnental	Sussane Ganser	A2	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Leseprobe_Krach_im_Sonnental.pdf
-Ein Sommer in Tanum	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Ein_Sommer_in_Tanum_Leseprobe.pdf
-Hilflos und andere Kurzgeschichten	Unknown.	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Kurzgeschichten_Leseprobe.pdf
-Nelson Mandela	Unknown.	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Mandela_Leseprobe.pdf
-Rüssel, Rock und Regen	Susanne Ganser	A2	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Ruessel,_Rock_und_Regen_fertig_Leseprobe.pdf
-Rosa Meer	Marion Döbert	A2	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Rosa_Meer_Leseprobe.pdf
-Zum Nachtisch: Leben!	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Zum_Nachtisch_Leben_Leseprobe.pdf
-Du wolltest doch ...	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Du_wolltest_doch_Leseprobe.pdf
-Die Therapie	Sebastian Fitzek	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Die_Therapie_-_Leseprobe.pdf
-Wildes Lesen	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Wildes_Lesen_-_Leseprobe.pdf
-Für Eile fehlt mir die Zeit	Horst Evers	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Bestseller/Fuer_Eile_fehlt_mir_die_Zeit_Leseprobe.pdf
-Die Abenteuer von Bron Münchhausen	Frans van Dujin	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Klassiker/Die_Abenteuer_von_Baron_Muenchhausen_Leseprobe.pdf
-Raues Brot	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Raues_Brot_Leseprobe.pdf
-Ella auf Achse	Susanne Ganser	A2	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Ella_auf_Achse_Leseprobe.pdf
-Das Versprechen	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Das_Versprechen_Leseprobe.pdf
-Sie nannten mich Unkraut	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Sie_nannten_mich_Unkraut_Leseprobe.pdf
-Pirat	Dee Philiips	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Jugend/Pirat_Leseprobe.pdf
-Einmal Schnitzel mit Buch	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Schnitzel_mit_Buch_Leseprobe.pdf
-Herz ohne Grenzen	Marion Döbert	A2/B1	https://einfachebuecher.de/WebRoot/Store21/Shops/95de2368-3ee3-4c50-b83e-c53e52d597ae/MediaGallery/Leseproben/Erzaehlungen/Herz_ohne_Grenzen_Leseprobe.pdf
+Die Verwandlung	Franz Kafka	A2/B1	https://einfachebuecher.de/media/fd/fd/be/1656315565/Kafka_Die_Verwandlung_Leseprobe.pdf
+Die Abenteuer des Huckleberry Finn	Mark Twain	A2/B1	https://einfachebuecher.de/media/0d/21/1b/1656579127/Huckleberry_Finn_Leseprobe.pdf
+Die Abenteuer des Tom Sawyer	Mark Twain	A2/B1	https://einfachebuecher.de/media/7f/e0/58/1656579521/Tom_Sawyer_Leseprobe.pdf
+Moby Dick	Herman Melville	A2/B1	https://einfachebuecher.de/media/8e/56/39/1656586844/Moby_Dick_-_Leseprobe.pdf
+Der seltsame Fall von Dr Jekyll und Mr Hyde	Robert Louis Stevenson	A2/B1	https://einfachebuecher.de/media/98/f3/47/1656674885/Jekyll_und_Hyde_Leseprobe.pdf
+In 80 Tagen um die Welt	Jules Verne	A2/B1	https://einfachebuecher.de/media/6b/80/32/1656702197/In_80_Tagen_um_die_Welt_Leseprobe.pdf
+Sherlock Holmes. Ein Skandal in Böhmen	Conan Doyle	A2/B1	https://einfachebuecher.de/media/a9/df/68/1656492859/Ein_Skandal_in_Boehmen_Leseprobe.pdf
+Sherlock Holmes. Das gesprenkelte Band	Conan Doyle	A2/B1	https://einfachebuecher.de/media/8e/6a/2b/1656679900/Holmes_gesprenkeltes_Band_Leseprobe.pdf
+Sherlock Holmes. Das Zeichen der Vier	Conan Doyle	A2/B1	https://einfachebuecher.de/media/a0/26/8f/1656678755/Holmes_Zeichen_der_vier_Leseprobe.pdf
+Robinson Crusoe	Daniel Defoe	A2/B1	https://einfachebuecher.de/media/7f/e3/ec/1656593685/Robinson_Crusoe_Leseprobe.pdf
+Frankenstein	Marry Shelly	A2/B1	https://einfachebuecher.de/media/94/a3/c7/1656594028/Frankenstein_Leseprobe.pdf
+20.000 Meilen unterm Meer	Jules Verne	A2/B1	https://einfachebuecher.de/media/d8/eb/56/1656514175/20_000_Meilen_unter_dem_Meer_Leseprobe.pdf
+Der kleine Prinz	 Antoine de Saint-Exupéry	A2/B1	https://einfachebuecher.de/media/a9/c7/08/1656515600/Der_kleine_Prinz_-_Leseprobe.pdf
+Momo	Michael Ende	A2/B1	https://einfachebuecher.de/media/cd/b8/f7/1656578108/Momo_Leseprobe.pdf
+Eine glückliche Ehe	Heinz G. Konsalik	A2/B1	https://einfachebuecher.de/media/ff/79/6b/1655888400/Leseprobe-Eine_glueckliche_Ehe.pdf
+Tschick	Wolfgang Herrndorf	A2/B1	https://einfachebuecher.de/media/b8/79/69/1656740457/Tschick_Leseprobe.pdf
+Ziemlich beste Freunde	Philippe Pozzo di Borgo	A2/B1	https://einfachebuecher.de/media/9e/e1/ce/1655806547/Ziemlich_beste_Freunde_Leseprobe.pdf
+Wunder	Raquel J. Palacio	A2/B1	https://einfachebuecher.de/media/e6/85/45/1655807994/Wunder_Leseprobe.pdf
+Mordsfreunde	Nele Neuhaus	A2/B1	https://einfachebuecher.de/media/d7/c9/28/1655888523/Leseprobe_Mordsfreunde.pdf
+Erzählungen von Hermann Hesse	Hermann Hesse	A2/B1	https://einfachebuecher.de/media/64/bb/0f/1656587071/Hermann_Hesse_-_Leseprobe.pdf
+Ballfieber 	Nick Hornby	A2/B1	https://einfachebuecher.de/media/b8/40/ba/1656738066/Ballfieber_Leseprobe.pdf
+Das bisschen Hüfte, meine Güte	Renate Bergmann	A2/B1	https://einfachebuecher.de/media/0e/a1/15/1656675540/Das_bisschen_Huefte_Leseprobe.pdf
+Anne Frank, ihr Leben	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/97/9c/6c/1655807878/Anne_Frank_Leseprobe.pdf
+Das Wunder von Bern	Marion Döbert	A2/B1	https://einfachebuecher.de/media/d3/0f/b1/1656738759/Wunder_von_Bern_Leseprobe.pdf
+Der alte König in seinem Exil	Arno Geiger	A2/B1	https://einfachebuecher.de/media/3f/7f/04/1656739678/Der_alte_Koenig_in_seinem_Exil_Leseprobe.pdf
+Deutschstunde	Siegfried Lenz	A2/B1	https://einfachebuecher.de/media/71/be/8b/1655887390/Deutschstunde_Leseprobe.pdf
+Für Eile fehlt mir die Zeit	Horst Evers	A2/B1	https://einfachebuecher.de/media/82/60/57/1656578290/Fuer_Eile_fehlt_mir_die_Zeit_Leseprobe.pdf
+About a Boy	Nick Hornby	A2/B1	https://einfachebuecher.de/media/95/4f/83/1656576822/About_a_boy_Leseprobe.pdf
+Bevor ich sterbe	Jenny Downham	A2/B1	https://einfachebuecher.de/media/12/a1/22/1656675296/Bevor_ich_sterbe_Leseprobe.pdf
+Die fetten Jahre sind vorbei	Marion Döbert	A2/B1	https://einfachebuecher.de/media/9f/06/e5/1656677613/Die_fetten_Jahre_Leseprobe.pdf
+Am Ende des Tages	Robert Hültner	B1	https://einfachebuecher.de/media/5c/8f/13/1656672148/Am_Ende_des_Tages_Leseprobe.pdf
+Eine unbeliebte Frau	Nele Neuhaus	A2/B1	https://einfachebuecher.de/media/7f/af/d4/1656593151/Eine_unbeliebte_Frau_Leseprobe.pdf
+Die Welle	Morton Rhue	A2/B1	https://einfachebuecher.de/media/40/a1/2f/1656590377/Die_Welle_Leseprobe.pdf
+Im Juli	Marion Döbert	A2/B1	https://einfachebuecher.de/media/60/ba/65/1656675809/Im_Juli_Leseprobe.pdf
+Ohrfeige	Abbas Khider	A2/B1	https://einfachebuecher.de/media/e9/63/c7/1656680618/Ohrfeige_Leseprobe.pdf
+Ich seh den Baum noch fallen	Renate Bergmann	A2/B1	https://einfachebuecher.de/media/33/fd/a4/1655887490/Ich_seh_den_Baum_noch_fallen_Leseprobe.pdf
+Good Bye, Lenin!	Eva Dix	A2/B1	https://einfachebuecher.de/media/e7/3d/c2/1656703609/Good_Bye_Lenin_Leseprobe.pdf
+Weil ich Layken liebe	Colleen Hoover	A2/B1	https://einfachebuecher.de/media/83/61/93/1656676767/Weil_ich_Layken_liebe_Leseprobe.pdf
+Vollidiot	Tommy Jaud	A2/B1	https://einfachebuecher.de/media/fb/cf/d2/1656593480/Vollidiot_Leseprobe.pdf
+Ausgeliebt	Dora Heldt	A2/B1	https://einfachebuecher.de/media/5a/97/ea/1656591765/Ausgeliebt_Leseprobe.pdf
+Meinen Hass bekommt ihr nicht	Antoine Leiris	A2/B1	https://einfachebuecher.de/media/4d/d3/95/1656670071/Meinen_Hass_bekommt_ihr_nicht_Leseprobe.pdf
+Erebos	Ursula Poznanski	A2/B1	https://einfachebuecher.de/media/f9/a3/79/1656315553/Erebos_Leseprobe.pdf
+Girl on the train	Paula Hawkins	A2/B1	https://einfachebuecher.de/media/d2/12/06/1655807938/Girl_on_a_train_Leseprobe.pdf
+Erzählungen	Heinrich Böll	A2/B1	https://einfachebuecher.de/media/d9/c9/a2/1656510703/Erzaehlungen_von_Heinrich_Boell_Leseprobe.pdf
+Ein ganzes Leben	Robert Seethaler	A2/B1	https://einfachebuecher.de/media/78/55/68/1656592268/Ein_ganzes_Leben_Leseprobe.pdf
+Ein ganzes Leben	Robert Seethaler	A2/B1	https://einfachebuecher.de/media/78/55/68/1656592268/Ein_ganzes_Leben_Leseprobe.pdf
+Drei Schritte zu dir	Rachael Lippincott, Mikki Daughtry, Tobias Iaconis	B1	https://einfachebuecher.de/media/7c/09/d3/1656315538/Drei_Schritte_zu_dir_Leseprobe.pdf
+AchtNacht	Sebastian Fitzek	A2/B1	https://einfachebuecher.de/media/f4/75/90/1656315463/AchtNacht_Leseprobe.pdf
+Heimatlos	Hector Malot	A2/B1	https://einfachebuecher.de/media/3b/50/26/1655887463/Heimatlos-Leseprobe.pdf
+Till Eigenspiegel	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/9b/a3/de/1656505484/Till_Eulenspiegel_-_Leseprobe.pdf
+Im Meet schwimmen Krokodile	Fabio Geda	A2/B1	https://einfachebuecher.de/media/b8/5b/43/1656582330/Im_Meer_schwimmen_Krokodile__Leseprobe.pdf
+Trigger	Wulf Dorn	A2/B1	https://einfachebuecher.de/media/95/c6/0e/1656576982/Trigger_Leseprobe.pdf
+Geschichten aus dem Dschungelbuch	Frans van Dujin	A2/B1	https://einfachebuecher.de/media/36/bb/85/1656505322/Geschichten_aus_dem_Dschungelbuch_Leseprobe.pdf
+Aus dem Nichts	Fathih Akin	A2/B1	https://einfachebuecher.de/media/3b/b6/3e/1656514663/Aus_dem_Nichts_Leseprobe.pdf
+Meine Freundin Kitty	Marian Hoefnagel	A1/A2	https://einfachebuecher.de/media/cd/72/bf/1655807951/Leseprobe_Meine_Freundin_Kitty.pdf
+Hannes	Rita Falk	A2/B1	https://einfachebuecher.de/media/55/b7/70/1656513080/Hannes_Leseprobe.pdf
+Die Wand	Marlen Haushofer	A2/B1	https://einfachebuecher.de/media/aa/90/31/1656514409/Die_Wand_Leseprobe.pdf
+Schweigeminute	Siegfried Lenz	A2/B1	https://einfachebuecher.de/media/29/a7/d6/1656510966/Schweigeminute_Leseprobe.pdf
+Entwurzelte Schatten	Uschi und Klaus Pfaffeneder	B1	https://einfachebuecher.de/media/e4/dc/10/1657192922/Entwurzelte_Schatten_Leseprobe.pdf
+Willkommen bei den Friedlaenders!	Adrienne Friedlaender	A2/B1	https://einfachebuecher.de/media/33/f0/b8/1656513292/Willkommen_bei_den_Friedlaenders_Leseprobe.pdf
+Der Hundertjährige, der aus dem Fenster stieg und verschwand	Jonas Jonasson	A2/B1	https://einfachebuecher.de/media/9c/e4/b4/1656512868/Der_Hundertjaehrige_Leseprobe.pdf
+Meisterdieb	Arsène Lupin	A2/B1	https://einfachebuecher.de/media/59/d1/f9/1655887381/Arsene_Lupin_Leseprobe.pdf
+Miese kleine Morde	Jussi Adler-Olsen	A2/B1	https://einfachebuecher.de/media/4b/cc/b0/1655888406/Miese_kleine_Morde_Leseprobe.pdf
+7 Kilo in 3 Tagen	Christian "Pokerbeats" Huber	A2/B1	https://einfachebuecher.de/media/38/df/96/1656315457/7_Kilo_in_drei_Tagen_Leseprobe.pdf
+Sommer.Jetzt!	Dora Heldt	A2/B1	https://einfachebuecher.de/media/f9/f2/7e/1656577243/Sommer.Jetzt_Leseprobe.pdf
+Sommer.Jetzt!	Dora Heldt	A2/B1	https://einfachebuecher.de/media/f9/f2/7e/1656577243/Sommer.Jetzt_Leseprobe.pdf
+Bob, der Streuner	James Bowen	A2/B1	https://einfachebuecher.de/media/f5/68/d4/1656512399/Bob_der_Streuner_Leseprobe.pdf
+Die Hochzeit auf dem Lande	Utta Danella	A2/B1	https://einfachebuecher.de/media/ab/47/36/1656578601/Hochzeit_auf_dem_Lande_Leseprobe.pdf
+Stadt der Diebe	David Benioff	A2/B1	https://einfachebuecher.de/media/69/65/5b/1656512653/Stadt_der_Diebe_Leseprobe.pdf
+Die Magie des Spiels	Mesut Özil	A2/B1	https://einfachebuecher.de/media/05/13/f5/1655887408/Die_Magie_des_Spiels_Leseprobe.pdf
+Ellbogen	Fatma Aydemir	B1	https://einfachebuecher.de/media/8e/3a/df/1656315548/Ellbogen__Leseprobe.pdf
+Die Wolke	Gudrun Pausewang	A2/B1	https://einfachebuecher.de/media/23/57/db/1655888335/Leseprobe_Die_Wolke.pdf
+Der Schutzkeller	Tomas Ross	A2/B1	https://einfachebuecher.de/media/77/0f/56/1655807910/Der_Schutzkeller_Leseprobe.pdf
+Rache	René Appel	A2/B1	https://einfachebuecher.de/media/6b/16/db/1656741074/Rache_Leseprobe.pdf
+Vor dem Regen kommt der Tod	Lieneke Dijkzeul	A2/B1	https://einfachebuecher.de/media/53/21/bf/1656702978/Vor_dem_Regen_Leseprobe.pdf
+Winterkartoffelknödel	Rita Falk	A2/B1	https://einfachebuecher.de/media/1b/3d/84/1656591221/Winterkartoffelknoedel_Leseprobe.pdf
+Der Altmann ist tot	 Frau Freitag und Fräulein Krise	A2/B1	https://einfachebuecher.de/media/c9/00/dc/1656739285/Der_Altmann_ist_tot_Leseprobe.pdf
+Die Flüsse von London	Ben Aaronovitsch	A2/B1	https://einfachebuecher.de/media/5e/ab/6f/1656677113/Die_Fluesse_von_London_Leseprobe.pdf
+Dampfnudelblues	Rita Falk	A2/B1	https://einfachebuecher.de/media/5a/c5/9f/1656315490/Dampfnudelblues__Leseprobe_2.pdf
+Topmodel	Marianne Höhle	A2/B1	https://einfachebuecher.de/media/a9/76/ed/1655807978/Topmodel_Leseprobe.pdf
+Römische Zwillinge	Marian Hoefnagel	A2	https://einfachebuecher.de/media/c1/b0/aa/1656584214/Roemische_Zwillinge_Leseprobe.pdf
+Zoff im Viertel	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/05/78/72/1656584735/Zoff_im_Viertel_Leseprobe.pdf
+Be my Baby	Marita Erfurth	A1/A2	https://einfachebuecher.de/media/93/f0/83/1656672388/Be_my_baby_Leseprobe.pdf
+Annas Spuren	Sigrid Falkenstein	A2/B1	https://einfachebuecher.de/media/6c/60/6d/1656678500/Annas_Spuren_Leseprobe.pdf
+Papierkind	Marion Döbert	A2	https://einfachebuecher.de/media/b7/94/19/1656678221/Papierkind_Leseprobe.pdf
+Drei kleine Worte	Petra Röder	A2/B1	https://einfachebuecher.de/media/06/92/57/1656677353/Drei_kleine_Worte_-_Leseprobe.pdf
+Auf einen Schlag allein	Marion Hoefnagel	A2/B1	https://einfachebuecher.de/media/a5/35/20/1655888327/Leseprobe_Auf_einen_Schlag_allein.pdf
+Viel stärker als ich denke	Susanne Ganser	A2	https://einfachebuecher.de/media/41/39/ee/1656511226/Viel_staerker_als_ich_denke_Leseprobe.pdf
+Alles voller Hoffnung	Renate Dorrestein	A2/B1	https://einfachebuecher.de/media/73/14/dc/1656740876/Alles_voller_Hoffnung_Leseprobe.pdf
+Die Fremden am Deich	Susanne Ganser	A2	https://einfachebuecher.de/media/be/4d/ef/1656591961/Die_Fremden_am_Deich_Leseprobe.pdf
+Angerichtet	Hermann Koch	A2/B1	https://einfachebuecher.de/media/39/42/62/1656680061/Angerichtet_Leseprobe.pdf
+Ein Engel im Park	Susanne Ganser	A2	https://einfachebuecher.de/media/d0/9e/d6/1656590064/Ein_Engel_im_Park_Leseprobe.pdf
+Der Familienblues	Yvonne Kroonenberg	A2/B1	https://einfachebuecher.de/media/69/79/a9/1656740649/Der_Familien-Blues_Leseprobe.pdf
+Der Anmacher	Susanne Ganser	A2	https://einfachebuecher.de/media/82/56/a6/1656515382/Leseprobe_Der_Anmacher.pdf
+Krach im Sonnental	Sussane Ganser	A2	https://einfachebuecher.de/media/8a/a5/38/1656515052/Leseprobe_Krach_im_Sonnental.pdf
+Ein Sommer in Tanum	Marion Döbert	A2/B1	https://einfachebuecher.de/media/g0/65/38/1656676033/Ein_Sommer_in_Tanum_Leseprobe.pdf
+Hilflos und andere Kurzgeschichten	Unknown.	A2/B1	https://einfachebuecher.de/media/74/28/e7/1656674572/Kurzgeschichten_Leseprobe.pdf
+Nelson Mandela	Unknown.	A2/B1	https://einfachebuecher.de/media/43/7a/82/1656740182/Mandela_Leseprobe.pdf
+Rüssel, Rock und Regen	Susanne Ganser	A2	https://einfachebuecher.de/media/1c/ec/93/1656505803/Ruessel,_Rock_und_Regen_fertig_Leseprobe.pdf
+Rosa Meer	Marion Döbert	A2	https://einfachebuecher.de/media/66/70/3f/1656678356/Rosa_Meer_Leseprobe.pdf
+Zum Nachtisch: Leben!	Marion Döbert	A2/B1	https://einfachebuecher.de/media/1c/72/b9/1656670624/Zum_Nachtisch_Leben_Leseprobe.pdf
+Du wolltest doch ...	Marion Döbert	A2/B1	https://einfachebuecher.de/media/34/f2/bb/1656594177/Du_wolltest_doch_Leseprobe.pdf
+Die Therapie	Sebastian Fitzek	A2/B1	https://einfachebuecher.de/media/a6/7c/1e/1656315525/Die_Therapie_-_Leseprobe.pdf
+Wildes Lesen	Marion Döbert	A2/B1	https://einfachebuecher.de/media/41/41/f6/1656591465/Wildes_Lesen_-_Leseprobe.pdf
+Die Abenteuer von Bron Münchhausen	Frans van Dujin	A2/B1	https://einfachebuecher.de/media/7f/69/fa/1655887400/Die_Abenteuer_von_Baron_Muenchhausen_Leseprobe.pdf
+Raues Brot	Marion Döbert	A2/B1	https://einfachebuecher.de/media/37/73/98/1656583946/Raues_Brot_Leseprobe.pdf
+Ella auf Achse	Susanne Ganser	A2	https://einfachebuecher.de/media/fc/6b/dc/1656510380/Ella_auf_Achse_Leseprobe.pdf
+Das Versprechen	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/85/07/1b/1656505677/Das_Versprechen_Leseprobe.pdf
+Sie nannten mich Unkraut	Marion Döbert	A2/B1	https://einfachebuecher.de/media/5f/ee/23/1656509403/Sie_nannten_mich_Unkraut_Leseprobe.pdf
+Pirat	Dee Philiips	A2/B1	https://einfachebuecher.de/media/e6/a8/c5/1656506777/Pirat_Leseprobe.pdf
+Einmal Schnitzel mit Buch	Marion Döbert	A2/B1	https://einfachebuecher.de/media/63/6e/3c/1656315573/Schnitzel_mit_Buch_Leseprobe.pdf
+Herz ohne Grenzen	Marion Döbert	A2/B1	https://einfachebuecher.de/media/63/83/e2/1655887468/Herz_ohne_Grenzen_Leseprobe.pdf
+16 & schwanger	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/fe/7d/89/1656667889/16_und_schwanger_Leseprobe.pdf
+Chatten	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/00/4e/35/1656510123/Chatten_Leseprobe.pdf
+Das Phantom der Oper	Gaston Leroux	A2/B1	https://einfachebuecher.de/media/4c/7c/3f/1656589656/Das_Phantom_der_Oper_Leseprobe.pdf
+Der Graf von Monte Christo	Alexandre Dumas	A2/B1	https://einfachebuecher.de/media/35/b9/42/1656675065/Der_Graf_von_Monte_Christo_Leseprobe.pdf
+Die Blaumacher	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/c5/65/d7/1656315511/Die_Blaumacher_Leseprobe.pdf
+Die Geschichte von Haias	Alexis Feldmeier García	A2/B1	https://einfachebuecher.de/media/e5/e5/96/1656588809/Leseprobe_Die_Geschichte_von_Haias.pdf
+Die Geschichte von Zen		Alexis Feldmeier García	A2/B1	https://einfachebuecher.de/media/3a/ec/87/1656672597/Die_Geschichte_von_Zen_Leseprobe.pdf
+Dracula	Bram Stoker	A2/B1	https://einfachebuecher.de/media/e6/63/47/1656593850/Dracula_Leseprobe.pdf
+Edith Piaf - Ich singe um mein Leben	Marion Döbert	A2/B1	https://einfachebuecher.de/media/06/48/b5/1660317473/Ich_singe_um_mein_Leben_Leseprobe.pdf
+Eine Weihnachtsgeschichte	Charles Dickens	A2/B1	https://einfachebuecher.de/media/01/de/e9/1656594343/Eine_Weihnachtsgeschichte_Leseprobe.pdf
+Feiertage, Feste und Bräuche	Katja Göddemeyer	A2/B1	https://einfachebuecher.de/media/ff/c4/3d/1656315560/Feiertage,_Feste_und_Braeuche_Leseprobe.pdf
+Der Froschkönig	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/fd/0b/14/1655887457/Grimms_Maerchen_Leseprobe.pdf
+Ich heiße Anne	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/d3/0b/6e/1655887485/Ich_heisse_Anne_Leseprobe.pdf
+Im Westen nichts Neues	Erich Maria Remarque	A2/B1	https://einfachebuecher.de/media/0b/2f/33/1656703903/Im_Westen_Leseprobe.pdf
+Märchen aus dem Nahen Osten	Sandra van Stege	A2/B1	https://einfachebuecher.de/media/60/9d/a0/1656515791/Maerchen_aus_dem_Nahen_Osten_-_Leseprobe.pdf
+Neue Kleider für den Kaiser	Hans Christian Andersen	A2/B1	https://einfachebuecher.de/media/60/01/db/1655887366/Andersens_Maerchen_Leseprobe_kurz.pdf
+Mondflut	Marion Döbert	A2/B1	https://einfachebuecher.de/media/b1/86/e7/1656509135/Mondflut_-_Leseprobe.pdf
+Nachts an der Seine	Jojo Moyes	A2/B1	https://einfachebuecher.de/media/17/26/86/1660896662/Nachts%20an%20der%20Seine_Leseprobe.pdf
+Romeo und Julia	William Shakespeare	A2/B1	https://einfachebuecher.de/media/36/15/8a/1655807961/Romeo_und_Julia_Leseprobe.pdf
+Sei wie du bist	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/67/b5/fd/1656516256/Sei_wie_du_bist_Leseprobe.pdf
+Sherlock Holmes. Der Mann mit der Narbe	Arthur Conan Doyle	https://einfachebuecher.de/media/b1/e4/e8/1656679171/Holmes_Mann_mit_der_Narbe_Leseprobe.pdf
+Tristan und Isolde	Unknown.	A2/B1	https://einfachebuecher.de/media/e3/79/70/1656703202/Tristan_und_Isolde_Leseprobe.pdf
+Urlaub mit Papa	Dora Heldt	A2/B1	https://einfachebuecher.de/media/d6/48/7d/1656514875/Leseprobe_Urlaub_mit_Papa.pdf
+Weg von dir	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/55/3b/60/1656315578/Weg_von_dir_Leseprobe.pdf
+Das neue Viertel	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/7d/5c/4c/1656315497/Das_neue_Viertel_Leseprobe.pdf
+Als Sklavon geboren	Marian Hoefnagel	A2	https://einfachebuecher.de/media/6a/0b/65/1656581697/Leseprobe_Als_Sklavin_geboren.pdf
+Elle auf Achse	Susanne Ganser	A2	https://einfachebuecher.de/media/fc/6b/dc/1656510380/Ella_auf_Achse_Leseprobe.pdf
