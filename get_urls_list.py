@@ -115,7 +115,7 @@ def add_manual_aligned_urls(save_raw_content=False, output_dir="data/", save_onl
 	output = list()
 	output.extend(get_easy_to_read_books("links/books", "spaßamlesen_verlag", "citation required", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	output.extend(get_easy_to_read_books("links/literature", "passanten_verlag", "citation required", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
-	# output.extend(get_easy_to_read_books("links/fairytales", "fairytales", "not mentioned", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
+	output.extend(get_easy_to_read_books("links/fairytales", "fairytales", "not mentioned", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	# output.extend(get_participation_urls("links/participation", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	# output.extend(get_party_program("links/party_program", "party_program", "todo", save_raw_content=save_raw_content, output_dir=output_dir, save_only_parallel=save_only_parallel))
 	return output

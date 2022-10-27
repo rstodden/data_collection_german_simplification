@@ -148,11 +148,23 @@ def iterate_files(dataframe):
 													dataframe.loc[index, "complex_author"],
 													dataframe.loc[index, "complex_title"])
 				elif dataframe.loc[index, "complex_location_html"].endswith(".html"):
-					if "gutenberg" in dataframe.loc[index, "complex_location_html"]:
+					if "gutenberg" in dataframe.loc[index, "complex_url"]:
 						text_complex, text_complex_par = extract_gutenberg(complex_soup, "body", "", "", "complex",
 													dataframe.loc[index, "complex_url"],
 													dataframe.loc[index, "last_access"])
 			# print(text_simple, text_complex)
+		elif "fairytales" == dataframe.loc[index, "website"]:
+			if not pd.isna(dataframe.loc[index, "simple_location_html"]):
+				if dataframe.loc[index, "simple_location_html"].endswith(".html"):
+					text_simple, text_simple_par = extract_ndr_fairytales(simple_soup,
+													dataframe.loc[index, "simple_url"],
+													dataframe.loc[index, "last_access"])
+			if not pd.isna(dataframe.loc[index, "complex_location_html"]):
+				if dataframe.loc[index, "complex_location_html"].endswith(".html"):
+					if "gutenberg" in dataframe.loc[index, "complex_url"]:
+						text_complex, text_complex_par = extract_gutenberg(complex_soup, "body", "", "", "complex",
+													dataframe.loc[index, "complex_url"],
+													dataframe.loc[index, "last_access"])
 		else:
 			text_complex, text_simple = "", ""
 			continue
@@ -381,6 +393,25 @@ def extract_gutenberg(soup, tag, attribute, search_text, level, url, date):
 	for p in content.find_all("p"):
 		text += clean_data(p.text.strip())
 		text_par += clean_data(p.text.strip() + "SEPL|||SEPR ")
+	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
+	text_par = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text_par
+	return text, text_par
+
+
+def extract_ndr_fairytales(soup, url, date):
+	text, text_par = "", ""
+	content = soup.find("div", {"class": "modulepadding copytext"})
+	title_item = content.find("header")
+	if title_item:
+		title = title_item.text.strip()
+	else:
+		title = "Unknown."
+	for par in content.find_all("p"):
+		for line in par:
+			par_text = clean_data(line.text.strip())
+			text += par_text
+			text_par += par_text
+		text_par += " SEPL|||SEPR"
 	text = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text
 	text_par = '# &copy; Origin: ' + url + " [last accessed: " + date + "]\t" + title + "\n" + text_par
 	return text, text_par

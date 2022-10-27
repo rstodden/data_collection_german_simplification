@@ -1,0 +1,12 @@
+Frau Holle	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Frau-Holle,frauholleleichtesprache100.html
+Der Hase und der Igel	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Der-Hase-und-der-Igel,haseundigelleichtesprache100.html
+Dornröschen	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Dornroeschen,dornroeschenleichtesprache100.html
+Rotkäppchen	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Rotkaeppchen,rotkaeppchenleichtesprache100.html
+Stadtmusikanten	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Die-Bremer-Stadtmusikanten,stadtmusikantenleichtesprache100.html
+Des Teufels rußiger Bruder	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Des-Teufels-russiger-Bruder,bruderleichtesprache100.html
+Die 3 Federn	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Die-3-Federn,dreifedernleichtesprache100.html
+Hänsel und Gretel	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Haensel-und-Gretel,haenselleichtesprache100.html
+Der Wolf und die 7 Geisslein	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Der-Wolf-und-die-7-Geisslein,geissleinleichtesprache100.html
+Rapunzel	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Rapunzel,rapunzelleichtesprache100.html
+Rumpelstilzchen	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Rumpelstilzchen,rumpelstilzchenleichtesprache100.html
+Schneewittchen und die 7 Zwerge	Gebrüder Grimm	A1	https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Schneewittchen-und-die-7-Zwerge-,schneewittchenleichtesprache100.html
