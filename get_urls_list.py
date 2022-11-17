@@ -132,7 +132,7 @@ def get_easy_to_read_books(link, tag, license_name, save_raw_content=False, outp
 		simple_content = f.readlines()
 	complex_level = "C2"
 	for i, simple_line in enumerate(simple_content):
-		if i < len(complex_content):
+		if i < len(complex_content) and len(complex_content[i].strip()) > 0:
 			complex_title, complex_author, complex_level, complex_url = complex_content[i].strip().split("\t")
 		else:
 			complex_title, complex_author, complex_level, complex_url = "", "", "", ""

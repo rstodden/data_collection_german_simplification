@@ -116,7 +116,7 @@ Das Phantom der Oper	Gaston Leroux	A2/B1	https://einfachebuecher.de/media/4c/7c/
 Der Graf von Monte Christo	Alexandre Dumas	A2/B1	https://einfachebuecher.de/media/35/b9/42/1656675065/Der_Graf_von_Monte_Christo_Leseprobe.pdf
 Die Blaumacher	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/c5/65/d7/1656315511/Die_Blaumacher_Leseprobe.pdf
 Die Geschichte von Haias	Alexis Feldmeier García	A2/B1	https://einfachebuecher.de/media/e5/e5/96/1656588809/Leseprobe_Die_Geschichte_von_Haias.pdf
-Die Geschichte von Zen		Alexis Feldmeier García	A2/B1	https://einfachebuecher.de/media/3a/ec/87/1656672597/Die_Geschichte_von_Zen_Leseprobe.pdf
+Die Geschichte von Zen	Alexis Feldmeier García	A2/B1	https://einfachebuecher.de/media/3a/ec/87/1656672597/Die_Geschichte_von_Zen_Leseprobe.pdf
 Dracula	Bram Stoker	A2/B1	https://einfachebuecher.de/media/e6/63/47/1656593850/Dracula_Leseprobe.pdf
 Edith Piaf - Ich singe um mein Leben	Marion Döbert	A2/B1	https://einfachebuecher.de/media/06/48/b5/1660317473/Ich_singe_um_mein_Leben_Leseprobe.pdf
 Eine Weihnachtsgeschichte	Charles Dickens	A2/B1	https://einfachebuecher.de/media/01/de/e9/1656594343/Eine_Weihnachtsgeschichte_Leseprobe.pdf
@@ -130,7 +130,7 @@ Mondflut	Marion Döbert	A2/B1	https://einfachebuecher.de/media/b1/86/e7/16565091
 Nachts an der Seine	Jojo Moyes	A2/B1	https://einfachebuecher.de/media/17/26/86/1660896662/Nachts%20an%20der%20Seine_Leseprobe.pdf
 Romeo und Julia	William Shakespeare	A2/B1	https://einfachebuecher.de/media/36/15/8a/1655807961/Romeo_und_Julia_Leseprobe.pdf
 Sei wie du bist	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/67/b5/fd/1656516256/Sei_wie_du_bist_Leseprobe.pdf
-Sherlock Holmes. Der Mann mit der Narbe	Arthur Conan Doyle	https://einfachebuecher.de/media/b1/e4/e8/1656679171/Holmes_Mann_mit_der_Narbe_Leseprobe.pdf
+Sherlock Holmes. Der Mann mit der Narbe	Arthur Conan Doyle	A2/B1	https://einfachebuecher.de/media/b1/e4/e8/1656679171/Holmes_Mann_mit_der_Narbe_Leseprobe.pdf
 Tristan und Isolde	Unknown.	A2/B1	https://einfachebuecher.de/media/e3/79/70/1656703202/Tristan_und_Isolde_Leseprobe.pdf
 Urlaub mit Papa	Dora Heldt	A2/B1	https://einfachebuecher.de/media/d6/48/7d/1656514875/Leseprobe_Urlaub_mit_Papa.pdf
 Weg von dir	Marian Hoefnagel	A2/B1	https://einfachebuecher.de/media/55/3b/60/1656315578/Weg_von_dir_Leseprobe.pdf
