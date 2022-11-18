@@ -151,7 +151,8 @@ def iterate_files(dataframe):
 					if "gutenberg" in dataframe.loc[index, "complex_url"]:
 						text_complex, text_complex_par = extract_gutenberg(complex_soup, "body", "", "", "complex",
 													dataframe.loc[index, "complex_url"],
-													dataframe.loc[index, "last_access"])
+													dataframe.loc[index, "last_access"],
+													dataframe.loc[index, "complex_title"])
 			# print(text_simple, text_complex)
 		elif "fairytales" == dataframe.loc[index, "website"]:
 			if not pd.isna(dataframe.loc[index, "simple_location_html"]):
@@ -164,7 +165,8 @@ def iterate_files(dataframe):
 					if "gutenberg" in dataframe.loc[index, "complex_url"]:
 						text_complex, text_complex_par = extract_gutenberg(complex_soup, "body", "", "", "complex",
 													dataframe.loc[index, "complex_url"],
-													dataframe.loc[index, "last_access"])
+													dataframe.loc[index, "last_access"],
+													dataframe.loc[index, "complex_title"])
 		else:
 			text_complex, text_simple = "", ""
 			continue
@@ -366,7 +368,7 @@ def extract_pdf(save_path, level, url, date, author=None, title=None, toc=True):
 		return ""
 	if toc:
 		text = extract_pdf(save_path, level, url, date, toc=False, author=author, title=title)
-
+	text = text.replace('# &copy; Origin: ' + str(url) + " [last accessed: " + str(date) + "]\t" + str(author) + "|" + str(title)+"\n", "")
 	for sign in [".", ",", "!", "?", ";", ":"]:
 		text = text.replace(" "+sign, sign)
 		text = text.replace(sign, sign+' ')
@@ -380,15 +382,14 @@ def extract_pdf(save_path, level, url, date, author=None, title=None, toc=True):
 	return text.strip()
 
 
-def extract_gutenberg(soup, tag, attribute, search_text, level, url, date):
+def extract_gutenberg(soup, tag, attribute, search_text, level, url, date, title):
 	text, text_par = "", ""
 	if not soup:
 		return None, None
 	title_item = soup.find("h5")
 	if title_item:
-		title = title_item.text.strip()
-	else:
-		title = ""
+		if len(title_item.text.strip()) > 0:
+			title = title_item.text.strip()
 	content = soup.find(tag)
 	for p in content.find_all("p"):
 		text += clean_data(p.text.strip())
@@ -726,8 +727,8 @@ def main():
 	dataframe = pd.read_csv(input_file, sep="\t", header=0)
 	# todo remove books from list
 	# filter_data = ("website", "passanten_verlag")
-	# filter_data = ("website", "lebenshilfe_main_taunus")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
-	output_dataframe = filter_and_extract_data(dataframe)  #  , filter_data)
+	# filter_data = ("website", "fairytales")  # bible_verified + # news-apa # "alumniportal-DE-2021" # "apotheken-umschau"
+	output_dataframe = filter_and_extract_data(dataframe) # , filter_data)
 	output_dataframe.to_csv(input_dir+"url_overview_text.tsv", header=True, index=False, sep="\t")
 
 

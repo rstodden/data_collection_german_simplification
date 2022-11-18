@@ -840,9 +840,9 @@ def main():
 
 
 	overview_pages = [
-					"https://www.alumniportal-deutschland.org/services/sitemap/",
+					## "https://www.alumniportal-deutschland.org/services/sitemap/",
 					"https://www.lebenshilfe-main-taunus.de/inhalt/",
-					## "https://www.os-hho.de/",
+					### "https://www.os-hho.de/",
 					"https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html",
 
 					"https://offene-bibel.de/wiki/Kategorie:Leichte_Sprache_in_Arbeit",

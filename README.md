@@ -14,26 +14,26 @@ Please check the copyright of each website yourself, to make sure you are allowe
 The parallel documents can be also uploaded in the text simplification annotation tool TS-ANNO ([Stodden, Kallmeyer (2022)](https://github.com/rstodden/TS_annotation_tool)) for further annotation, e.g., sentence-wise alignment. 
 The output format of this code is identical to the input format of TS-ANNO.
 
-| website                                                                                                                         | simple level | complex level | domain           | copyright | status |
-|---------------------------------------------------------------------------------------------------------------------------------|--------------|---------------|------------------|--------|--------|
-| https://www.alumniportal-deutschland.org/services/sitemap/                                                                      | A2           | B2            | language learner |  | &#10003;      |
-| https://www.apotheken-umschau.de/einfache-sprache/                                                                              | B1           | C2            | biomed           | x |&#10003;  |
-| https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/                                                            | A2/B1        | C2            | politics         | x |&#10003;  |
-| https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/                                                               | children_6   | C2            | politics         | x |&#10003;  |
-| https://www.bzfe.de/einfache-sprache/                                                                                           | A2/B1        | C2            | health/food      | x |&#10003;  |
-| https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html                                                            | A1           | C2            | web              | x |&#10003;  |
-| https://einfachebuecher.de/                                                                                                     | A2/B1        | C2            | fiction          | x |&#10003;  |
-| https://www.hamburg.de/hamburg-barrierefrei/leichte-sprache/                                                                    | A1           | C2            | web              | x |&#10003;  |
-| https://www.lebenshilfe-main-taunus.de/inhalt/                                                                                  | A1           | C2            | accessibility    | x |&#10003;  |
-| https://offene-bibel.de/                                                                                                        | A1           | C2            | bible            | x |&#10003;  |
-| https://www.passanten-verlag.de/                                                                                                | A2/B1        | C2            | fiction          | x |&#10003;  |
-| https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache                                               | A1           | C2            | web              | x |&#10003;  |
-| https://www.evangelium-in-leichter-sprache.de/bibelstellen                                                                      | A1           | C2            | bible            | x |&#10007; |
-| https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Maerchen-in-Leichter-Sprache,maerchenleichtesprache100.html | A1 | C2 | fiction          | x | &#10003; |
-| https://www.nachrichtenleicht.de/                                                                                               | A1 |  | news             | x | &#10007; |
-| https://hurraki.de/wiki/Hauptseite                                                                                              | A1 | | wiki             | x |&#10007; |
-| party programs                                                                                                                  | A1 | | politics         | x |&#10007; |
-| instructions citizen participation                                                                                              | A1 | | politics         | x |&#10007; |
+| website                                                                                                                         | simple level | complex level | domain           | copyright | status   |
+|---------------------------------------------------------------------------------------------------------------------------------|--------------|---------------|------------------|--------|----------|
+| https://www.alumniportal-deutschland.org/services/sitemap/                                                                      | A2           | B2            | language learner |  | &#9940;  |
+| https://www.apotheken-umschau.de/einfache-sprache/                                                                              | B1           | C2            | biomed           | x | &#9989; |
+| https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/                                                            | A2/B1        | C2            | politics         | x | &#9989; |
+| https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/                                                               | children_6   | C2            | politics         | x | &#9989; |
+| https://www.bzfe.de/einfache-sprache/                                                                                           | A2/B1        | C2            | health/food      | x | &#9989; |
+| https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html                                                            | A1           | C2            | web              | x | &#9989; |
+| https://einfachebuecher.de/                                                                                                     | A2/B1        | C2            | fiction          | x | &#9989; |
+| https://www.hamburg.de/hamburg-barrierefrei/leichte-sprache/                                                                    | A1           | C2            | web              | x | &#9989; |
+| https://www.lebenshilfe-main-taunus.de/inhalt/                                                                                  | A1           | C2            | accessibility    | x | &#9989; |
+| https://offene-bibel.de/                                                                                                        | A1           | C2            | bible            | x | &#9989; |
+| https://www.passanten-verlag.de/                                                                                                | A2/B1        | C2            | fiction          | x | &#9989; |
+| https://www.stadt-koeln.de/leben-in-koeln/soziales/informationen-leichter-sprache                                               | A1           | C2            | web              | x | &#9989; |
+| https://www.evangelium-in-leichter-sprache.de/bibelstellen                                                                      | A1           | C2            | bible            | x | &#11036; |
+| https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Maerchen-in-Leichter-Sprache,maerchenleichtesprache100.html | A1 | C2 | fiction          | x | &#9989; |
+| https://www.nachrichtenleicht.de/                                                                                               | A1 |  | news             | x | &#11036; |
+| https://hurraki.de/wiki/Hauptseite                                                                                              | A1 | | wiki             | x | &#11036; |
+| party programs                                                                                                                  | A1 | | politics         | x | &#11036; |
+| instructions citizen participation                                                                                              | A1 | | politics         | x | &#11036; |
 
 ## Installation
 1) Please install Python 3.
