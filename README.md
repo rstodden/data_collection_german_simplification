@@ -34,6 +34,7 @@ The output format of this code is identical to the input format of TS-ANNO.
 | https://hurraki.de/wiki/Hauptseite                                                                                              | A1 | | wiki             | x | &#11036; |
 | party programs                                                                                                                  | A1 | | politics         | x | &#11036; |
 | instructions citizen participation                                                                                              | A1 | | politics         | x | &#11036; |
+| https://www.monheim.de/footer/leichte-sprache/inhalts-uebersicht | A1 | C2 | web |x | &#11036; |
 
 ## Installation
 1) Please install Python 3.
