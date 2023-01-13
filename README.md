@@ -18,8 +18,8 @@ The output format of this code is identical to the input format of TS-ANNO.
 |---------------------------------------------------------------------------------------------------------------------------------|--------------|---------------|------------------|--------|----------|
 | https://www.alumniportal-deutschland.org/services/sitemap/                                                                      | A2           | B2            | language learner |  | &#9940;  |
 | https://www.apotheken-umschau.de/einfache-sprache/                                                                              | B1           | C2            | biomed           | x | &#9989; |
-| https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/                                                            | A2/B1        | C2            | politics         | x | &#9989; |
-| https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/                                                               | children_6   | C2            | politics         | x | &#9989; |
+| https://www.bpb.de/nachschlagen/lexika/lexikon-in-einfacher-sprache/                                                            | A2/B1        | C2            | politics         | x | &#9680;|
+| https://www.bpb.de/nachschlagen/lexika/das-junge-politik-lexikon/                                                               | children_6   | C2            | politics         | x | &#9680; |
 | https://www.bzfe.de/einfache-sprache/                                                                                           | A2/B1        | C2            | health/food      | x | &#9989; |
 | https://www.einfach-teilhaben.de/DE/LS/Home/leichtesprache_node.html                                                            | A1           | C2            | web              | x | &#9989; |
 | https://einfachebuecher.de/                                                                                                     | A2/B1        | C2            | fiction          | x | &#9989; |
