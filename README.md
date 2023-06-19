@@ -14,6 +14,11 @@ Please check the copyright of each website yourself, to make sure you are allowe
 The parallel documents can be also uploaded in the text simplification annotation tool TS-ANNO ([Stodden, Kallmeyer (2022)](https://github.com/rstodden/TS_annotation_tool)) for further annotation, e.g., sentence-wise alignment. 
 The output format of this code is identical to the input format of TS-ANNO.
 
+The web crawler was already used to download the data for the DEplain-web corpus [(Stodden et. al., 2023)](https://github.com/rstodden/DEPlain). 
+
+
+
+
 | website                                                                                                                         | simple level | complex level | domain           | copyright | status   |
 |---------------------------------------------------------------------------------------------------------------------------------|--------------|---------------|------------------|--------|----------|
 | https://www.alumniportal-deutschland.org/services/sitemap/                                                                      | A2           | B2            | language learner |  | &#9940;  |
@@ -36,6 +41,7 @@ The output format of this code is identical to the input format of TS-ANNO.
 | instructions citizen participation                                                                                              | A1 | | politics         | x | &#11036; |
 | https://www.monheim.de/footer/leichte-sprache/inhalts-uebersicht | A1 | C2 | web |x | &#11036; |
 
+
 ## Installation
 1) Please install Python 3.
 2) Get your own copy of the code with git clone.
@@ -57,17 +63,32 @@ The first line of each parallel file contains meta data and the second line cont
 The format of the meta data of the first line looks like this: 
 ``# © Origin: source_of_data [last accessed: YYYY-MM-DD]\ttitle_of_document` 
 
+## Warning
+Web content can change very frquently, so maybe the web crawler does not suport all web pages named above anymore. Some web pages might have meanwhile changed their URLs or the HTML structure. In main function of [get_urls_list.py](https://github.com/rstodden/data_collection_german_simplification/blob/master/get_urls_list.py#L833) you can disable web pages for which the crawler currently does not work (or web pages you are not interested in). We plan to overcome this issue in future by providing links to archived versions of the web pages.
 
 ## Contributions
 Feel free to add more webpages or add code to crawl the webpages. 
 
 ## License
-This code is licensed under [todo] license.
+This code is licensed under [GPL-3.0 license](LICENSE).
 
 ## Citation
-If you this code in your research, please cite
+If you use part of this work, please cite our paper:
+
 ```
-[todo]
+@inproceedings{stodden-etal-2023-deplain,
+    title = "{DE}-plain: A German Parallel Corpus with Intralingual Translations into Plain Language for Sentence and Document Simplification",
+    author = "Stodden, Regina  and
+      Momen, Omar  and
+      Kallmeyer, Laura",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    notes = "preprint: https://arxiv.org/abs/2305.18939",
+}
+
 ```
 
 ## ToDo:
